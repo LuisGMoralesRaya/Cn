@@ -1,0 +1,487 @@
+<style>
+    /* NOTICE Extra css, if you need this section as an isolated element, please avoid including the following */
+    html body #banner_collection > .container > img+p {
+      margin: 0 0 var(--desktop-container-gutter) 0 !important;
+    }
+    div[data-oke-reviews-carousel] {
+      display: contents !important;
+    }
+    html body div.okeReviews-reviewsCarousel-heading {
+      padding-top: unset !important;
+      font-size: calc(var(--base-text-font-size) - (var(--default-text-font-size) - 20px))!important;
+    }
+    /*END NOTICE*/
+  
+  #two_cards_container .row.two {
+      display: flex !important;
+      align-items: center !important;
+  }
+  
+    
+  #two_cards_container {
+        margin: 0 !important;
+        display: table !important;
+      width: 100% !important;
+        max-width: 1480px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      padding: 0 var(--desktop-container-gutter);
+  }
+  
+  #two_cards_container .row{
+      height: 18.3rem !important;
+      display: inline-block !important;
+      position: relative !important;
+      float: left !important;
+      overflow: hidden !important;
+      margin-bottom: var(--desktop-container-gutter) !important;
+  }
+  
+  #two_cards_container .row.one{
+      width: 100% !important;	
+  }
+  
+  #two_cards_container .row.two{
+      width: calc((100% - 20px) / 2);
+      max-width: calc((100% - 20px) / 2);
+  }
+  
+  #two_cards_container .row.two:not(:nth-child(2)) {
+      margin-right: 20px;
+  }
+  
+  #two_cards_container .row section,
+  #two_cards_container .row aside{
+      display: inline-block !important;
+      float: left !important;
+      width: 100% !important;
+      height: 100% !important;
+        position: absolute !important;
+  }
+    
+  #two_cards_container .row section {
+      padding: 0.5rem 1rem 0 2rem !important;
+      background-color: transparent !important;
+      max-width: 65% !important;
+      right: 0 !important;
+  }
+    
+  #two_cards_container .row aside{
+      background-size: cover !important;
+      background-position: center center !important;
+  }
+  
+  #two_cards_container .row section info {
+      display: table !important;
+      width: 100% !important;
+      height: 100% !important;
+  }
+  
+  #two_cards_container .row section info div.holder {
+      display: table-cell !important;
+  }
+  
+  #two_cards_container .row section info div.holder h2{
+      margin: unset !important; 
+  }
+  
+  #two_cards_container .row section info div.holder p {
+      margin-bottom: 12px !important;
+        line-height: 1.3em !important;
+      margin-top: -8px !important;
+  }
+  
+  #two_cards_container .row section info div.holder a{
+      display: inline-block;
+      padding: 0.25rem 0.75rem !important;
+      width: auto !important;
+      text-decoration: none !important;
+        transition: all 0.3s !important;
+      position: relative !important;
+        font-weight: 600 !important;
+  }
+  
+  a.img-container {
+      z-index: 3 !important;
+      display: flex !important;
+      height: 100% !important;
+      max-width: 35% !important;
+      max-height: 100% !important;
+      overflow: hidden !important;
+      position: relative !important;
+      align-items: center;
+  }
+    
+  html body #two_cards_container .row .fixer aside {
+      z-index: 2 !important;
+      position: relative !important;
+  }
+    
+  html body a.img-container img.aside.desktop{
+      display: flex !important;
+      width: 100% !important;
+      height: auto !important;
+  }
+    
+  @media screen and (max-width: 1180px){
+    #two_cards_container .row {
+      height: 14.3rem !important;
+    }
+  }
+  @media screen and (max-width: 768px){
+    div#shopify-section-custom_html_01_new_index {
+      margin-bottom: -20px !important;
+    }
+    
+    #two_cards_container .row {
+      height: auto !important;
+    }
+    #two_cards_container {
+        padding: 0 var(--mobile-container-gutter) !important;
+    }
+    #two_cards_container .row.two {
+      display: table !important;
+    }
+    #two_cards_container .row section{
+      max-width: 100% !important;
+      width: 100% !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: block !important;
+      position: relative !important;
+    }
+    #two_cards_container .row.two:nth-last-child(1){
+        margin-bottom: var(--desktop-container-gutter) !important;
+    }
+    #two_cards_container .row aside{
+        background-position: left bottom !important;
+    }
+    a.img-container {
+      max-width: 100% !important;
+    }
+    #two_cards_container .row section info div.holder a {
+      width: 100% !important;
+      text-align: center;
+      font-size: 14px !important;
+    }
+    #two_cards_container .row section info div.holder h2 {
+      font-size: 20px !important;
+    }
+    #two_cards_container .row section info div.holder p {
+      margin-top: -5px !important;
+      font-size: 14px !important;
+      line-height: 1em !important;
+    }  
+  }
+  @media screen and (max-width:400px){
+    #two_cards_container .row section info div.holder h2 {
+      font-size: 16px !important;
+    }
+    #two_cards_container .row section info div.holder p,
+    #two_cards_container .row section info div.holder a{
+      font-size:12px !important; 
+    }
+    #two_cards_container .row section info div.holder a{
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  @media screen and (max-width:334px){
+    #two_cards_container .row.two {
+        display: block !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+    }
+    #two_cards_container .row.two:nth-last-child(1){
+        margin-top: var(--mobile-container-gutter) !important;
+    }
+  }
+  </style>
+<section>
+    <div id="two_cards_container">
+      <div class="fixer">
+        {% assign iteration_number = 0 %}
+        
+        {% for block in section.blocks %}
+        	{% assign iteration_button_color = block.settings.button_color %}
+			{% assign iteration_button_text_color = block.settings.button_text_color %}
+        	{% assign bck_op = block.settings.background_opacity | times: 0.01 %}
+        	{% assign txt_sh = 0.20 | minus: bck_op %} 
+            <div class="row {{ ' ' }} {%- if section.blocks.size > 1 -%}two{%- else -%}one{%- endif -%}">
+                {% style %}
+              	  #two_cards_container .row section info div.holder a:hover{
+                      box-shadow: 0 2px 3px rgba(0,0,0,{{ txt_sh }}) !important;
+                      opacity: .99 !important;
+                  }
+                {% endstyle %}
+              	<aside class="it_{{ iteration_number }}" >
+                  <div class="overlay" 
+                       style="background: linear-gradient(to top, transparent 23%, {{ block.settings.overlay_color }}) !important;
+                              opacity: {{ bck_op }} !important;
+                              width:100% !important;
+                              height:100% !important;
+                              position: absolute !important;
+                              top: 0 !important;
+                              left: 0 !important;
+                              mix-blend-mode: {{ block.settings.overlay_type }} !important;">
+                  </div>
+                </aside>
+                <a class="it_{{ iteration_number }} img-container" href="{{ block.settings.link }}"><img loading="lazy" alt="{{ block.settings.title }}" width="auto" height="100%" src="{{ block.settings.image | img_url: 'grande' }}" class="aside desktop"></a>
+                <section style="text-align:{{ block.settings.h_align }};">
+                  	{% style %}
+                  		#two_cards_container .row section info div.holder a.it_{{ iteration_number }}{
+                            background-color:{{ iteration_button_color }} !important;
+                            color: {{ iteration_button_text_color }} !important;
+                        }
+                  		#two_cards_container .row section info div.holder a.it_{{ iteration_number }}:hover{
+                            color:{{ iteration_button_color }} !important;
+                            background-color: {{ iteration_button_text_color }} !important;
+                        }
+                  	{% endstyle %}
+                    <info>
+                        <div class="holder" style="vertical-align:{{ block.settings.v_align }};">
+                            <h2 style="font-size:{{ block.settings.font_size_heading | append: 'px' }};
+                                       color: {{ block.settings.text_color}} !important;
+                                       font-weight: {{ block.settings.title_weight }} !important;">{{ block.settings.title }}</h2>
+                            <p style="font-size:{{ block.settings.font_size_paragraph | append: 'px' }};
+                                      color: {{ block.settings.text_color}} !important;
+                                      font-weight: {{ block.settings.description_weight }} !important;">{{ block.settings.description }}</p>
+                            <a class="it_{{ iteration_number }}" href="{{ block.settings.link }}">{{ block.settings.button_text }}</a>
+                        </div class="holder">
+                    </info>
+                </section>
+            </div>
+        	{% assign iteration_number = iteration_number | plus: 1 %}
+        {% endfor %}
+      </div>
+    </diV>
+</section>
+{% schema %}
+{
+    "name": "2 Cards New Index",
+    "class": "spaced-section spaced-section--full-width",
+    "max_blocks": 2,
+    "blocks": [
+    {
+        "type": "card",
+        "name": "Card",
+        "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Card image"
+        },
+		{
+            "type": "image_picker",
+            "id": "image_mobile",
+            "label": "Card image for mobile devices"
+        },
+        {
+            "type": "range",
+            "id": "background_opacity",
+            "min":  0,
+            "max":  100,
+            "step":  1,
+            "label": "Background Opacity",
+            "default":  20
+        },
+        {
+            "type": "color",
+            "id": "overlay_color",
+            "label": "Overlay color",
+            "default": "#000000"
+        },
+        {
+            "type": "select",
+            "id": "overlay_type",
+            "default": "unset",
+            "label": "Overlay Type",
+            "options": [
+            {
+                "value": "hard-light",
+                "label": "Hard Light"
+            },
+            {
+                "value": "unset",
+                "label": "Normal"
+            },
+            {
+                "value": "multiply",
+                "label": "Multiply"
+            }]
+        },
+        {
+            "type": "range",
+            "id": "font_size_heading",
+            "min":  20,
+            "max":  38,
+            "step":  1,
+            "label": "Font size for title",
+            "default":  30
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Title"
+        },
+        {
+            "type": "select",
+            "id": "title_weight",
+            "default": "300",
+            "label": "Title font weight",
+            "options": [
+            {
+                "value": "200",
+                "label": "Slim"
+            },
+			{
+                "value": "300",
+                "label": "Normal"
+            },
+            {
+                "value": "600",
+                "label": "Bold"
+            },
+            {
+                "value": "800",
+                "label": "Extra Bold"
+            }]
+        },
+        {
+            "type": "range",
+            "id": "font_size_paragraph",
+            "min":  14,
+            "max":  22,
+            "step":  1,
+            "label": "Font size for description",
+            "default":  20
+        },
+        {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description",
+            "default": "Description"
+        },
+        {
+            "type": "select",
+            "id": "description_weight",
+            "default": "300",
+            "label": "Description font weight",
+            "options": [
+            {
+                "value": "200",
+                "label": "Normal"
+            },
+			{
+                "value": "300",
+                "label": "Normal"
+            },
+            {
+                "value": "600",
+                "label": "Bold"
+            },
+            {
+                "value": "800",
+                "label": "Extra Bold"
+            }]
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text",
+            "default": "Click me"
+        },
+        {
+            "type": "url",
+            "id": "link",
+            "label": "Link",
+            "default": "/collections"
+        },
+        {
+            "type": "color",
+            "id": "button_text_color",
+            "label": "Button text color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "color",
+            "id": "button_color",
+            "label": "Button background color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "select",
+            "id": "h_align",
+            "default": "center",
+            "label": "Copy horizontal alignment",
+            "options": [
+            {
+                "value": "left",
+                "label": "Left"
+            },
+            {
+                "value": "center",
+                "label": "Center"
+            },
+            {
+                "value": "right",
+                "label": "Right"
+            }]
+        },
+        {
+            "type": "select",
+            "id": "v_align",
+            "default": "middle",
+            "label": "Copy vertical alignment",
+            "options": [
+            {
+                "value": "top",
+                "label": "Top"
+            },
+            {
+                "value": "middle",
+                "label": "Center"
+            },
+            {
+                "value": "bottom",
+                "label": "Bottom"
+            }]
+        }]
+
+    }],
+    "presets": [
+    {
+        "name": "2 Cards New Index"
+    }]
+}
+{% endschema %}
+<script defer="defer">
+  function two_cards_resizer() {
+        setTimeout(function() {
+          var auto_height = $('#two_cards_container > div > div:nth-child(2) > section > info > div > p').height();
+          var auto_width = $('#two_cards_container > div > div:nth-child(1)').width();
+          var attr_string = $('#two_cards_container > div > div:nth-child(2) > section > info > div > p').attr('style');
+          $('#two_cards_container > div > div:nth-child(1) > section > info > div > p').each(function(){
+              $(this).attr('style', attr_string + 'height:'+auto_height+'px!important');
+          });
+          $('#two_cards_container > div > div:nth-child(2)').each(function(){
+              $(this).attr('style', 'width:'+auto_width+'px!important;max-width:'+auto_width+'px!important');
+          });
+      }, 0.1);
+  }
+  $(window).load(function() {
+      two_cards_resizer();
+  });
+
+  window.addEventListener('resize', function(event) {
+      two_cards_resizer();
+  }, true);
+</script>

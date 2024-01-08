@@ -1,0 +1,38 @@
+<div class="container container--medium">
+  <header class="page__header ">
+    <h1 class="page__title heading h1">{{ page.title }}</h1>
+  </header>
+
+  <div class="page__content rte">
+    <h2>Listado vertical</h2>
+    <div data-oke-reviews-widget></div>
+    <p>Listado vertical termina.</p>
+    <br>
+    <hr>
+    <h2>Creador de reviews</h2>
+    <div data-oke-reviews-widget data-oke-reviews-product-id="shopify-{{ product.id }}">{{ product.metafields.okendo.ProductReviewsWidgetSnippet }}</div>
+    <p>Creador de reviews termina.</p>    
+    <br>
+    <hr>
+    <h2>Badge de cantidad de reviews</h2>
+	<div data-oke-reviews-badge data-oke-reviews-badge-size="large" data-oke-reviews-badge-link="/pages/reviews"></div>
+    <p>Badge de cantidad de reviews termina.</p>	
+    <br>
+    <hr>
+    <h2>Carrusel</h2>
+    <div data-oke-media-carousel data-oke-reviews-autoplay="false" data-oke-reviews-arrow-position="inside" data-oke-reviews-slide-link-text="Read More" data-oke-reviews-min-images="1" data-oke-reviews-slide-size="medium"></div>
+    <p>Carrusel termina.</p>    
+    <br>
+    <hr>
+    <h2>Grid</h2>
+    <div data-oke-media-grid data-oke-reviews-hide-arrow="true" data-oke-reviews-cell-link-text="Read More" data-oke-reviews-gap-size="10" data-oke-reviews-load-more-on-scroll="false"></div>
+    <p>Grid termina.</p>    
+    <br>
+    <hr>
+  </div>
+</div>
+<style>
+  #main{margin:40px 20px;}
+  .page__header--centered{text-align:left !important;}
+  #main .container {background:#fff !important; border-radius:3px; border:1px solid #f3f3f3; margin-top:20px; margin-bottom:20px; padding:40px;}
+</style>

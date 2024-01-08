@@ -1,0 +1,146 @@
+{% include 'settings_theme_instance' %}
+
+  {% assign includedTagsArray = includedTagsString | split:"," %}
+
+    {% for includedTag in includedTagsArray %}
+      {% if product.tags contains includedTag %}
+        {% assign isolated_discount_per_tag_proceed = 1 %}
+      {% endif %}
+    {% endfor %}
+
+   {% if isolated_discount_per_tag_proceed == 1 %}
+      
+    	{% assign dpobs_v1 = ditbs_v1 %}
+        {% assign dpibs_v1 = ditbs_v1 %}
+        {% assign dcabs_v1 = ditbs_v1 %}
+        {% assign dacbs_v1 = ditbs_v1 %}
+        {% assign dalbs_v1 = ditbs_v1 %}
+        {% assign dfrbs_v1 = ditbs_v1 %}
+        {% assign dcs2s_v1 = ditbs_v1 %}
+
+        {% assign dact1_v1 = ditbs_v1 %}
+        {% assign dact2_v1 = ditbs_v1 %}
+        {% assign dact3_v1 = ditbs_v1 %}
+        {% assign dact4_v1 = ditbs_v1 %}
+        {% assign dact5_v1 = ditbs_v1 %}
+        {% assign dact6_v1 = ditbs_v1 %}
+
+    {% endif %}
+
+
+	{%- assign canvas_desc = dcabs_v1 -%}
+	{%- assign acrilico_desc = dacbs_v1 -%}
+	{%- assign aluminio_desc = dalbs_v1 -%}
+	{%- assign pixsets_desc = dpibs_v1 -%}
+	{%- assign poster_desc = dpobs_v1 -%}
+
+	{%- assign acr_tier1_desc = dact1_v1 -%}
+	{%- assign acr_tier2_desc = dact2_v1 -%}
+	{%- assign acr_tier3_desc = dact3_v1 -%}
+	{%- assign acr_tier4_desc = dact4_v1 -%}
+	{%- assign acr_tier5_desc = dact5_v1 -%}
+	{%- assign acr_tier6_desc = dact6_v1 -%}
+
+
+
+{%- assign tier_1_wm ="100 x 100 cm, 140 x 70 cm, 160 x 80 cm, 200 x 100 cm, 220 x 110 cm, 240 x 120 cm, 150 x 50 cm, 240 x 80 cm, 120 x 80 cm, 135 x 90 cm, 150 x 100 cm, 165 x 110 cm, 180 x 120 cm, 160 x 40 cm, 160 x 120 cm, 70 x 140 cm, 80 x 160 cm, 100 x 200 cm, 110 x 220 cm, 120 x 240 cm, 50 x 150 cm, 80 x 240 cm, 80 x 120 cm, 90 x 135 cm, 100 x 150 cm, 110 x 165 cm, 120 x 180 cm, 40 x 160 cm, 120 x 160 cm" | split: ", " -%}
+{%- assign tier_2_wm ="70 x 70 cm, 80 x 80 cm, 90 x 90 cm, 120 x 120 cm, 80 x 40 cm, 100 x 50 cm, 120 x 60 cm, 180 x 90 cm, 180 x 60 cm, 210 x 70 cm, 75 x 50 cm, 105 x 70 cm, 200 x 50 cm, 240 x 60 cm, 80 x 60 cm, 100 x 75 cm, 120 x 90 cm, 40 x 80 cm, 50 x 100 cm, 60 x 120 cm, 90 x 180 cm, 60 x 180 cm, 70 x 210 cm, 50 x 75 cm, 70 x 105 cm, 50 x 200 cm, 60 x 240 cm, 60 x 80 cm, 75 x 100 cm, 90 x 120 cm" | split: ", " -%}
+{%- assign tier_3_wm ="90 x 30 cm, 60 x 40 cm, 60 x 45 cm, 30 x 90 cm, 40 x 60 cm, 45 x 60 cm" | split: ", " -%}
+{%- assign tier_4_wm ="20 x 20 cm, 40 x 40 cm, 50 x 50 cm, 60 x 60 cm, 40 x 20 cm, 60 x 30 cm, 60 x 20 cm, 120 x 40 cm, 30 x 20 cm, 45 x 30 cm, 90 x 60 cm, 80 x 20 cm, 120 x 30 cm, 20 x 40 cm, 30 x 60 cm, 20 x 60 cm, 40 x 120 cm, 20 x 30 cm, 30 x 45 cm, 60 x 90 cm, 20 x 80 cm, 30 x 120 cm" | split: ", " -%}
+{%- assign tier_5_wm ="25 x 25 cm, 30 x 30 cm, 40 x 30 cm, 30 x 40 cm" | split: ", " -%}
+
+{%- assign tier_1 ="Acrílico / 100 x 100 cm, Acrílico / 140 x 70 cm, Acrílico / 160 x 80 cm, Acrílico / 200 x 100 cm, Acrílico / 220 x 110 cm, Acrílico / 240 x 120 cm, Acrílico / 150 x 50 cm, Acrílico / 240 x 80 cm, Acrílico / 120 x 80 cm, Acrílico / 135 x 90 cm, Acrílico / 150 x 100 cm, Acrílico / 165 x 110 cm, Acrílico / 180 x 120 cm, Acrílico / 160 x 40 cm, Acrílico / 160 x 120 cm, Acrílico / 70 x 140 cm, Acrílico / 80 x 160 cm, Acrílico / 100 x 200 cm, Acrílico / 110 x 220 cm, Acrílico / 120 x 240 cm, Acrílico / 50 x 150 cm, Acrílico / 80 x 240 cm, Acrílico / 80 x 120 cm, Acrílico / 90 x 135 cm, Acrílico / 100 x 150 cm, Acrílico / 110 x 165 cm, Acrílico / 120 x 180 cm, Acrílico / 40 x 160 cm, Acrílico / 120 x 160 cm" | split: ", " -%}
+{%- assign tier_2 ="Acrílico / 70 x 70 cm, Acrílico / 80 x 80 cm, Acrílico / 90 x 90 cm, Acrílico / 120 x 120 cm, Acrílico / 80 x 40 cm, Acrílico / 100 x 50 cm, Acrílico / 120 x 60 cm, Acrílico / 180 x 90 cm, Acrílico / 180 x 60 cm, Acrílico / 210 x 70 cm, Acrílico / 75 x 50 cm, Acrílico / 105 x 70 cm, Acrílico / 200 x 50 cm, Acrílico / 240 x 60 cm, Acrílico / 80 x 60 cm, Acrílico / 100 x 75 cm, Acrílico / 120 x 90 cm, Acrílico / 40 x 80 cm, Acrílico / 50 x 100 cm, Acrílico / 60 x 120 cm, Acrílico / 90 x 180 cm, Acrílico / 60 x 180 cm, Acrílico / 70 x 210 cm, Acrílico / 50 x 75 cm, Acrílico / 70 x 105 cm, Acrílico / 50 x 200 cm, Acrílico / 60 x 240 cm, Acrílico / 60 x 80 cm, Acrílico / 75 x 100 cm, Acrílico / 90 x 120 cm" | split: ", " -%}
+{%- assign tier_3 ="Acrílico / 90 x 30 cm, Acrílico / 60 x 40 cm, Acrílico / 60 x 45 cm, Acrílico / 30 x 90 cm, Acrílico / 40 x 60 cm, Acrílico / 45 x 60 cm" | split: ", " -%}
+{%- assign tier_4 ="Acrílico / 20 x 20 cm, Acrílico / 40 x 40 cm, Acrílico / 50 x 50 cm, Acrílico / 60 x 60 cm, Acrílico / 40 x 20 cm, Acrílico / 60 x 30 cm, Acrílico / 60 x 20 cm, Acrílico / 120 x 40 cm, Acrílico / 30 x 20 cm, Acrílico / 45 x 30 cm, Acrílico / 90 x 60 cm, Acrílico / 80 x 20 cm, Acrílico / 120 x 30 cm, Acrílico / 20 x 40 cm, Acrílico / 30 x 60 cm, Acrílico / 20 x 60 cm, Acrílico / 40 x 120 cm, Acrílico / 20 x 30 cm, Acrílico / 30 x 45 cm, Acrílico / 60 x 90 cm, Acrílico / 20 x 80 cm, Acrílico / 30 x 120 cm" | split: ", " -%}
+{%- assign tier_5 ="Acrílico / 25 x 25 cm, Acrílico / 30 x 30 cm, Acrílico / 40 x 30 cm, Acrílico / 30 x 40 cm" | split: ", " -%}
+
+
+{% assign cat_price = product.selected_or_first_available_variant.price %}
+{% assign variation_title = product.selected_or_first_available_variant.title %}
+
+
+{%- if variation_title contains 'anvas' or variation_title contains 'luminio' or variation_title contains 'oster' or variation_title contains 'ixSet' or variation_title contains 'crílico' -%}
+{%- else -%}
+{% assign variation_title = product.title %}
+{%- endif -%}
+
+
+{%- if variation_title contains 'anvas' -%}
+{% assign price_0 = cat_price | times: canvas_desc %}
+{%- elsif variation_title contains 'luminio' -%}
+{% assign price_0 = cat_price | times: aluminio_desc %}
+{%- elsif variation_title contains 'oster' -%}
+{% assign price_0 = cat_price | times: poster_desc %}
+{%- elsif variation_title contains 'óster' -%}
+{% assign price_0 = cat_price | times: poster_desc %}
+{%- elsif variation_title contains 'ixSet' -%}
+{% assign price_0 = cat_price | times: pixsets_desc %}
+{%- elsif variation_title contains 'crílico' -%}
+
+{% for tag in product.tags %}
+{% if tag == 'tier1' %}
+{% assign var_tag_tier = 1 %}
+{% elsif tag == 'tier2' %}
+{% assign var_tag_tier = 2 %}
+{% elsif tag == 'tier3' %}
+{% assign var_tag_tier = 3 %}
+{% elsif tag == 'tier4' %}
+{% assign var_tag_tier = 4 %}
+{% elsif tag == 'tier5' %}
+{% assign var_tag_tier = 5 %}
+{% elsif tag == 'tier6' %}
+{% assign var_tag_tier = 6 %}                 
+{% else %}
+{% assign var_tag_tier = 1 %}
+{% for tier_1_class in tier_1_wm %}
+{% if variation_title contains tier_1_class %}
+{% assign var_tag_tier = 1 %}
+{% endif %}
+{% endfor %}
+{% for tier_2_class in tier_2_wm %}
+{% if variation_title contains tier_2_class %}
+{% assign var_tag_tier = 2 %}
+{% endif %}
+{% endfor %}
+{% for tier_3_class in tier_3_wm %}
+{% if variation_title contains tier_3_class %}
+{% assign var_tag_tier = 3 %}
+{% endif %}
+{% endfor %}
+{% for tier_4_class in tier_4_wm %}
+{% if variation_title contains tier_4_class %}
+{% assign var_tag_tier = 4 %}
+{% endif %}
+{% endfor %}
+{% for tier_5_class in tier_5_wm %}
+{% if variation_title contains tier_5_class %}
+{% assign var_tag_tier = 5 %}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}
+
+{% if var_tag_tier == 1 %}
+{% assign price_0 = cat_price | times: acr_tier1_desc %}
+{% elsif var_tag_tier == 2 %}
+{% assign price_0 = cat_price | times: acr_tier2_desc %}
+{% elsif var_tag_tier == 3 %}
+{% assign price_0 = cat_price | times: acr_tier3_desc %}
+{% elsif var_tag_tier == 4 %}
+{% assign price_0 = cat_price | times: acr_tier4_desc %}
+{% elsif var_tag_tier == 5 %}
+{% assign price_0 = cat_price | times: acr_tier5_desc %}
+{% elsif var_tag_tier == 6 %}
+{% assign price_0 = cat_price | times: acr_tier6_desc %}
+{% else %}
+{% assign price_0 = cat_price | times: acrilico_desc %}
+{% endif %}
+
+{%- endif -%}
+
+{% if product.tags contains 'no-discount' %}
+  {% assign price_0 = 0 %}
+{% endif %}
+
+{% assign price = cat_price | minus: price_0 %}

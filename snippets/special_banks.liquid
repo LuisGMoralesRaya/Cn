@@ -1,0 +1,48 @@
+{% comment %}
+++++++++++++++++++++++++++++++++++++
+	   SPECIAL BANKS BANNER
+++++++++++++++++++++++++++++++++++++
+{% endcomment %}
+
+{% assign today = 'now' | date: '%s' %}
+
+{% assign date0 = '2021-04-29 23:59:59' | date: '%s' %}
+
+{% assign date1 = '2021-04-30' | date: '%s' %}
+{% assign date2 = '2021-05-05' | date: '%s' %}
+
+{% assign date3 = '2021-05-06 00:00:00' | date: '%s' %}
+
+{% assign date4 = '' | date: '%s' %}
+
+
+{% assign output_sbb_d = null %}
+{% assign output_sbb_m = null %}
+
+{% if today > date0 and today < date3 %}
+	{% assign output_sbb_d = 'https://cdn.shopify.com/s/files/1/0258/6276/6677/files/banner_desktop.png?v=1619744627' %}
+	{% assign output_sbb_m = 'https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Banner_movil.png?v=1619744627' %}
+{% endif %}
+
+
+{% if output_sbb_d != null %}
+  <style>
+    div#pxu_cst+h2+div.container.container--flush {
+        padding: 0 !important;
+    }
+  </style>
+  <script defer="defer">
+  ;(function($) {
+
+      $(document).ready(function() {
+          setTimeout(function() {
+            $('body.template-index #pxu_cst').after('<h2 class="section__title heading h3" style="text-align: center; margin-bottom: 20px; ">Promoción adicional para tarjetahabientes HSBC</h2>');
+            $('#pxu_cst+h2').after('<div class="container container--flush"><img loading="lazy" width="auto" height="100%" id="chbp_1" src="{{ output_sbb_d }}" alt="tarjetahabientes especiales" style="margin-top: 0px !important; max-width: 100% !important; width: 100% !important; margin-bottom: -19px !important;"></div>');
+            $('#chbp_1').after('<img loading="lazy" width="auto" height="100%" id="chbpm_1" class="hide" src="{{ output_sbb_m }}" alt="tarjetahabientes especiales" style="margin-top: 0px !important; max-width: 100% !important; width: 100% !important; margin-bottom: -19px !important;">');
+          }, 1000);
+      });
+
+
+  })(jQuery);
+  </script>
+{% endif %}

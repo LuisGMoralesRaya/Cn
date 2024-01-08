@@ -1,0 +1,18 @@
+<style>
+  #skafos-product-discovery{
+  	min-height: 100vh !important;
+  }
+</style>
+{% if content_for_header contains 'skafos-shopify-product-finder-installation-files' %}
+  {% if collection.id == 266259103933 %}
+    <div id="skafos-product-finder" class="page-width">
+      {% include 'skafos-product-finder-iframe' %}
+    </div>
+  {% endif %}
+{% endif %}
+
+{%- comment -%}
+{% section 'collection-template' %}
+{% section 'static-promotion-list' %}
+{% section 'static-recently-viewed-products' %}
+{%- endcomment -%}

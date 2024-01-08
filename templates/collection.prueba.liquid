@@ -1,0 +1,32 @@
+{%- render 'css_hibridos'-%}
+
+{% section 'list-collections-template-art_masters' %}
+
+<style>
+  #skafos-product-discovery{
+  	min-height: 100vh !important;
+  }
+  .container > .page__content.rte::after {
+    display: none !important;
+  }
+</style>
+<div class="container" style="background:#fff !important;border-radius:3px;border:1px solid #f3f3f3;margin: 20px auto;max-width: calc(1400px) !important;padding: 40px;">
+  <div class="page__content rte" style="margin:0;">
+    <p>Descubre cuadros que te gusten, puedes continuar refinando tus resultados dando click en "Continue Search" o puedes comenzar desde cero dando click en "Start Over".</p>
+    <p><strong>¡Que te diviertas!</strong> 😁👍</p>
+  </div>
+</div>
+
+{% if content_for_header contains 'skafos-shopify-product-finder-installation-files' %}
+  {% if collection.id == 263815069885 %}
+    <div id="skafos-product-finder" class="page-width">
+      {% include 'skafos-product-finder-iframe' %}
+    </div>
+  {% endif %}
+{% endif %}
+
+{% comment %}
+{% endcomment %}
+
+{% section 'collection-template' %}
+{% section 'static-promotion-list' %}

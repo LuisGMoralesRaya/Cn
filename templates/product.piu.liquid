@@ -1,0 +1,395 @@
+<!-- LL stuff begins -->
+<style>
+html body #delivery_notice {
+    margin: 10px 0px !important;
+}
+.product-block-list__item.product-block-list__item--gallery div.card {
+    text-align: center;
+}
+.card__section.card__section--tight {
+    text-align: center;
+    display: inline-block !important;
+    max-width: 100% !important;
+}
+
+.product-gallery.product-gallery--with-thumbnails {
+    max-width: 100% !important;
+}
+
+div#ImageUploaderContainer {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+div#ImageUploader{
+    display: block !important;
+}
+
+div#ImageUploader div.picture-card-text-wrapper {
+    position: relative !important;
+    display: inline-block !important;
+    width: calc((100% - 30px) / 6 ) !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 5px 0 0 !important;
+    z-index: 0 !important;
+}
+  
+div#ImageUploader div.picture-card-text-wrapper div.picture-card-wrapper {
+  position: relative !important;
+  overflow: hidden !important;  
+  display: contents !important;
+}
+
+div#ImageUploader div.picture-card-text-wrapper div.picture-card-wrapper .picture-card-image {
+    border: #00adef solid 2px;
+    border-radius: 5px;
+}
+  
+div#ImageUploader div.picture-card-text-wrapper div.picture-text-wrapper, 
+div#ImageUploader div.picture-card-text-wrapper hr {
+    display: none !important;
+}
+
+div#ImageUploader div.picture-card-text-wrapper .picture-card-image::after {
+    display: none !important;
+}
+
+div#ImageUploader div.picture-card-text-wrapper div.picture-card-wrapper span.picture-card-action-items-wrapper {
+    background: rgba(69,44,145,0.44) !important;
+    border-radius: 10px !important;
+    padding: 0 6px !important;
+}
+  
+div#ImageUploader div.picture-card-text-wrapper div.picture-card-wrapper span.picture-card-action-items-wrapper .picture-card-action-item {
+    font-size: 1em !important;
+    margin: 0 2.5px !important;
+}
+  
+svg.MuiSvgIcon-root {
+    width: 0.88em !important;
+    height: 0.88em !important;
+}
+
+.placeholder-image {
+    position: relative !important;
+    overflow: hidden !important;
+    z-index: 0 !important;
+}
+
+.placeholder-image::after {
+    content: '' !important;
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-image: url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/imagen_kits_de_collage.png?v=1693342555') !important;
+    left: 0 !important;
+    top: 0 !important;
+    background-size: cover !important;
+}
+  
+
+@media screen and (max-width: 1400px){
+    div#ImageUploader div.picture-card-text-wrapper {
+        width: calc((100% - 20px) / 4 ) !important;
+    }
+}
+@media screen and (max-width: 1200px){
+    div#ImageUploader div.picture-card-text-wrapper {
+        width: calc((100% - 15px) / 3 ) !important;
+    }
+}
+@media screen and (max-width: 1000px){
+    div#ImageUploader div.picture-card-text-wrapper {
+        width: calc((100% - 20px) / 4 ) !important;
+    }
+}
+@media screen and (max-width: 640px){
+    .card__section.card__section--tight,
+    .product-gallery.product-gallery--with-thumbnails{
+        height: auto !important;
+    }
+    div#ImageUploader div.picture-card-text-wrapper {
+        width: calc((100% - 15px) / 3 ) !important;
+    }
+    div#ImageUploader div.picture-card-text-wrapper div.picture-card-wrapper span.picture-card-action-items-wrapper,
+    div#ImageUploader div.picture-card-text-wrapper div.picture-card-wrapper span.picture-card-action-items-wrapper .picture-card-action-item {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    div#ImageUploader div.picture-card-text-wrapper div.picture-card-wrapper span.picture-card-action-items-wrapper {
+        display: inline-flex !important;
+        margin-top: 12px !important;
+    }
+}
+</style>
+<!-- LL stuff ends -->
+
+<style>
+  /* GLOBAL */
+  div[role="presentation"] > div {
+      background-color: transparent !important;
+  }
+  
+  /* HEADER */
+  .cropper-modal-wrapper .cropper-modal{
+      width: 100% !important;
+      height: 100% !important;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-header .cropper-modal-header-right > svg{
+  	  cursor: pointer !important;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-header .cropper-modal-header-right > svg path {
+      fill: #fff !important;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-header {
+      height: 10%;
+      background-color: #1e2d7dcc !important;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: transparent !important;
+      position: relative !important;
+  }
+  @media screen and (min-width:1442px){
+      .cropper-modal-wrapper .cropper-modal .cropper-modal-header {
+          padding: 0 calc((100% - 1400px) / 2) !important;
+      }
+  }
+  @media screen and (max-width:1441px){
+      .cropper-modal-wrapper .cropper-modal .cropper-modal-header {
+          padding: 0 20px !important;
+      }
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-header::before {
+      content: '' !important;
+      position: absolute;
+      width: 100% !important;
+      height: 100% !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      background: linear-gradient(#1e2d7d, #1e2d7dcc, transparent, transparent, #1e2d7d70) !important;
+      mix-blend-mode: multiply !important;
+      opacity: 0.45 !important;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-header > .cropper-modal-header-left > span.header-text {
+      position: relative !important;
+      display: block !important;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-header > .cropper-modal-header-left > span.header-text::after {
+      content: 'Recorta tu Foto';
+      font-family: 'Poppins' !important;
+      font-weight: bold !important;
+      color: #fff !important;
+      position: absolute !important;
+      left: 0 !important;
+      text-shadow: 0 0 3px #00adefcc;
+      font-size: 26px !important;
+      top: -8px !important;
+      z-index: 999 !important;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-header .cropper-modal-header-left,
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-header .cropper-modal-header-right {
+      z-index: 999 !important;
+  }
+  
+  /* BODY */
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-body {
+      background: #16093fab !important;
+      mix-blend-mode: multiply !important;
+  }
+  
+  /* FOOTER */
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-footer button svg path {
+      fill: #fff !important;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-footer .MuiSlider-root {
+      color: #fff !important;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-footer {
+      background-color: #1e2d7d !important;
+      position: relative !important;
+      mix-blend-mode: multiply !important;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-footer::before {
+      content: '' !important;
+      position: absolute;
+      width: 100% !important;
+      height: 100% !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      background: linear-gradient(#1e2d7d70, transparent, transparent, #1e2d7dcc, #1e2d7d) !important;
+      mix-blend-mode: multiply !important;
+      opacity: 0.45 !important;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-footer button svg + span {
+      position: relative !important;
+      color: transparent !important;
+      width: 54px !important;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-footer button svg + span::after {
+      color: #fff !important;
+      font-weight: bolder !important;
+      position: absolute !important;
+      font-size: 15px;
+      z-index: 999 !important;
+      text-shadow: 0 0 3px #00adefcc;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-footer button:nth-child(1) svg + span::after {
+      content: 'IZQ';
+      left: 27% !important;
+      top: 0 !important;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-footer button:nth-child(2) svg + span::after {
+      content: 'DER';
+      left: 18% !important;
+      top: 0 !important;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-footer > button:nth-child(4) {
+      background: #f0297c !important;
+      border-radius: 3px !important;
+      width: 89px !important;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-footer > button:nth-child(4):hover {
+      background: #f0297ccc !important;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-footer > button:nth-child(4) > span > span {
+      color: transparent;
+      position: relative !important;
+      width: 100% !important;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-footer > button:nth-child(4) > span > span::after {
+      content: 'Recortar';
+      color: #fff !important;
+      position: absolute !important;
+      font-weight: bold;
+      text-transform: capitalize !important;
+      left: 0 !important;
+      text-shadow: 0 0 3px rgba(0,0,0,0.3) !important;
+      font-size: 16px !important;
+      left: 0px !important;
+      top: -4px !important;
+      width: 100% !important;
+  }
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-footer > button,
+  .cropper-modal-wrapper .cropper-modal .cropper-modal-footer > span {
+    	z-index: 999 !important;
+  }
+  .Beacon {
+    position: relative;
+    z-index: 998 !important;
+  }
+  
+  .om-workspace-content {
+    display: none !important;
+  }
+  
+  .placeholder-image{
+    background-image: url({{ product.featured_image | img_url: 'large' }}) !important;
+  	background-size: cover !important;
+    background-position: center center !important;
+  }
+  .placeholder-image img{
+  	opacity: 0 !important;
+  }
+</style>
+<style>
+    .product-gallery__size-limiter > .aspect-ratio > img {
+      pointer-events: none !important;
+    }
+    span.product-gallery__zoom-notice {
+      display: none !important;
+    }
+    .product-form__payment-container{
+	  margin-left: 0 !important;
+    }
+    button.product-form__add-button.button.button--primary{
+      margin: 10px 0 0 0 !important;
+    }
+    #widget-fave-html{
+      margin: 15px 0 0 0 !important;
+    }
+    .product-gallery__thumbnail-list {
+      display: none !important;
+    }
+    div#pxu_cst {
+      padding: 15px 0 7px 0 !important;
+    }
+</style>
+
+{%- comment -%}
+If the product contains the special __gift tag, we prevent it to be completely accessible by redirecting to the home page
+{%- endcomment -%}
+
+{%- if product.tags contains '__gift' -%}
+  <script>
+    window.location.href = '/';
+  </script>
+{%- else -%}
+  {% section 'product-template' %}
+  {% section 'product-recommendations' %}
+  {% section 'static-promotion-list' %}
+  {% section 'static-recently-viewed-products' %}
+
+  <script>
+    window.ShopifyXR=window.ShopifyXR||function(){(ShopifyXR.q=ShopifyXR.q||[]).push(arguments)};
+    ShopifyXR('addModels', {{ product.media | where: 'media_type', 'model' | json }});
+  </script>
+
+  <script type="text/javascript">
+    var _learnq = _learnq || [];
+    var item = {
+      Name: {{ product.title|json }},
+      ProductID: {{ product.id|json }},
+      Categories: {{ product.collections|map:'title'|json }},
+      ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+      URL: "{{ shop.secure_url }}{{ product.url }}",
+      Brand: {{ product.vendor|json }},
+      Price: {{ product.price|money|json }},
+      CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+    };
+    _learnq.push(['track', 'Viewed Product', item]);
+    _learnq.push(['trackViewedItem', {
+      Title: item.Name,
+      ItemId: item.ProductID,
+      Categories: item.Categories,
+      ImageUrl: item.ImageURL,
+      Url: item.URL,
+      Metadata: {
+        Brand: item.Brand,
+        Price: item.Price,
+        CompareAtPrice: item.CompareAtPrice
+      }
+    }]);
+  </script>
+{%- endif -%}
+
+
+{%- comment -%}Nuevo fix de altura{%- endcomment -%}
+
+<style>
+  /*.placeholder-image{
+    background-image: url({{ product.featured_image | img_url: 'large' }}) !important;
+  	background-size: cover !important;
+    background-position: center center !important;
+    display: block !important;
+    margin: 0 auto 5px auto !important;
+  }
+  .upload-wrapper .upload-button,
+  .upload-wrapper .upload-button input{
+  	margin: 0 auto !important;
+  }*/
+  .placeholder-image img{
+    opacity: 0 !important;
+  }
+  .product-gallery.product-gallery--with-thumbnails {
+    margin: 0 auto !important;
+    position: relative !important;
+    display: block !important;
+    padding: 0 !important;
+  }
+  .upload-wrapper .upload-button .ant-upload-text img {
+    max-width: 29px;
+    margin: 0 4px 0 0 !important;
+  }
+</style>

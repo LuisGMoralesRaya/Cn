@@ -1,0 +1,1120 @@
+{% include 'settings_theme_instance' %}
+
+{%- capture section_settings -%}
+{
+  "showShippingEstimator": {% if template == 'product.quick-view' or product.available == false %}false{% else %}{{ section.settings.show_shipping_estimator | json }}{% endif %},
+  "showQuantitySelector": {{ section.settings.show_quantity_selector | json }},
+  "showPaymentButton": {% if product.template_suffix == 'pre-order' %}false{% else %}{{ section.settings.show_payment_button | json }}{% endif %},
+  "showInventoryQuantity": {% if product.template_suffix != 'pre-order' %}{{ section.settings.show_inventory_quantity | json }}{% else %}false{% endif %},
+  "lowInventoryThreshold": {{ section.settings.low_inventory_threshold | json }},
+  "galleryTransitionEffect": {{ section.settings.carousel_effect | json }},
+  "enableImageZoom": {% if template == 'product.quick-view' %}false{% else %}{{ section.settings.enable_image_zoom | json }}{% endif %},
+  "zoomEffect": {{ section.settings.zoom_effect | json }},
+  "enableVideoLooping": {{ section.settings.enable_video_looping | json }},
+  "productOptions": {{ product.options | json | escape }},
+  "enableHistoryState": {% if template == 'product.quick-view' %}false{% else %}true{% endif %},
+  "infoOverflowScroll": {% if template == 'product.quick-view' %}false{% else %}true{% endif %},
+  "isQuickView": {% if template == 'product.quick-view' %}true{% else %}false{% endif %}
+}
+{%- endcapture -%}
+
+{% style %}
+  {% if product.tags contains '01-custom'%}
+    body.template-product .material_video,
+    body.template-product .material_description,
+    body.template-product .material_delivery_time{
+      display:none !important;
+    }
+    div.material_description {
+      margin-top: -10px !important;
+      margin-bottom: 20px !important;
+    }
+  {% else %}
+    .product-form__payment-container {
+      margin-top: 20px !important;
+    }
+  {% endif %}
+{% endstyle %}
+<section data-section-id="{{ section.id }}" data-section-type="product" data-section-settings='{{ section_settings }}'>
+  {%- if template != 'product.quick-view' -%}
+    <div class="container container--flush">
+      <div class="page__sub-header">
+        <nav aria-label="{{ 'general.breadcrumb.title' | t }}" class="breadcrumb">
+          <ol class="breadcrumb__list" role="list">
+            <li class="breadcrumb__item">
+              <a class="breadcrumb__link link" href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a> {%- render 'icon', icon: 'arrow-right' -%}
+            </li>
+
+            <li class="breadcrumb__item">
+              {%- if collection -%}
+                <a class="breadcrumb__link link" href="{{ collection.url }}">{{ collection.title }}</a> {%- render 'icon', icon: 'arrow-right' -%}
+              {%- else -%}
+                <a class="breadcrumb__link link" href="{{ routes.all_products_collection_url }}">{{- 'collection.general.all_products' | t -}}</a> {%- render 'icon', icon: 'arrow-right' -%}
+              {%- endif -%}
+            </li>
+
+            <li class="breadcrumb__item">
+              <span class="breadcrumb__link" aria-current="page">{{ product.title | truncate: 40 }}</span>
+            </li>
+          </ol>
+        </nav>
+
+        {%- if collection.previous_product or collection.next_product -%}
+          <div class="page__navigation">
+            {%- if collection.previous_product -%}
+              <span class="page__navigation-item page__navigation-item--prev">
+                <a href="{{ collection.previous_product.url }}" class="link" rel="prev">{%- render 'icon', icon: 'arrow-left' -%} {{- 'product.general.previous_product' | t -}}</a>
+              </span>
+            {%- endif -%}
+
+            {%- if collection.next_product -%}
+              <span class="page__navigation-item page__navigation-item--next">
+                <a href="{{ collection.next_product.url }}" class="link" rel="next">{{- 'product.general.next_product' | t -}} {%- render 'icon', icon: 'arrow-right' -%}</a>
+              </span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="product-block-list product-block-list--{{ section.settings.image_size }}">
+        <div class="product-block-list__wrapper">
+          {%- if product.media.size > 0 -%}
+            <div class="product-block-list__item product-block-list__item--gallery">
+              {% render 'product-fpd-gallery' %}
+            </div>
+          {%- endif -%}
+
+          <div class="product-block-list__item product-block-list__item--info">
+            {% render 'product-info', prom_v1: prom_v1, prom_v2: prom_v2, prom_v3: prom_v3 %}
+          </div>
+          
+ 		  {%- comment -%}
+          --------------------------------------------------------------------------------------
+          VIDEO TUTORIAL
+          --------------------------------------------------------------------------------------
+          {%- endcomment -%}         
+          
+          <div class="product-block-list__item product-block-list__item--trust">
+            <div class="card">
+              <div class="card__header card__header--flex">
+                <h2 class="card__title heading h3" style="margin-bottom:0px !important;">Cómo subir tu foto - Video</h2>
+              </div>
+
+              <div class="card__section" style="padding-top:10px !important;">
+				<div class="plyr__video-wrapper"><video style="max-width: 100% !important;" controls="controls" preload="metadata" aria-label="Como subir tu foto" poster="//canvaslab.com/cdn/shop/files/preview_images/14cd22ae9a5f48129c41c1b1a877977b.thumbnail.0000000000.jpg?v=1689696501º"><source src="https://cdn.shopify.com/videos/c/o/v/14cd22ae9a5f48129c41c1b1a877977b.mp4" type="video/mp4"><img alt="#material base_canvas" src="//canvaslab.com/cdn/shop/files/preview_images/14cd22ae9a5f48129c41c1b1a877977b.thumbnail.0000000000.jpg?v=1689696501"></video><div class="plyr__poster" style="background-image: url(&quot;//canvaslab.com/cdn/shop/files/preview_images/14cd22ae9a5f48129c41c1b1a877977b.thumbnail.0000000000.jpg?v=1689696501&quot;);"></div></div>	
+              </div>
+          </div>
+		  
+          {%- if product.description != blank -%}
+            <div class="product-block-list__item product-block-list__item--description">
+              <div class="card">
+                
+                {%- if section.settings.content_display_mode == 'collapse_all' -%}
+                  <button class="card__collapsible-button" data-action="toggle-collapsible" aria-expanded="false" aria-controls="product-description">
+                    <span class="card__title heading h3">{{ 'product.general.description' | t }}</span>
+                    <span class="plus-button plus-button--large"></span>
+                  </button>
+
+                  <div id="product-description" class="card__collapsible">
+                    <div class="card__collapsible-content">
+                      <div class="rte text--pull">
+                        {{ product.description | remove: 'data-section-type="product"' }}
+                      </div>
+                    </div>
+                  </div>
+                {%- else -%}
+                
+                  <div class="card__header">
+                    
+                    <h2 class="card__title heading h3">{{ 'product.general.description' | t }}</h2>
+                  </div>
+                
+                
+                
+                  {% unless product.tags contains 'diseños-especiales' %}
+                    {% if product.tags contains 'canvas impresos personalizados' %}
+                		<div id="cl_cc" style="padding-top: 170px !important; margin-top: -142px;" class="card__section">
+                          <p style="line-height: 1.2em !important; font-size: 15px; text-align: justify; width: 90%;"><small class="heading h4">Tipo de perfil</small>
+                          <br><small><b>Selecciona espejeado</b> para una impresión en espejo de la imagen principal por los lados y las partes superior e inferior.</small>
+                          <br><small><b>Selecciona color</b> para un color sólido por los lados y las partes superior e inferior.</small></p>
+						  <img loading="lazy" width="auto" height="100%" style="display:block;margin:0 auto;" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/pok.png?v=1619555761">
+		                </div>
+                    {% endif %}
+                  {% endunless %}
+                
+                
+
+                  {%- if section.settings.content_display_mode == 'show_all_and_expand_description' -%}
+                    <div class="card__section cl_description_icons">                      
+                      {% if product.title contains 'crílico' or product.tags contains 'acrilicos' %}
+                      		<p>Nuestros Acrílicos son impresos en directo con tecnología Latex, lo que logra la mejor resolución y los colores más vibrantes posibles. Por la parte posterior, están montados sobre un bastidor de madera de tala sustentable. Llegan listos para colgar en cualquier pared.</p>
+                      {% endif %}
+                      {% if product.title contains 'luminio' or product.tags contains 'aluminios' %}
+                      		<p>Nuestros Aluminios son impresos en directo sobre placas de Aluminio Dibond con tecnología UV, lo que logra la mejor resolución y los colores más vibrantes posibles. Por la parte posterior, están montados sobre un bastidor de Aluminio. Llegan listos para colgar en cualquier pared.</p>
+                      {% endif %}
+                      {% if product.title contains 'anvas'or product.tags contains 'canvas' %}
+                      		<p>Nuestros Canvas son fabricados con materiales premium y llegan listos para colgarse en cualquier pared. Utilizamos lienzo de primera calidad impresos con tecnología latex, montados en bastidores de madera de tala sustentable con calidad de exportación. Con estas tecnologías y materiales se logra la mejor resolución, los colores más vibrantes y la mejor durabilidad disponible en el mercado.</p>
+                      {% endif %}
+                      {% if product.title contains 'pixset' or product.tags contains 'PixSets' %}
+                      		<p>Nuestros PixSets son impresos en directo sobre placas de un material sintético, muy ligero, con 2 cm de grosor. Se imprimen con tecnología UV, lo que logra la mejor resolución y los mejores colores posibles. Por la parte posterior traen 4 almohadillas adhesivas para que los pegues sobre la superficie de tu preferencia.</p>
+                      {% endif %}
+                      {% if product.title contains 'óster' or product.tags contains 'posters' %}
+                      		<p>Nuestros Posters son impresos con tecnología latex sobre papel poster premium. El papel tiene una película protectora especial que le da mucha mayor durabilidad y suavidad al tacto. Esta combinación de materiales y tecnología de impresión resultan en la mejor resolución y los colores más vibrantes del mercado.</p>
+                      		<p>*No incluyen Adhesivo ni marco. Se envían enrollados en un tubo protector.</p>
+                      {% endif %}
+                      {% if product.title contains 'nmarcado' or product.tags contains 'enmarcado' %}
+                      		<p>Cuadro impreso con tecnología latex, enmarcado, protegido por el frente con acrílico premium de seguridad y por el reverso con una placa de MDF. Por detrás incluye un caimán para que lo recibas listo para colgarse.</p>
+                      {% endif %}
+                      {% if product.title contains 'inil' or product.tags contains 'viniles' or product.tags contains 'vinilos' %}
+                      		<p></p>
+                      {% endif %}
+                      
+                      
+                      <div>
+                      <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/iconbox.svg?v=1613235246">Amas tus cuadros o te regresamos tu dinero.
+                   	  </div>
+                      
+                      <div>
+                      <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/envios_3f0b4a8f-b392-4256-9d31-2be4313e9194.svg?v=1613235246">Envío gratis a todo México
+                   	  </div>
+                      
+                      <div>
+                      <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/compra-segura.svg?v=1613235246">Compra Segura
+                      </div><br>
+                      <!--<p>¿Necesitas ayuda? <a href="/pages/preguntas-frecuentes" alt="Preguntas Frecuentes" target="_blank" class="cl_product_help">Ver preguntas frecuentes</a> o <a href="/pages/ayuda" alt="Centro de Ayuda" target="_blank" class="cl_product_help">visita nuestro centro de ayuda</a>. </p>-->
+                      
+                      
+                     <!-- <div class="rte text--pull">
+                        {{ product.description | remove: 'data-section-type="product"' }}
+                      </div>-->
+                    </div>
+                
+                  {%- else -%}
+                    <div class="card__section expandable-content" aria-expanded="false">
+                      <div class="rte text--pull">
+                        {{ product.description | remove: 'data-section-type="product"' }}
+                      </div>
+
+                      <button class="expandable-content__toggle">
+                        <span class="expandable-content__toggle-icon"></span>
+                        <span class="expandable-content__toggle-text" data-view-more="{{ 'product.general.view_more' | t | escape }}" data-view-less="{{ 'product.general.view_less' | t | escape }}">{{- 'product.general.view_more' | t -}}</span>
+                      </button>
+                    </div>
+                  {%- endif -%}
+                {%- endif -%}
+                
+              </div>
+            </div>
+          {%- else -%}
+            {%- if product.tags contains '01-custom' -%}
+              <div class="product-block-list__item product-block-list__item--description">
+                <div class="card">
+                  <div class="card__header">
+                    <h2 class="card__title heading h3">{{ 'product.general.description' | t }}</h2>
+                  </div>
+                  <div class="card__section cl_description_icons">
+                    <div class="material_description" id="can_d">
+                      <img loading="lazy" width="auto" height="100%" style="display:block;margin: 0 auto 10px auto;width: auto !important;height: auto !important;" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/d_can.jpg?v=1654029746"/>
+                      <div id="cl_cc" style="line-height: 1.2em !important; font-size: 15px; text-align: justify; width: 90%;">
+                        <div class="fixer_cl">
+                          <small class="heading h4">Tipo de perfil</small>
+                          <br><small><b>Selecciona espejeado</b> para una impresión en espejo de la imagen principal por los lados y las partes superior e inferior.</small>
+                          <br><small><b>Selecciona color</b> para un color sólido por los lados y las partes superior e inferior.</small>
+                        </div>
+                      </div>
+                      <img loading="lazy" width="auto" height="100%" style="display:block;margin: 0 auto 10px auto;width: auto !important;height: auto !important;" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/pok.png?v=1619555761">
+                      Nuestros Canvas son fabricados con materiales premium y llegan listos para colgarse en cualquier pared. Utilizamos lienzo de primera calidad impresos con tecnología latex, montados en bastidores de madera de tala sustentable con calidad de exportación. Con estas tecnologías y materiales se logra la mejor resolución, los colores más vibrantes y la mejor durabilidad disponible en el mercado.
+                    </div>
+                    <div class="material_description" id="fra_d">
+                      Cuadro impreso con tecnología latex, enmarcado, protegido por el frente con acrílico premium de seguridad y por el reverso con una placa de MDF. Por detrás incluye un caimán para que lo recibas listo para colgarse.
+                      <img loading="lazy" width="auto" height="100%" style="display:block;margin: 0 auto 10px auto;width: auto !important;height: auto !important;" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Because_-_diferenciadores_-_Enmarcados.jpg?v=1675369333"/>
+                    </div>
+                    <div class="material_description" id="pos_d">
+                      Póster de alta resolución impreso con tecnología latex, ecológicamente sustentable y de larga duración.
+                    </div>
+                    <div class="material_description" id="acr_d">
+                      Nuestros Acrílicos son impresos en directo con tecnología Latex, lo que logra la mejor resolución y los colores más vibrantes posibles. Por la parte posterior, están montados sobre un bastidor de madera de tala sustentable. Llegan listos para colgar en cualquier pared.
+                    </div>
+                    <div class="material_description" id="alu_d">
+                      Nuestros Aluminios son impresos en directo sobre placas de Aluminio Dibond con tecnología UV, lo que logra la mejor resolución y los colores más vibrantes posibles. Por la parte posterior, están montados sobre un bastidor de Aluminio. Llegan listos para colgar en cualquier pared.
+                    </div>
+                    <div>
+                      <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/iconbox.svg?v=1613235246">Amas tus cuadros o te regresamos tu dinero.
+                    </div>
+
+                    <div>
+                      <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/envios_3f0b4a8f-b392-4256-9d31-2be4313e9194.svg?v=1613235246">Envío gratis a todo México
+                    </div>
+
+                    <div>
+                      <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/compra-segura.svg?v=1613235246">Compra Segura
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+            
+          <div class="product-block-list__item product-block-list__item--trust">
+            <div class="card">
+              <div class="card__header card__header--flex">
+                <h2 class="card__title heading h3">Paga con confianza</h2><svg focusable="false" class="icon icon--lock" viewBox="0 0 18 24" role="presentation">
+                <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="square" stroke-width="2">
+                  <path d="M9.00000011 1.916667c-2.48888889 0-4.44444444 2.01666667-4.44444444 4.58333333v2.75h8.88888893v-2.75c0-2.56666666-1.9555556-4.58333333-4.44444449-4.58333333z"></path>
+                  <path d="M1.888889 9.25h14.222222v12.833333H1.888889z"></path>
+                  <ellipse cx="9" cy="14.75" rx="1.777778" ry="1.833333"></ellipse>
+                  <path d="M9.00000011 16.5833337v1.8333333"></path>
+                </g>
+                </svg></div>
+
+              <div class="card__section"><div class="payment-list">
+<!--
+                <svg class="payment-list__item" xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" aria-labelledby="pi-american_express"><title id="pi-american_express">American Express</title><g fill="none"><path fill="#000" d="M35,0 L3,0 C1.3,0 0,1.3 0,3 L0,21 C0,22.7 1.4,24 3,24 L35,24 C36.7,24 38,22.7 38,21 L38,3 C38,1.3 36.6,0 35,0 Z" opacity=".07"></path><path fill="#006FCF" d="M35,1 C36.1,1 37,1.9 37,3 L37,21 C37,22.1 36.1,23 35,23 L3,23 C1.9,23 1,22.1 1,21 L1,3 C1,1.9 1.9,1 3,1 L35,1"></path><path fill="#FFF" d="M8.971,10.268 L9.745,12.144 L8.203,12.144 L8.971,10.268 Z M25.046,10.346 L22.069,10.346 L22.069,11.173 L24.998,11.173 L24.998,12.412 L22.075,12.412 L22.075,13.334 L25.052,13.334 L25.052,14.073 L27.129,11.828 L25.052,9.488 L25.046,10.346 L25.046,10.346 Z M10.983,8.006 L14.978,8.006 L15.865,9.941 L16.687,8 L27.057,8 L28.135,9.19 L29.25,8 L34.013,8 L30.494,11.852 L33.977,15.68 L29.143,15.68 L28.065,14.49 L26.94,15.68 L10.03,15.68 L9.536,14.49 L8.406,14.49 L7.911,15.68 L4,15.68 L7.286,8 L10.716,8 L10.983,8.006 Z M19.646,9.084 L17.407,9.084 L15.907,12.62 L14.282,9.084 L12.06,9.084 L12.06,13.894 L10,9.084 L8.007,9.084 L5.625,14.596 L7.18,14.596 L7.674,13.406 L10.27,13.406 L10.764,14.596 L13.484,14.596 L13.484,10.661 L15.235,14.602 L16.425,14.602 L18.165,10.673 L18.165,14.603 L19.623,14.603 L19.647,9.083 L19.646,9.084 Z M28.986,11.852 L31.517,9.084 L29.695,9.084 L28.094,10.81 L26.546,9.084 L20.652,9.084 L20.652,14.602 L26.462,14.602 L28.076,12.864 L29.624,14.602 L31.499,14.602 L28.987,11.852 L28.986,11.852 Z"></path></g></svg>
+
+
+                <svg class="payment-list__item" viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" role="img" width="38" height="24" aria-labelledby="pi-boleto"><title id="pi-boleto">Boleto</title><path fill="#fff" d="M35.7 23.965H2.3a2.307 2.307 0 0 1-2.3-2.3v-19.4C0 1 1.035-.035 2.3-.035h33.4c1.265 0 2.3 1.035 2.3 2.3v19.4c0 1.265-1.035 2.3-2.3 2.3z"></path><path fill="#A7A8AB" d="M35.564 23.965H2.436c-1.344 0-2.436-1.077-2.436-2.4v-19.2c0-1.323 1.092-2.4 2.436-2.4h33.128c1.344 0 2.436 1.077 2.436 2.4v19.2c0 1.323-1.092 2.4-2.436 2.4zM2.436.925c-.806 0-1.462.646-1.462 1.44v19.2c0 .794.656 1.44 1.462 1.44h33.128c.806 0 1.462-.646 1.462-1.44v-19.2c0-.794-.656-1.44-1.462-1.44H2.436z" opacity=".25"></path><path d="M8.079 4.945h.7v6.298h-.7zm-1.83 0h.7v6.298h-.7zm7.256 0h1.901v6.298h-1.901zm9.715 0h.95v6.298h-.95zm2.324 0h.95v6.298h-.95zm3.804 0h1.221v6.298h-1.221zm-1.375 0h.395v6.298h-.395zm-6.389 0h.395v6.298h-.395zm-.845 0h.395v6.298h-.395zm-2.746 0h.395v6.298h-.395zm-6.31 0h.395v6.298h-.395zm-1.163 0h.733v6.298h-.733zM6.249 19.3v-6.478H8.68c.495 0 .891.065 1.191.196.299.131.532.333.701.606.17.271.255.556.255.855 0 .276-.075.537-.225.781a1.604 1.604 0 0 1-.679.593c.392.115.694.311.903.588.211.276.317.603.317.98 0 .305-.065.587-.193.847a1.644 1.644 0 0 1-.475.603c-.189.14-.425.247-.709.32a4.328 4.328 0 0 1-1.046.109H6.248zm.86-3.755H8.51c.38 0 .653-.026.817-.075a.903.903 0 0 0 .493-.324.936.936 0 0 0 .166-.567 1.03 1.03 0 0 0-.155-.568c-.103-.164-.25-.278-.442-.338s-.52-.09-.985-.09H7.109v1.963zm0 2.995h1.614c.277 0 .472-.011.585-.032.196-.035.362-.094.495-.176a.946.946 0 0 0 .327-.362c.086-.158.128-.341.128-.547 0-.243-.062-.452-.187-.632a.978.978 0 0 0-.516-.377c-.219-.072-.535-.109-.947-.109H7.109v2.235zm4.813-1.588c0-.867.241-1.509.725-1.927.403-.347.896-.52 1.476-.52.644 0 1.172.211 1.582.633.409.421.614 1.004.614 1.748 0 .603-.09 1.077-.271 1.422a1.92 1.92 0 0 1-.792.805 2.292 2.292 0 0 1-1.132.286c-.657 0-1.188-.21-1.594-.63-.406-.421-.608-1.027-.608-1.817zm.814.002c0 .6.131 1.05.394 1.347.264.299.594.448.994.448.395 0 .724-.149.988-.449.262-.3.394-.757.394-1.371 0-.579-.133-1.018-.397-1.315a1.261 1.261 0 0 0-.985-.448c-.4 0-.73.148-.994.445-.262.297-.394.745-.394 1.344zm4.498 2.346v-6.478h.796V19.3h-.796zm5.231-1.52l.823.109c-.128.478-.368.85-.718 1.114-.35.264-.796.397-1.341.397-.685 0-1.227-.211-1.629-.633-.401-.421-.602-1.013-.602-1.775 0-.787.202-1.399.608-1.834.406-.436.932-.653 1.579-.653.626 0 1.137.213 1.534.639.397.427.596 1.027.596 1.8l-.004.211h-3.497c.03.514.175.909.437 1.182a1.3 1.3 0 0 0 .979.41c.291 0 .54-.077.745-.231.207-.154.369-.4.49-.737zm-2.606-1.276h2.615c-.035-.395-.136-.691-.3-.888a1.216 1.216 0 0 0-.983-.46c-.365 0-.671.122-.92.366-.247.244-.385.572-.412.982zm6.164 2.086l.109.703a2.951 2.951 0 0 1-.599.071c-.288 0-.511-.045-.671-.137-.158-.092-.27-.211-.335-.36s-.097-.463-.097-.941v-2.705h-.588v-.615h.588v-1.161l.796-.478v1.639h.796v.615h-.796v2.751c0 .228.014.374.042.439a.324.324 0 0 0 .136.155.53.53 0 0 0 .271.057l.347-.032zm.487-1.638c0-.867.241-1.509.725-1.927.403-.347.896-.52 1.476-.52.644 0 1.172.211 1.582.633.409.421.614 1.004.614 1.748 0 .603-.09 1.077-.271 1.422a1.92 1.92 0 0 1-.792.805 2.292 2.292 0 0 1-1.132.286c-.657 0-1.188-.21-1.594-.63-.406-.421-.608-1.027-.608-1.817zm.814.002c0 .6.131 1.05.394 1.347.264.299.594.448.994.448.395 0 .724-.149.988-.449.262-.3.394-.757.394-1.371 0-.579-.133-1.018-.397-1.315a1.261 1.261 0 0 0-.985-.448c-.4 0-.73.148-.994.445-.262.297-.394.745-.394 1.344z" fill="#221F1F"></path></svg>
+
+                <svg class="payment-list__item" viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" role="img" width="38" height="24" aria-labelledby="pi-master"><title id="pi-master">Mastercard</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"></path><circle fill="#EB001B" cx="15" cy="12" r="7"></circle><circle fill="#F79E1B" cx="23" cy="12" r="7"></circle><path fill="#FF5F00" d="M22 12c0-2.4-1.2-4.5-3-5.7-1.8 1.3-3 3.4-3 5.7s1.2 4.5 3 5.7c1.8-1.2 3-3.3 3-5.7z"></path></svg>
+
+                <svg class="payment-list__item" viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" width="38" height="24" role="img" aria-labelledby="pi-paypal"><title id="pi-paypal">PayPal</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"></path><path fill="#003087" d="M23.9 8.3c.2-1 0-1.7-.6-2.3-.6-.7-1.7-1-3.1-1h-4.1c-.3 0-.5.2-.6.5L14 15.6c0 .2.1.4.3.4H17l.4-3.4 1.8-2.2 4.7-2.1z"></path><path fill="#3086C8" d="M23.9 8.3l-.2.2c-.5 2.8-2.2 3.8-4.6 3.8H18c-.3 0-.5.2-.6.5l-.6 3.9-.2 1c0 .2.1.4.3.4H19c.3 0 .5-.2.5-.4v-.1l.4-2.4v-.1c0-.2.3-.4.5-.4h.3c2.1 0 3.7-.8 4.1-3.2.2-1 .1-1.8-.4-2.4-.1-.5-.3-.7-.5-.8z"></path><path fill="#012169" d="M23.3 8.1c-.1-.1-.2-.1-.3-.1-.1 0-.2 0-.3-.1-.3-.1-.7-.1-1.1-.1h-3c-.1 0-.2 0-.2.1-.2.1-.3.2-.3.4l-.7 4.4v.1c0-.3.3-.5.6-.5h1.3c2.5 0 4.1-1 4.6-3.8v-.2c-.1-.1-.3-.2-.5-.2h-.1z"></path></svg>
+
+                <svg class="payment-list__item" viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" role="img" width="38" height="24" aria-labelledby="pi-visa"><title id="pi-visa">Visa</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"></path><path d="M28.3 10.1H28c-.4 1-.7 1.5-1 3h1.9c-.3-1.5-.3-2.2-.6-3zm2.9 5.9h-1.7c-.1 0-.1 0-.2-.1l-.2-.9-.1-.2h-2.4c-.1 0-.2 0-.2.2l-.3.9c0 .1-.1.1-.1.1h-2.1l.2-.5L27 8.7c0-.5.3-.7.8-.7h1.5c.1 0 .2 0 .2.2l1.4 6.5c.1.4.2.7.2 1.1.1.1.1.1.1.2zm-13.4-.3l.4-1.8c.1 0 .2.1.2.1.7.3 1.4.5 2.1.4.2 0 .5-.1.7-.2.5-.2.5-.7.1-1.1-.2-.2-.5-.3-.8-.5-.4-.2-.8-.4-1.1-.7-1.2-1-.8-2.4-.1-3.1.6-.4.9-.8 1.7-.8 1.2 0 2.5 0 3.1.2h.1c-.1.6-.2 1.1-.4 1.7-.5-.2-1-.4-1.5-.4-.3 0-.6 0-.9.1-.2 0-.3.1-.4.2-.2.2-.2.5 0 .7l.5.4c.4.2.8.4 1.1.6.5.3 1 .8 1.1 1.4.2.9-.1 1.7-.9 2.3-.5.4-.7.6-1.4.6-1.4 0-2.5.1-3.4-.2-.1.2-.1.2-.2.1zm-3.5.3c.1-.7.1-.7.2-1 .5-2.2 1-4.5 1.4-6.7.1-.2.1-.3.3-.3H18c-.2 1.2-.4 2.1-.7 3.2-.3 1.5-.6 3-1 4.5 0 .2-.1.2-.3.2M5 8.2c0-.1.2-.2.3-.2h3.4c.5 0 .9.3 1 .8l.9 4.4c0 .1 0 .1.1.2 0-.1.1-.1.1-.1l2.1-5.1c-.1-.1 0-.2.1-.2h2.1c0 .1 0 .1-.1.2l-3.1 7.3c-.1.2-.1.3-.2.4-.1.1-.3 0-.5 0H9.7c-.1 0-.2 0-.2-.2L7.9 9.5c-.2-.2-.5-.5-.9-.6-.6-.3-1.7-.5-1.9-.5L5 8.2z" fill="#142688"></path></svg>
+-->
+
+                <img loading="lazy" width="auto" height="100%" alt="Motores de Pago" title="Motores de Pago" style="max-width:600px" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/motores-de-pago.svg?v=1642264936" />
+
+                </div>
+
+                <p class="payment-list__notice">Su información de pago se procesa de forma segura. No almacenamos los detalles de la tarjeta de crédito ni tenemos acceso a la información de su tarjeta de crédito.</p>
+                 <p class="payment-list__notice">Aceptamos pagos con Visa, Mastercard, American Express, Paypal por medio de Merado Pago. Adicionalmente aceptamos pagos con Oxxo y Kueski Pay. <br><br>Tu información de pago se procesa de <strong>forma segura</strong>. No almacenamos los detalles de la tarjeta de crédito ni tenemos acceso a la información de su tarjeta de crédito. </p></div>
+            </div>
+          </div>
+
+          {%- comment -%}
+          --------------------------------------------------------------------------------------
+          TABS
+          --------------------------------------------------------------------------------------
+          {%- endcomment -%}
+
+          {%- for i in (1..5) -%}
+            {%- assign unique_tab_title = '' -%}
+            {%- assign unique_tab_content = '' -%}
+
+            {%- comment -%}First check for metafields{%- endcomment -%}
+
+            {%- assign metafield_tab_title_option = 'tab_' | append: i | append: '_title' -%}
+            {%- assign metafield_tab_content_option = 'tab_' | append: i | append: '_content' -%}
+
+            {%- if product.metafields.sf_product_tabs[metafield_tab_title_option] != blank and product.metafields.sf_product_tabs[metafield_tab_content_option] != blank -%}
+              {%- assign unique_tab_title = product.metafields.sf_product_tabs[metafield_tab_title_option] -%}
+              {%- assign unique_tab_content = product.metafields.sf_product_tabs[metafield_tab_content_option] -%}
+            {%- else -%}
+              {%- assign tab_to_look = '__tab' | append: i | append: ':' -%}
+
+              {%- for tag in product.tags -%}
+                {%- if tag contains tab_to_look -%}
+                  {%- assign unique_tab_handle = tag | split: tab_to_look | last -%}
+                  {%- assign unique_tab_page = pages[unique_tab_handle] -%}
+
+                  {%- unless unique_tab_page.empty? -%}
+                    {%- assign unique_tab_title = unique_tab_page.title -%}
+                    {%- assign unique_tab_content = unique_tab_page.content -%}
+                    {%- break -%}
+                  {%- endunless -%}
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+
+            {%- if unique_tab_title != blank and unique_tab_content != blank -%}
+              <div class="product-block-list__item product-block-list__item--content">
+                <div class="card">
+                  {%- if section.settings.content_display_mode == 'collapse_all_except_description' or section.settings.content_display_mode == 'collapse_all' -%}
+                    <button class="card__collapsible-button" data-action="toggle-collapsible" aria-expanded="false" aria-controls="unique-tab-{{ i }}">
+                      <span class="card__title heading h3">{{ unique_tab_title }}</span>
+                      <span class="plus-button plus-button--large"></span>
+                    </button>
+
+                    <div id="unique-tab-{{ i }}" class="card__collapsible">
+                      <div class="card__collapsible-content">
+                        <div class="rte text--pull">
+                          {{ unique_tab_content }}
+                        </div>
+                      </div>
+                    </div>
+                  {%- else -%}
+                    <div class="card__header">
+                      <h2 class="card__title heading h3">{{ unique_tab_title }}</h2>
+                    </div>
+
+                    <div class="card__section expandable-content" aria-expanded="false">
+                      <div class="rte text--pull">
+                        {{ unique_tab_content }}
+                      </div>
+
+                      <button class="expandable-content__toggle">
+                        <span class="expandable-content__toggle-icon"></span>
+                        <span class="expandable-content__toggle-text" data-view-more="{{ 'product.general.view_more' | t | escape }}" data-view-less="{{ 'product.general.view_less' | t | escape }}">{{- 'product.general.view_more' | t -}}</span>
+                      </button>
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- for i in (1..3) -%}
+            {%- assign global_tab_option = 'tab_page_' | append: i | append: '_handle' -%}
+            {%- assign global_tab_page = pages[section.settings[global_tab_option]] -%}
+
+            {%- unless global_tab_page.empty? -%}
+              <div class="product-block-list__item product-block-list__item--content">
+                <div class="card">
+                  {%- if section.settings.content_display_mode == 'collapse_all_except_description' or section.settings.content_display_mode == 'collapse_all' -%}
+                    <button class="card__collapsible-button" data-action="toggle-collapsible" aria-expanded="false" aria-controls="global-tab-{{ i }}">
+                      <span class="card__title heading h3">{{ global_tab_page.title }}</span>
+                      <span class="plus-button plus-button--large"></span>
+                    </button>
+
+                    <div id="global-tab-{{ i }}" class="card__collapsible">
+                      <div class="card__collapsible-content">
+                        <div class="rte text--pull">
+                          {{ global_tab_page.content }}
+                        </div>
+                      </div>
+                    </div>
+                  {%- else -%}
+                    <div class="card__header">
+                      <h2 class="card__title heading h3">{{ global_tab_page.title }}</h2>
+                    </div>
+
+                    <div class="card__section expandable-content" aria-expanded="false">
+                      <div class="rte text--pull">
+                        {{ global_tab_page.content }}
+                      </div>
+
+                      <button class="expandable-content__toggle">
+                        <span class="expandable-content__toggle-icon"></span>
+                        <span class="expandable-content__toggle-text" data-view-more="{{ 'product.general.view_more' | t | escape }}" data-view-less="{{ 'product.general.view_less' | t | escape }}">{{- 'product.general.view_more' | t -}}</span>
+                      </button>
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endunless -%}
+          {%- endfor -%}
+
+          {%- comment -%}
+          --------------------------------------------------------------------------------------
+          REVIEWS
+          --------------------------------------------------------------------------------------
+          {%- endcomment -%}
+
+          {%- if section.settings.enable_reviews -%}
+            <div class="product-block-list__item product-block-list__item--reviews">
+              <span id="product-reviews" class="anchor"></span>
+
+              <div class="card">
+                <div class="card__section">
+                  {%- assign reviews_count = product.metafields.spr.reviews | split: '<meta itemprop="reviewCount" content="' | last | split: '">' | first | times: 1 -%}
+                  {%- comment -%}{% render 'okendo-reviews-widget', product: product %}{%- endcomment -%}
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%}
+          --------------------------------------------------------------------------------------
+          SECURITY BADGES
+          --------------------------------------------------------------------------------------
+          {%- endcomment -%}
+
+          {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+            {%- assign show_payment_icons = true -%}
+          {%- else -%}
+            {%- assign show_payment_icons = false -%}
+          {%- endif -%}
+			
+          <div class="product-block-list__item product-block-list__item--trust">
+            <div class="card">
+              <div class="card__header card__header--flex">
+                <h2 class="card__title heading h3">Guía de tamaño</h2>
+              </div>
+
+              <ul class="card__section">
+                <li id="guia">
+                  {%- if product.tags contains "1:1" or product.tags contains "1x1" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_1-1.jpg?v=1614060322');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_1-1.jpg?v=1614060322">
+                  </div>
+                  {%- elsif product.tags contains "4:3" or product.tags contains "4x3" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_4-3.jpg?v=1614060322');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_4-3.jpg?v=1614060322">
+                  </div>
+                  {%- elsif product.tags contains "3:2" or product.tags contains "3x2" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_3-2.jpg?v=1614060322');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_3-2.jpg?v=1614060322">
+                  </div>
+                  {%- elsif product.tags contains "2:1" or product.tags contains "2x1" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_2-1.jpg?v=1614060322');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_2-1.jpg?v=1614060322">
+                  </div>
+                  {%- elsif product.tags contains "3:4" or product.tags contains "3x4" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_3-4.jpg?v=1614060322');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_3-4.jpg?v=1614060322">
+                  </div>
+                  {%- elsif product.tags contains "2:3" or product.tags contains "2x3" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_2-3.jpg?v=1614060323');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_2-3.jpg?v=1614060323">
+                  </div>
+                  {%- elsif product.tags contains "1:2" or product.tags contains "1x2" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_1-2.jpg?v=1614060321');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_1-2.jpg?v=1614060321">
+                  </div>
+                  {%- elsif product.tags contains "1:3" or product.tags contains "1x3" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_1-3.jpg?v=1614060323');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_1-3.jpg?v=1614060323">
+                  </div>
+                  {%- elsif product.tags contains "1:4" or product.tags contains "1x4" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_1-4.jpg?v=1614060321');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_1-4.jpg?v=1614060321">
+                  </div>
+                  {%- elsif product.tags contains "3:1" or product.tags contains "3x1" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_3-1.jpg?v=1614060322');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_3-1.jpg?v=1614060322">
+                  </div>
+                  {%- elsif product.tags contains "4:1" or product.tags contains "4x1" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_4-1.jpg?v=1614060319');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_de_tamano_proporciones_4-1.jpg?v=1614060319">
+                  </div>
+                  {%- elsif product.tags contains "lay:caravaggio" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Caravaggio.jpg?v=1614061391');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Caravaggio.jpg?v=1614061391">
+                  </div>
+                  {%- elsif product.tags contains "lay:da-vinci" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Da_Vinci.jpg?v=1614061411');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Da_Vinci.jpg?v=1614061411">
+                  </div>
+                  {%- elsif product.tags contains "lay:dali" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Dali.jpg?v=1614061411');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Dali.jpg?v=1614061411">
+                  </div>
+                  {%- elsif product.tags contains "lay:delacroix" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Delacroix.jpg?v=1614061411');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Delacroix.jpg?v=1614061411">
+                  </div>
+                  {%- elsif product.tags contains "lay:kahlo" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Kahlo.jpg?v=1614061411');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Kahlo.jpg?v=1614061411">
+                  </div>
+                  {%- elsif product.tags contains "lay:klimt" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Klimt.jpg?v=1614061411');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Klimt.jpg?v=1614061411">
+                  </div>
+                  {%- elsif product.tags contains "lay:miguel-angel" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Miguel_Angel.jpg?v=1614061411');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Miguel_Angel.jpg?v=1614061411">
+                  </div>
+                  {%- elsif product.tags contains "lay:monet" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Monet.jpg?v=1614061413');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Monet.jpg?v=1614061413">
+                  </div>
+                  {%- elsif product.tags contains "lay:picasso" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Picasso.jpg?v=1614061411');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Picasso.jpg?v=1614061411">
+                  </div>
+                  {%- elsif product.tags contains "lay:rembrandt" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Rembrandt.jpg?v=1614061411');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Rembrandt.jpg?v=1614061411">
+                  </div>
+                  {%- elsif product.tags contains "lay:renoir" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Renoir.jpg?v=1614061412');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Renoir.jpg?v=1614061412">
+                  </div>
+                  {%- elsif product.tags contains "lay:rivera" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Rivera.jpg?v=1614061412');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Rivera.jpg?v=1614061412">
+                  </div>
+                  {%- elsif product.tags contains "lay:van_gogh" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Van_Gogh.jpg?v=1614061410');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/guias_layouts_Layout_Van_Gogh.jpg?v=1614061410">
+                  </div>
+                  {%- elsif product.tags contains "lay:warhol" -%}
+                  <div id="size-guide" style="background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/4_May_2021_Layout_Warhol.jpg?v=1620163240');">
+                    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/4_May_2021_Layout_Warhol.jpg?v=1620163240">
+                  </div>
+                  {% else %}
+                  <div id="size-guide">
+                    Si este producto no tiene una guía de tamaño por favor comunícate al <strong><a href="tel:8113662090" style="color: #f0297c !important; font-weight: 600!important;"><a href="tel:8113662090" style="color: #f0297c !important;"><i class="icon-f-93" style="color: #f0297c !important;"></i>8113662090</a></strong>, donde con gusto resolveremos tus dudas.
+                    </div>
+                    {%- endif -%}
+                    </li>
+              </ul>
+              <!--
+              <div class="card__header card__header--flex">
+                <h2 class="card__title heading h3">Material</h2>
+              </div>
+		
+              <ul class="card__section" style="padding-top:0 !important;">
+                <li id="video" style="text-align: center !important;">
+                  {% if product.tags contains '01-custom'%}
+                      <div class="material_video" id="can_v">
+                      <h2>¿Como son nuestros Canvas?</h2> <iframe width="560" height="315" src="https://www.youtube.com/embed/V3yBCPFaXvU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+                      <div class="material_video" id="fra_v">
+                      <h2>¿Como son nuestros Enmarcados?</h2> <iframe width="560" height="315" src="https://www.youtube.com/embed/RGHgqleKb0g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+                      <div class="material_video" id="pos_v">
+                      <h2>¿Como son nuestros Materiales?</h2> <iframe width="560" height="315" src="https://www.youtube.com/embed/sZBBjb3iGpc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+                      <div class="material_video" id="acr_v">
+                      <h2>¿Como son nuestros Acrílicos?</h2> <iframe width="560" height="315" src="https://www.youtube.com/embed/XOJjqiYnrbg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+                      <div class="material_video" id="alu_v">
+                      <h2>¿Como son nuestros Aluminios?</h2> <iframe width="560" height="315" src="https://www.youtube.com/embed/bfqVuw4MH-Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+                  {%- else -%}
+                      {% assign variation_title = pr_variant.title %}
+                      {% assign is_customisable = 0 %}
+
+                      {% unless variation_title contains 'anvas' %}
+                      {% unless variation_title contains 'crílico' %}
+                      {% unless variation_title contains 'luminio' %}
+                      {% unless variation_title contains 'oster' %}
+                      {% unless variation_title contains 'óster' %}
+                      {% unless variation_title contains 'ixSet' %}
+                      {% unless variation_title contains 'nmarcado' %}
+                      {% assign is_customisable = 1 %}
+                      {% endunless %}
+                      {% endunless %}
+                      {% endunless %}
+                      {% endunless %}
+                      {% endunless %}
+                      {% endunless %}
+                      {% endunless %}
+
+                      {%- if is_customisable == 1 -%}
+                      {% assign variation_title = product.title %}
+                      {%- if variation_title contains "anvas" -%}
+                      <h2>¿Como son nuestros Canvas?</h2> <iframe width="560" height="315" src="https://www.youtube.com/embed/V3yBCPFaXvU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      {%- elsif variation_title contains "crílico" -%}
+                      <h2>¿Como son nuestros Acrílicos?</h2> <iframe width="560" height="315" src="https://www.youtube.com/embed/XOJjqiYnrbg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      {%- elsif variation_title contains "luminio" -%}
+                      <h2>¿Como son nuestros Aluminios?</h2> <iframe width="560" height="315" src="https://www.youtube.com/embed/bfqVuw4MH-Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      {%- elsif variation_title contains "oster" -%}
+                      <h2>¿Como son nuestros Materiales?</h2> <iframe width="560" height="315" src="https://www.youtube.com/embed/sZBBjb3iGpc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      {%- elsif variation_title contains "ixSet" -%}
+                      <h2>¿Como son nuestros PixSets?</h2> <iframe width="560" height="315" src="https://www.youtube.com/embed/-Phpfjmy-QI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      {%- elsif variation_title contains "nmarcado" -%}
+                      <h2>¿Como son nuestros Enmarcados?</h2> <iframe width="560" height="315" src="https://www.youtube.com/embed/RGHgqleKb0g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      {%- endif -%}
+                      {%- else -%}
+                      {%- if variation_title contains "anvas" or variation_title contains "crílico" or variation_title contains "luminio" or variation_title contains "oster" or variation_title contains "ixSet" -%}
+                      <h2>¿Como son nuestros Cuadros?</h2> <iframe width="560" height="315" src="https://www.youtube.com/embed/sZBBjb3iGpc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      {%- endif -%}
+                      {%- endif -%}
+        		  {%- endif -%}
+
+                </li>
+              </ul>
+              -->
+            </div>
+          </div>
+
+          <!--div class="product-block-list__item product-block-list__item--trust">
+            <div class="card">
+              <div class="card__header">
+                <h2 class="card__title heading h3">Tiempos de Envío</h2>
+                  <div class="card__section">
+                    {% if product.tags contains '01-custom'%}
+                      <p class="material_delivery_time" id="can_t">
+                        <span class="card__title heading h4" >Canvas</span><br>
+                        <strong>Envío gratis:</strong> {{ tecan_v1 }} - {{ tecan_v2 | plus: tecan_v1 }} días hábiles<br>
+                        <strong>Envío express:</strong> {{ tecaf_v1 }} - {{ tecaf_v2 | plus: tecaf_v1 }} días hábiles<br /><br>
+                      </p>
+                      <p class="material_delivery_time" id="fra_t">
+                        <span class="card__title heading h4" >Enmarcados</span><br>
+                        <strong>Envío gratis:</strong> {{ tefrn_v1 }} - {{ tefrn_v2 | plus: tefrn_v1 }} días hábiles<br>
+                        <strong>Envío express:</strong> {{ tefrf_v1 }} - {{ tefrf_v2 | plus: tefrf_v1 }} días hábiles<br /><br>
+                      </p>
+                      <p class="material_delivery_time" id="pos_t">
+                        <span class="card__title heading h4" >Pósters</span><br>
+                        <strong>Envío gratis:</strong> {{ tepon_v1 }} - {{ tepon_v2 | plus: tepon_v1 }} días hábiles<br>
+                        <strong>Envío express:</strong> {{ tepof_v1 }} - {{ tepof_v2 | plus: tepof_v1 }} días hábiles<br /><br>
+                      </p>
+                      <p class="material_delivery_time" id="acr_t">
+                        <span class="card__title heading h4" >Acrílicos</span><br>
+                        <strong>Envío gratis:</strong> {{ teacn_v1 }} - {{ teacn_v2 | plus: teacn_v1 }} días hábiles<br>
+                        <strong>Envío express:</strong> {{ teacf_v1 }} - {{ teacf_v2 | plus: teacf_v1 }} días hábiles<br /><br>
+                      </p>
+                      <p class="material_delivery_time" id="alu_t">
+                        <span class="card__title heading h4" >Aluminios</span><br>
+                        <strong>Envío gratis:</strong> {{ tealn_v1 }} - {{ tealn_v2 | plus: tealn_v1 }} días hábiles<br>
+                        <strong>Envío express:</strong> {{ tealf_v1 }} - {{ tealf_v2 | plus: tealf_v1 }} días hábiles<br /><br>
+                      </p>
+                    {%- else -%}
+                      {% if product.tags contains '03-custom'  or product.tags contains 'acrilicos impresos personalizados' or product.tags contains 'aluminios impresos personalizados' or product.tags contains 'canvas impresos personalizados' or product.tags contains 'posters' or product.tags contains 'PixSets'  or product.tags contains 'viniles' or product.tags contains 'vinilos' %}
+                      {% if product.title contains 'crílico' or product.tags contains 'acrilicos impresos personalizados' %}
+                      <span class="card__title heading h4" >Acrílicos</span><br>
+                      <strong>Envío gratis:</strong> {{ teacn_v1 }} - {{ teacn_v2 | plus: teacn_v1 }} días hábiles<br>
+                      <strong>Envío express:</strong> {{ teacf_v1 }} - {{ teacf_v2 | plus: teacf_v1 }} días hábiles<br />
+                      {% endif %}
+                      {% if product.title contains 'luminio' or product.tags contains 'aluminios impresos personalizados' %}
+                      <span class="card__title heading h4" >Aluminios</span><br>
+                      <strong>Envío gratis:</strong> {{ tealn_v1 }} - {{ tealn_v2 | plus: tealn_v1 }} días hábiles<br>
+                      <strong>Envío express:</strong> {{ tealf_v1 }} - {{ tealf_v2 | plus: tealf_v1 }} días hábiles<br />
+                      {% endif %}
+                      {% if product.title contains 'anvas'or product.tags contains 'canvas impresos personalizados' %}
+                      <span class="card__title heading h4" >Canvas</span><br>
+                      <strong>Envío gratis:</strong> {{ tecan_v1 }} - {{ tecan_v2 | plus: tecan_v1 }} días hábiles<br>
+                      <strong>Envío express:</strong> {{ tecaf_v1 }} - {{ tecaf_v2 | plus: tecaf_v1 }} días hábiles<br />
+                      {% endif %}
+                      {% if product.title contains 'pixset' or product.tags contains 'PixSets' %}
+                      <span class="card__title heading h4" >PixSets</span><br>
+                      <strong>Envío gratis:</strong> {{ tepin_v1 }} - {{ tepin_v2 | plus: tepin_v1 }} días hábiles<br>
+                      <strong>Envío express:</strong> {{ tepif_v1 }} - {{ tepif_v2 | plus: tepif_v1 }} días hábiles<br />
+                      {% endif %}
+                      {% if product.title contains 'óster' or product.tags contains 'posters' %}
+                      <span class="card__title heading h4" >Posters</span><br>
+                      <strong>Envío gratis:</strong> {{ tepon_v1 }} - {{ tepon_v2 | plus: tepon_v1 }} días hábiles<br>
+                      <strong>Envío express:</strong> {{ tepof_v1 }} - {{ tepof_v2 | plus: tepof_v1 }} días hábiles<br /><br>
+                      {% endif %}
+                      {% if product.tags contains 'custom' and product.tags contains 'enmarcado' %}
+                      <span class="card__title heading h4" >Enmarcados</span><br>
+                      <strong>Envío gratis:</strong> {{ tefrn_v1 }} - {{ tefrn_v2 | plus: tepin_v1 }} días hábiles<br>
+                      <strong>Envío express:</strong> {{ tefrf_v1 }} - {{ tefrf_v2 | plus: tepif_v1 }} días hábiles<br />
+                      {% endif %}
+                      {% if product.title contains 'inil' or product.tags contains 'viniles' or product.tags contains 'vinilos' %}
+                      <span class="card__title heading h4" >PixSets</span><br>
+                      <strong>Envío gratis:</strong> {{ tepin_v1 }} - {{ tepin_v2 | plus: tepin_v1 }} días hábiles<br>
+                      <strong>Envío express:</strong> {{ tepif_v1 }} - {{ tepif_v2 | plus: tepif_v1 }} días hábiles<br />
+                      {% endif %}
+                      {% elsif product.tags contains '04-clc' or product.tags contains '01-clp' or product.tags contains '06-nc' or product.title contains 'uadro personalizado' %}
+                      <span class="card__title heading h4" >Acrílicos</span><br>
+                      <strong>Envío gratis:</strong> {{ teacn_v1 }} - {{ teacn_v2 | plus: teacn_v1 }} días hábiles<br>
+                      <strong>Envío express:</strong> {{ teacf_v1 }} - {{ teacf_v2 | plus: teacf_v1 }} días hábiles<br /><br>
+
+                      <span class="card__title heading h4" >Aluminios</span><br>
+                      <strong>Envío gratis:</strong> {{ tealn_v1 }} - {{ tealn_v2 | plus: tealn_v1 }} días hábiles<br>
+                      <strong>Envío express:</strong> {{ tealf_v1 }} - {{ tealf_v2 | plus: tealf_v1 }} días hábiles<br /><br>
+
+                      <span class="card__title heading h4" >Canvas</span><br>
+                      <strong>Envío gratis:</strong> {{ tecan_v1 }} - {{ tecan_v2 | plus: tecan_v1 }} días hábiles<br>
+                      <strong>Envío express:</strong> {{ tecaf_v1 }} - {{ tecaf_v2 | plus: tecaf_v1 }} días hábiles<br /><br>
+
+                      <span class="card__title heading h4" >PixSets</span><br>
+                      <strong>Envío gratis:</strong> {{ tepin_v1 }} - {{ tepin_v2 | plus: tepin_v1 }} días hábiles<br>
+                      <strong>Envío express:</strong> {{ tepif_v1 }} - {{ tepif_v2 | plus: tepif_v1 }} días hábiles<br /><br>
+
+                      <span class="card__title heading h4" >Posters</span><br>
+                      <strong>Envío gratis:</strong> {{ tepon_v1 }} - {{ tepon_v2 | plus: tepon_v1 }} días hábiles<br>
+                      <strong>Envío express:</strong> {{ tepof_v1 }} - {{ tepof_v2 | plus: tepof_v1 }} días hábiles<br />
+                      {% endif %}
+                    {%- endif -%}
+                  </div>
+            </div>
+          </div>
+        </div-->
+
+        <div class="product-block-list__item product-block-list__item--content">
+          <div class="card">
+            <div class="card__header">
+              <h2 class="card__title heading h3">Algunos Clientes Felices</h2>
+              <div class="card__section">
+                <div id="sps_container" style="display: block !important; width: 100% !important; height: 360px !important; position: relative !important; clear: both !important;overflow: hidden !important;left: 0 !important;top: 0 !important;max-width: 100% !important;max-height: 360px !important;margin-top: 10px !important;">
+                  <style>#sps button {display: none !important; }</style>
+                  <div id="sps" style="position: absolute !important;top: 0 !important;left: 0 !important;width: 100% !important;">
+                    <div> <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Canvas-personalizado-con-foto-de-familia.jpg?v=1586817325"> </div>
+                    <div> <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Canvas-de-Megan-Fox-supreme.jpg?v=1586817325"> </div>
+                    <div> <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Mama-con-Canvas-con-fotos-del-primer-ano-de-su-bebe.jpg?v=1586817325"> </div>
+                    <div> <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Disenos-especiales-para-parejas-en-Canvas.jpg?v=1586817325"> </div>
+                    <div> <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Chica-con-su-Canvas-de-gato-curioso.jpg?v=1586817325"> </div>
+                    <div> <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Canvas-de-Audrey-Hepburn-bubblegum.jpg?v=1586817324"> </div>
+                  </div>
+                  <script type="text/javascript">
+                    $(document).ready(function() { $('#sps').slick({ dots: false, speed: 300, slidesToShow: 1, slidesToScroll: 1, autoplay: true, autoplaySpeed: 3000, infinite: false, responsive: [{ breakpoint: 1439, settings: { slidesToShow: 1, slidesToScroll: 1, infinite: false, dots: false } }, { breakpoint: 1200, settings: { slidesToShow: 1, slidesToScroll: 1, infinite: false, dots: false } }, { breakpoint: 1024, settings: { slidesToShow: 1, slidesToScroll: 1, infinite: false, dots: false } }, { breakpoint: 980, settings: { slidesToShow: 1, slidesToScroll: 1, infinite: false, dots: false } }, { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1, infinite: false, dots: false } }, { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1, infinite: false, dots: false } }] }); });
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+        </div>
+      </div>
+    </div>
+   	<div class="section">
+      <div class="container" style="margin-top: 60px !important; padding: 0 !important;">
+        <div class="cont special2 custom">
+        <style>
+          a.okeReviews-lazyPoweredBy.is-okeReviews-lazyLoaded {
+            opacity: 0 !important;
+            pointer-events: none !important;
+          }
+          .okeReviews-review-reviewer-profile-avatar {
+            display: none !important;
+          }
+          .okeReviews-review-reviewer-profile-details {
+            padding-left: 0 !important;
+          }
+          h2.rev-title{
+            color: #f0297c;
+            font-size: calc(var(--base-text-font-size) - (var(--default-text-font-size) - 21px));
+            font-weight: 600;
+            margin: 50px 0 0 0;
+          }
+          h2.rev-title,
+          h2.rev-title+h2,
+          h2.rev-title+h2+h2.rev-title,
+          h2.rev-title+h2+h2.rev-title+h2 {
+            padding: 0 20px !important;
+          }
+        </style>
+        
+        <br>
+        <h2 class="rev-title">Reseñas > Producto<h2>
+        {%- comment -%}{%- endcomment -%}
+        {% render 'okendo-reviews-widget', product: product %}
+        
+        <br>
+        <h2 class="rev-title" style="margin-bottom: -40px; ">Reseñas > Todo Canvas Lab<h2>
+        <div data-oke-reviews-widget></div>
+        </div>
+      </div>
+	</div>
+    {%- if section.settings.show_refunds_policy and shop.refund_policy != blank -%}
+      <div id="modal-refunds-policy" class="modal" aria-hidden="true">
+        <div class="modal__dialog" role="dialog">
+          <header class="modal__header">
+            <h3 class="modal__title heading h2">{{ 'product.general.refund_policy' | t }}</h3>
+            <button class="modal__close link" data-action="close-modal">{%- render 'icon', icon: 'close' -%}</button>
+          </header>
+
+          <div class="modal__content">
+            <div class="rte">
+              {{ shop.refund_policy }}
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+  {%- else -%}
+    {%- comment -%}We display the quick view within the product template so we can re-use the same settings{%- endcomment -%}
+    <div class="featured-product">
+      {%- render 'product-gallery' -%}
+      {% render 'product-info', prom_v1: prom_v1, prom_v2: prom_v2, prom_v3: prom_v3 %}
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Product page",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sku",
+      "label": "Show SKU",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share_buttons",
+      "label": "Show share buttons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_taxes_included",
+      "label": "Show price taxes notice",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "selector_mode",
+      "label": "Selector type",
+      "options": [
+        {
+          "value": "block",
+          "label": "Block"
+        },
+        {
+          "value": "dropdown",
+          "label": "Dropdown"
+        }
+      ],
+      "default": "block"
+    },
+    {
+      "type": "select",
+      "id": "color_mode",
+      "label": "Color selector type",
+      "info": "Variant image mode requires that all variant has an associated image. [Learn more](https://help.shopify.com/en/manual/products/product-variant-images#add-images-to-existing-variants)",
+      "options": [
+        {
+          "value": "block",
+          "label": "Block"
+        },
+        {
+          "value": "dropdown",
+          "label": "Dropdown"
+        },
+        {
+          "value": "color",
+          "label": "Color swatch"
+        },
+        {
+          "value": "variant_image",
+          "label": "Variant image"
+        }
+      ],
+      "default": "color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quantity_selector",
+      "label": "Show quantity selector",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_button",
+      "label": "Show dynamic checkout button",
+      "info": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pickup_availability",
+      "label": "Show local pickup availability",
+      "info": "Show customers where they can pick up the product. [Learn more](https://help.shopify.com/en/manual/shipping/setting-up-and-managing-your-shipping/local-methods/local-pickup#show-pickup-availability-to-your-customers)",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "paragraph",
+      "content": "Learn more about [media types](https://help.shopify.com/en/manual/products/product-media)"
+    },
+    {
+      "type": "select",
+      "id": "image_size",
+      "label": "Size",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "small"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_looping",
+      "label": "Enable video looping",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_image_zoom",
+      "label": "Enable image zoom",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "zoom_effect",
+      "label": "Desktop zoom effect",
+      "options": [
+        {
+          "value": "inside",
+          "label": "Inside"
+        },
+        {
+          "value": "outside",
+          "label": "Outside"
+        }
+      ],
+      "default": "outside"
+    },
+    {
+      "type": "select",
+      "id": "carousel_effect",
+      "label": "Transition effect",
+      "options": [
+        {
+          "value": "fade",
+          "label": "Fade"
+        },
+        {
+          "value": "slide",
+          "label": "Slide"
+        }
+      ],
+      "default": "fade"
+    },
+    {
+      "type": "header",
+      "content": "Inventory"
+    },
+    {
+      "type": "paragraph",
+      "content": "You can also add a stock countdown. [Learn more](https://support.maestrooo.com/article/177-product-show-an-stock-countdown-bar)."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_inventory_quantity",
+      "label": "Show inventory quantity",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "low_inventory_threshold",
+      "label": "Low inventory threshold",
+      "info": "Use low stock color when quantity is below the threshold. Choose 0 to always show in stock.",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "paragraph",
+      "content": "You can also add per-product tabs. [Learn more](http://support.maestrooo.com/article/83-product-adding-different-tabs-per-product)."
+    },
+    {
+      "type": "select",
+      "id": "content_display_mode",
+      "label": "Display mode",
+      "options": [
+        {
+          "value": "show_all",
+          "label": "Show all"
+        },
+        {
+          "value": "show_all_and_expand_description",
+          "label": "Show all and expand description"
+        },
+        {
+          "value": "collapse_all",
+          "label": "Collapse all"
+        },
+        {
+          "value": "collapse_all_except_description",
+          "label": "Collapse all except description"
+        }
+      ],
+      "default": "show_all_and_expand_description"
+    },
+    {
+      "type": "page",
+      "id": "tab_page_1_handle",
+      "label": "First page"
+    },
+    {
+      "type": "page",
+      "id": "tab_page_2_handle",
+      "label": "Second page"
+    },
+    {
+      "type": "page",
+      "id": "tab_page_3_handle",
+      "label": "Third page"
+    },
+    {
+      "type": "header",
+      "content": "Reviews"
+    },
+    {
+      "type": "paragraph",
+      "content": "You need to install [Shopify's free Product Reviews](https://apps.shopify.com/product-reviews) app before enabling those options."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_reviews",
+      "label": "Enable",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews_badge",
+      "label": "Show badge",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Trust"
+    },
+    {
+      "type": "text",
+      "id": "trust_title",
+      "label": "Heading",
+      "default": "Payment & Security"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_security_badge",
+      "label": "Security badge",
+      "info": "800 x 200px .jpg recommended"
+    },
+    {
+      "type": "range",
+      "id": "custom_security_badge_width",
+      "min": 100,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "label": "Security badge width",
+      "default": 200
+    },
+    {
+      "type": "header",
+      "content": "Shipping estimator"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shipping_estimator",
+      "label": "Show shipping estimator",
+      "info": "Only show if product is available.",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "shipping_estimator_default_country",
+      "label": "Default country",
+      "info": "If the customer is logged in, the country of their shipping address will be used.",
+      "default": "United States"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_refunds_policy",
+      "label": "Show refunds policy",
+      "info": "Refund policy must be added into your store policies. [Learn more](https://help.shopify.com/manual/sell-online/checkout-settings/refund-privacy-tos).",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

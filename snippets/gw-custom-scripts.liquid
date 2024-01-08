@@ -1,0 +1,15 @@
+<script>
+  window.addEventListener('sswhelperload', () => {
+    if (typeof sswRun == "function") {
+      sswRun(function () {
+        var checkboxTrue = setInterval(function () {
+          if (ssw('#ssw-accept-marketing-checkbox').length) {
+            clearInterval(checkboxTrue);
+            ssw('#ssw-accept-marketing-checkbox').prop('checked', true);
+
+          }
+        }, 1000);
+      });
+    }
+  } )
+</script>

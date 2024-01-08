@@ -1,0 +1,208 @@
+<div class="container container">
+  <header class="page__header page__header--stack page__header--centered">
+    <h1 class="page__title heading h1">Blog de Canvas Lab</h1>
+  </header>
+
+  <div class="page__content rte">
+<style type="text/css" media="screen">
+  #blog_head{
+    background-image:linear-gradient(90deg,rgba(0,0,0,0.8) 0%,rgba(0,0,0,0) 100%),url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Blog-de-Canvas-Lab-Aprende-sobre-arte-y-decoracion.jpg?v=1582921005');
+    background-size:cover;
+    background-position:center;
+    display: block;
+    position: relative;
+    height: 234px;
+    width: 100%;
+    max-width: 1440px !important;
+    overflow: hidden;
+    margin: 20px 10px !important;
+  }
+  #blog_head > #center_container{
+    display: table;
+    height: 100%;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  #blog_head > #center_container > #container_blog_head{
+    display: table-cell;
+    vertical-align: middle;
+    height: 100%;
+    width: 100%;
+  }
+  #blog_head > #center_container > #container_blog_head > h1{
+    font-weight: 300;
+    font-size: 40px;
+    color: #8997d3;
+    margin: 0;
+    padding: 0;
+  }
+  #blog_head > #center_container > #container_blog_head > h1+span{
+    font-weight: 300;
+    font-size: 35px;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+  html > body > #tt-pageContent > .container-indent > .container > h1{
+    display: none;
+  }
+  #tt-pageContent > .container-indent:not(.nomargin):not([class^="tt-offset"]){
+    margin-top: unset;
+  }
+  .blog_col {
+      position: relative !important;
+      display: inline-block !important;
+  }
+  .blog_col > div {
+      width: calc((100% - 40px) / 3) !important;
+      min-width: calc((100% - 40px) / 3) !important;
+      max-width: calc((100% - 40px) / 3) !important;
+      display: inline-block !important;
+      float: left !important;
+     /* background:#fff !important;*/
+    margin-bottom:20px;
+    max-height:350px;
+    height:350px;
+  }
+  .blog_col > div:not(:nth-child(3n)) {
+      margin-right: 20px;
+  }
+  .blog_col > div > div > a > img {
+      max-width: 100% !important;
+  }
+  .blog_title{
+    display: block !important;
+    width: 100% !important;
+    clear: both !important;
+  }
+  .blog_col > div h4 {
+      color: #000000 !important;
+    text-transform: capitalize;
+    font-size:14px !important;
+      margin-top: 20px !important;
+      line-height: 1.125em !important;
+    padding:8px 0px;
+    
+  }
+  @media screen and (max-width: 1024px){
+    #blog_head {
+        margin-top: 50px;
+    }
+  }
+  @media screen and (max-width: 768px){
+    .blog_col > div {
+        width: calc((100% - 20px) / 2) !important;
+        min-width: calc((100% - 20px) / 2) !important;
+        max-width: calc((100% - 20px) / 2) !important;
+        display: inline-block !important;
+        float: left !important;
+      	height:230px !important;
+    }
+    .blog_col > div:not(:nth-child(3n)) {
+        margin-right: unset !important;
+    }
+    .blog_col > div:nth-child(2n-1) {
+        margin-right: 20px !important;
+    }
+  }
+  @media screen and (max-width: 480px){
+    .blog_col > div {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        display: inline-block !important;
+        float: unset !important;
+    }
+    .blog_col > div:nth-child(2n-1) {
+        margin-left: unset !important;
+    }
+    .blog_col > div:not(:nth-child(3n)) {
+        margin-right: unset !important;
+    }
+    
+  }
+  .blog_title {text-decoration:none !important;}
+  .article__grid-image-wrapper img{margin:0px !important;}
+</style>
+<div class="container-indent">
+  <div class="container">
+    <h1 style="display:none;">Blogs</h1>
+    <p style="text-justify: inter-word !important;margin-bottom: 40px !important;">En este blog podrás aprender de arte y decoración. Hacemos vídeos y artículos sobre historia la historia del arte, sus movimientos, sus ideologías y sus artistas. También, videos explicando conceptos básicos y prácticos sobre la decoración y sus diferentes estilos.</p>
+        <a class="blog_title" href="/blogs/decoracion">
+      <h2>Decoración</h2>
+    </a>
+    <div class="blog_col">
+      {% assign blog = blogs.decoracion %}
+      {% paginate blog.articles by 6 %}
+      {% for article in blog.articles%}
+      <div>
+        {% if article.image %}
+          {% capture img_id %}ArticleImage-{{ article.image.id }}{% endcapture %}
+          {% capture img_wrapper_id %}ArticleImageWrapper-{{ article.image.id }}{% endcapture %}
+          {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          <div class="article__grid-image-wrapper">
+            <a href="{{ article.url }}">
+            {{ article | img_url: '345x345', scale: 2 | img_tag: article.title, 'article__grid-image' }}
+            </a>
+          </div>
+        {% endif %}
+        <h4>{{ article.title }}</h4>
+        <br>
+      </div>
+      {% endfor %}
+
+      {% endpaginate %}
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <a class="blog_title" href="/blogs/arte">
+    <h2>Arte</h2>
+    </a>
+    <div class="blog_col">
+      {% assign blog = blogs.arte %}
+      {% paginate blog.articles by 6 %}
+      {% for article in blog.articles%}
+      <div>
+        {% if article.image %}
+          {% capture img_id %}ArticleImage-{{ article.image.id }}{% endcapture %}
+          {% capture img_wrapper_id %}ArticleImageWrapper-{{ article.image.id }}{% endcapture %}
+          {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          <div class="article__grid-image-wrapper">
+            <a href="{{ article.url }}">
+            {{ article | img_url: '345x345', scale: 2 | img_tag: article.title, 'article__grid-image' }}
+            </a>
+          </div>
+        {% endif %}
+        <h4>{{ article.title }}</h4>
+        <br>
+      </div>
+      {% endfor %}
+
+      {% endpaginate %}
+    </div>
+
+  </div>
+</div>
+<script>
+;(function($){
+  $(document).ready(function() {
+    $('html > body > #tt-pageContent > .container-indent').prepend('<div id="blog_head"> <div id="center_container"> <div id="container_blog_head"> <h1>Blog de Canvas Lab</h1> <span>Aprende sobre arte y decoración</span> </div> </div> </div>');
+    $('html > body > #tt-pageContent > .container-indent > .container > h1').remove();
+  });
+})(jQuery);
+</script>
+    
+  </div>
+</div>

@@ -1,0 +1,10 @@
+{% render 'banner_collection_fall22' %}
+{% include 'settings_theme_instance' %}
+{%- render 'css_hibridos'-%}
+{%- render 'banner_collection', prom_v1:prom_v1, prom_v2:prom_v2, prom_v3:prom_v3, pbhd_v1:pbhd_v1, pbhm_v1:pbhm_v1, purl_v1:purl_v1, pbhd_v2:pbhd_v2, pbhm_v2:pbhm_v2, prom_c:prom_c, prom_c2:prom_c2 -%}
+{% if collection.metafields.my_fields.square_subcategories == true %}
+{% section 'complex-collection-sq' %}
+{% else %}
+{% section 'complex-collection' %}
+{% endif %}
+{{ 'ajaxinate-2.js' | asset_url | script_tag }}

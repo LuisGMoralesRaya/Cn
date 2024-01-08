@@ -1,0 +1,319 @@
+<style>
+  #main .container {
+    padding: 60px 60px 0 60px !important;
+  }
+  h1.page__title.heading.h1{
+    height: 0 !important;
+    width: 0 !important;
+    opacity: 0 !important;
+  }
+  .beau_hero{
+    width: calc(100% + 120px) !important;
+    max-width: calc(100% + 120px) !important;
+    margin-left: -60px !important;
+    margin-top: -60px !important;
+  }
+  div.heading{
+    text-align: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.2em !important;
+  }
+  div.heading.h1 {
+    font-size: 54px !important;
+  }
+  div.heading.h2 {
+    font-size: 34px !important;
+  }
+  div.heading.h1.up,
+  div.heading.h2.up{
+    text-transform: uppercase;
+  }
+  img.img_content {
+    max-width: 80% !important;
+    margin: 0 auto !important;
+  }
+  .page__content.rte {
+    color: var(--heading-color) !important;
+    font-size: 24px;
+    line-height: 1.5;
+  }
+  .heading.dis {
+    font-size: 30px;
+    height: 40px !important;
+    line-height: 40px !important;
+    display: block !important;
+    color: #ff0000 !important;
+    letter-spacing: 6px;
+    margin: 16px auto !important;
+  }
+  .heading.h2.plus {
+    font-size: 48px !important;
+    color: #00adef;
+    margin-top: 20px !important;
+  }
+  .bold{
+    font-weight: 600 !important;
+  }
+  #terms{
+    display: none !important;
+    font-size: 14px !important;
+    line-height: 1.4em !important;
+    text-align: justify !important;
+    color: #000 !important;
+    font-weight: 300 !important;
+  }
+  #terms .title {
+    font-size: 16px !important;
+    display: block !important;
+    margin-bottom: -10px !important;
+  }
+  ul.four_cards{
+    display: block !important; 
+    width: calc(100% + 56px) !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin-left: -28px !important;
+  }
+  ul.four_cards > li{
+    display: inline-block !important;
+    float: left !important;
+    width: 25% !important;
+    height: auto !important;
+    list-style-type: none !important;
+    padding: 20px !important;
+    text-align: center !important;
+  }
+  .rte ul.four_cards > li > a:not(.button) {
+    text-decoration: none !important;
+    color: #000 !important;
+    font-weight: 600 !important;
+  }
+  ul.four_cards > li > a > img {
+    margin: 0 auto !important;
+  }
+  ul.four_cards > li:before{
+    content: '' !important;
+    display: none !important;
+  }
+  header.page__header {
+    margin: -20px 0 0 0 !important;
+  }
+  info > p{
+    color: #000;
+    font-size: 14px !important;
+    text-align: justify;
+    display: inline-block !important;
+    margin: 20px 0 20px 0 !important;
+  }
+  .full_row {
+    display: block !important;
+    position: relative !important;
+    width: calc(100% + 120px) !important;
+    margin: 0 0 0 -60px;
+  }
+  .full_row > img {
+    margin: 20px 0 40px 0 !important;
+  }
+  .full_row > .fixer {
+    position: absolute !important;
+    display: flex !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    justify-content: center !important;
+    align-items: end !important;
+    padding-bottom: 30px !important;
+  }
+  .full_row > .fixer > a.button {
+    background: #f0297c !important;
+    border-radius: 5px !important;
+    margin: 0 20px !important;
+    color: #fff !important;
+    transition: 0.3s all;
+  }
+  .full_row > .fixer > a.button:hover {
+    background: #00adef !important;
+  }
+  @media screen and (max-width:1239px){
+    #main {
+      margin: 20px !important;
+    }
+  }
+  @media screen and (max-width:1024px){
+    .rte ul.four_cards > li > a:not(.button) {
+      font-size: 16px !important;
+    }
+  }
+  @media screen and (max-width:1000px){
+    .full_row > .fixer {
+      padding-bottom: 10px !important;
+    }
+  }
+  @media screen and (max-width:800px){
+    img.img_content {
+      max-width: 100% !important;
+    }
+    div.heading.h1 {
+      font-size: 40px !important;
+    }
+    div.heading.h2 {
+      font-size: 20px !important;
+    }
+    .page__content.rte {
+      font-size: 16px;
+    }
+    .heading.dis {
+      font-size: 16px;
+      height: 30px !important;
+      line-height: 30px !important;
+      letter-spacing: 4px;
+    }
+    .heading.h2.plus {
+      font-size: 34px !important;
+    }
+    #terms{
+      font-size: 10px !important;
+    }
+    #terms .title {
+      font-size: 12px !important;
+    } 
+  }
+  @media screen and (max-width:768px){
+    .full_row > .fixer {
+      padding-bottom: 0px !important;
+    }
+    .full_row > .fixer > a.button {
+      margin: 0 20px -20px 20px !important;
+    }
+    ul.four_cards > li {
+      width: 50% !important;
+    }
+  }
+  @media screen and (max-width:520px){
+    #main .container {
+      padding: 20px 20px 0 20px !important;
+    }
+    .beau_hero{
+      width: calc(100% + 40px) !important;
+      max-width: calc(100% + 40px) !important;
+      margin-left: -20px !important;
+      margin-top: -20px !important;
+    }
+    header.page__header {
+      margin: 15px !important;
+    }
+    .heading.dis {
+      font-size: 16px;
+      height: auto !important;
+      line-height: 30px !important;
+      letter-spacing: 3px;
+    }
+    .full_row {
+      width: calc(100% + 40px) !important;
+      margin: 0 0 0 -20px;
+    }
+    ul.four_cards {
+      margin-top: -45px;
+    }
+    ul.four_cards > li:not(:nth-child(2n)) {
+      padding: 10px 10px 10px 20px !important;
+    }
+    ul.four_cards > li:nth-child(2n) {
+      padding: 10px 20px 10px 10px !important;
+    }
+  }
+  @media screen and (max-width:480px){
+    .full_row > .fixer > a.button {
+      font-size: smaller;
+      padding: 10px 10px;
+      line-height: 1em !important;
+    }
+  }
+  @media screen and (max-width:400px){
+    html body main#main {
+      margin: 0 !important;
+    }
+    html body #main .container.container--medium {
+      margin-top: 0 !important;
+    }
+    header.page__header {
+      margin: 10px !important;
+    }
+    #main .container {
+      padding: 10px 10px 0 10px !important;
+    }
+    .beau_hero{
+      width: calc(100% + 20px) !important;
+      max-width: calc(100% + 20px) !important;
+      margin-left: -10px !important;
+      margin-top: -10px !important;
+    }
+  }
+  input#coupon{
+      display: block !important;
+      margin: 10px auto !important;
+      text-align: center !important;
+      padding: 24px 0px;
+      font-size: 34px;
+      font-weight: 600;
+      color: red;
+      border: 2px solid red;
+      max-width: 80% !important;
+  }
+  div#banner_collection, div#banner_collection > .container {
+      border: unset !important;
+      box-shadow: unset !important;
+      padding: 0 !important;
+      margin: 0 !important;
+  }
+  @media screen and (min-width:521px){
+      div#banner_collection {
+          margin: 0 -60px 0 -60px !important;
+          width: calc(100% + 120px) !important;
+      }
+  }
+  @media screen and (max-width:520px){
+      div#banner_collection {
+          margin: 0 -20px 0 -20px !important;
+          width: calc(100% + 40px) !important;
+      }
+  }
+</style>
+<div class="container container--medium">
+  <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/banner_principal_71d7f00b-21d1-4dc9-89da-826b31af2ab0.png?v=1669250281" class="beau_hero">
+  {% include 'settings_theme_instance' %}
+  {%- render 'banner_collection', prom_v1:prom_v1, prom_v2:prom_v2, prom_v3:prom_v3, pbhd_v1:pbhd_v1, pbhm_v1:pbhm_v1, purl_v1:purl_v1, pbhd_v2:pbhd_v2, pbhm_v2:pbhm_v2, pbhd_v3:pbhd_v3, pbhm_v3:pbhm_v3, purl_v3:purl_v3, prom_c:prom_c, prom_c2:prom_c2 -%}
+  <header class="page__header ">
+    <h1 class="page__title heading h1">{{ page.title }}</h1>
+  </header>
+
+  <div class="page__content rte">
+  <ul class="four_cards">
+    <li><a href="/collections/hombres"><img width="247" height="247" load="lazy" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/hombres.png?v=1669322809" alt="hombres"><span class="title">Hombres</span></a></li>
+    <li><a href="/collections/mujeres"><img width="247" height="247" load="lazy" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/mujeres.png?v=1669322809" alt="mujeres"><span class="title">Mujeres</span></a></li>
+    <li><a href="/collections/todo-ninos"><img width="247" height="247" load="lazy" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/ninos.png?v=1669322809" alt="niños"><span class="title">Niños</span></a></li>
+    <li><a href="/pages/personalizados"><img width="247" height="247" load="lazy" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/personalizados_99273aab-e50f-4dde-b0d2-3b09bf748cc8.png?v=1669322809" alt="personalizados"><span class="title">Personalizados</span></a></li>
+  </ul>
+  <info><p>Te presentamos una guía de los regalos que puedes comprar en Canvas Lab. Las imágenes que te mostramos son solo ejemplos, los precios son los mismos para cualquier imagen de nuestras colecciones o un cuadro personalizado. Lo que determina el precio es el tamaño y el material que elijas para tu cuadro. Asegúrate de elegir las medidas indicadas para no salirte de tu presupuesto.</p></info><br>
+  <div class="full_row"><img src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/500_8bb4138b-ecac-456a-9c32-46b909558647.png?v=1701360618" alt="$500 MXN"><div class="fixer"><a class="button" href="/collections">Ver Colecciones</a><a class="button" href="/pages/personalizados">Sube tu Foto</a></div></div>
+  <div class="full_row"><img src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/1000_5cb5d0c6-3351-4f6d-a07f-a324b2134988.png?v=1701360618" alt="$1000 MXN"><div class="fixer"><a class="button" href="/collections">Ver Colecciones</a><a class="button" href="/pages/personalizados">Sube tu Foto</a></div></div>
+  <div class="full_row"><img src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/1500_15f807e2-7c34-4bf9-acd9-c39f3e843931.png?v=1701360618" alt="$1500 MXN"><div class="fixer"><a class="button" href="/collections">Ver Colecciones</a><a class="button" href="/pages/personalizados">Sube tu Foto</a></div></div>
+  <div class="full_row"><img src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/2000_0520c8bd-b960-4f63-9dcc-815fb9f33ada.png?v=1701360618" alt="$2000 MXN"><div class="fixer"><a class="button" href="/collections">Ver Colecciones</a><a class="button" href="/pages/personalizados">Sube tu Foto</a></div></div>
+  </div>
+</div>
+<script defer>
+  function copyMe() {
+    var copyText = document.getElementById("coupon");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+    navigator.clipboard.writeText(copyText.value);
+  }
+</script>
+
+<style>
+  #main{margin:40px 20px;}
+  .page__header--centered{text-align:left !important;}
+  #main .container {background:#fff !important; border-radius:3px; border:1px solid #f3f3f3; margin-top:20px; margin-bottom:20px; padding:40px;}
+</style>

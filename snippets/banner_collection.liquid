@@ -1,0 +1,129 @@
+{% style %}
+  body.template-collection img#chbp {
+    margin-top: 40px !important;
+  }
+  #banner_collection{
+  	width:100% !important;s
+    margin:0 auto !important;
+  }
+  @media screen and (max-width:640px){
+	#banner_collection{
+      margin: 10px auto !important;
+    }
+  }
+  #timerCDCL{
+  	margin-left: 10px;
+    margin-right: 10px;
+    font-weight: 600;
+    display: inline-block !important;
+    align-items: center;
+    text-align: center;
+  }
+  #banner_collection > .container > p {
+    /*background: {{prom_c}} !important;
+    color: {{prom_c2}} !important;*/
+    
+    margin: 10px 0 -20px !important;
+    border: #1f0d59 solid 2px !important;
+    display: block !important;
+    padding: 15px !important;
+    text-align: center;
+    line-height: 15px !important;
+    font-weight: 600 !important;
+  }
+  @media screen and (min-width:641px){
+    img#chbp {
+      display: block !important;
+    }
+    img#chbpm {
+      display: none !important;
+    }
+  }
+  @media screen and (max-width:640px){
+    img#chbp {
+      display: none !important;
+    }
+    img#chbpm {
+      display: block !important;
+    }
+    #banner_collection > .container > p {
+      margin: 0 10px 10px 10px !important;
+    }
+  }
+{% endstyle %}
+<div id="banner_collection">
+  <div class="container container--flush">
+    <p style="color:#f0297c !important;"> <span> {{ prom_v2 }} </span> | {% if prom_v3 == null %}<span style="color:#1f0d59 !important;"> Termina Hoy </span> |{% endif %} <span style="color:#1f0d59 !important;">Quedan sólo</span><span id="timerCDCL"></span></p>
+  </div>
+</div>
+<script defer="defer">
+  {% if pbhd_v1 != null %}
+  ;(function($) {
+    $(document).ready(function() {
+      setTimeout(function() {
+        {%- if purl_v1 != null -%}
+        	$('#banner_collection .container p:nth-child(1)').after('<a id="chbp_link" href="{{ purl_v1 }}"><img width="1400" height="432" id="chbp" src="{{ pbhd_v1 }}" alt="{{ prom_v1 }}"></a>');
+            $('#chbp').after('<img width="640" height="352" id="chbpm" class="hide" src="{{ pbhm_v1 }}" alt="{{ prom_v1 }}">');
+        {%- else -%}
+        	$('#banner_collection .container p:nth-child(1)').after('<img width="1400" height="432" id="chbp" src="{{ pbhd_v1 }}" alt="{{ prom_v1 }}">');
+			$('#chbp').after('<img width="640" height="352" id="chbpm" class="hide" src="{{ pbhm_v1 }}" alt="{{ prom_v1 }}">');
+        {%- endif -%}
+      }, 120);
+    });
+  })(jQuery);
+  {% endif %}
+    
+    {% if pbhd_v3 != null %}
+      ;(function($) {
+        $(document).ready(function() {
+          setTimeout(function() {
+            {%- if purl_v3 != null -%}
+                $('#banner_collection .container p').after('<a id="chbp2_link" href="{{ purl_v3 }}"><img loading="lazy" width="auto" height="100%" id="chbp2" src="{{ pbhd_v3 }}" alt="{{ prom_v3 }}"></a>');
+				$('#chbp2').after('<img loading="lazy" width="auto" height="100%" id="chbpm2" class="hide" src="{{ pbhm_v3 }}" alt="{{ prom_v3 }}">');
+            {%- else -%}
+				$('#banner_collection .container p').after('<img loading="lazy" width="auto" height="100%" id="chbp2" src="{{ pbhd_v3 }}" alt="{{ prom_v3 }}">');
+				$('#chbp2').after('<img loading="lazy" width="auto" height="100%" id="chbpm2" class="hide" src="{{ pbhm_v3 }}" alt="{{ prom_v3 }}">');
+            {%- endif -%}
+          }, 120);
+        });
+      })(jQuery);
+    {% endif %}
+        
+</script>
+
+<script>
+      function addDays(date, days) {
+        var result = new Date(date);
+        result.setDate(result.getDate() + days);
+        return result;
+      }
+  
+      var today = new Date().getTime();
+    
+      {% unless prom_v3 == null %}
+        var countDownDate = new Date('{{ prom_v3 }}').getTime();
+      {% else %}
+        var tomorrow = new Date(today);
+        tomorrow = tomorrow.setHours(0,0,0,0);
+        tomorrow = addDays(tomorrow,1);
+        var countDownDate = new Date(tomorrow).getTime();
+      {% endunless %}
+  
+      var x = setInterval(function() {
+        var now = new Date().getTime();
+  
+        var distance = countDownDate - now;
+  
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+        document.getElementById('timerCDCL').innerHTML = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
+  
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("timerCDCL").innerHTML = "Expirado";
+        }
+      }, 1000);
+</script>

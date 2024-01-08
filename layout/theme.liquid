@@ -1,0 +1,574 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    {% render 'pagefly-head' %}
+    <meta charset="utf-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=5.0"
+    >
+    <meta name="p:domain_verify" content="de4bec230921a3dbfbf5a9ca4fb3956d">
+    <meta name="theme-color" content="#16093f">
+    <meta name="ahrefs-site-verification" content="074e82b83a02f3bef74c885aefe9bc39effbcb15b6f6123843be007fa0ba2c73">
+
+    {%- capture seo_page_title -%}
+      {%- if request.page_type == 'search' and search.terms != blank -%}
+        {{ search.terms | split: ' AND ' | last | split: 'product_type:' | last }} {{ shop.name }}, Cuadros Decorativos.
+      {%- else -%}
+        {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}
+      {%- endif -%}
+    {%- endcapture -%}
+    {% if template contains 'collection' %}
+      <title>
+        {{ page_title }}
+        Cuadros Decorativos,
+        {{ shop.name }}
+      </title>
+    {% elsif template contains 'product' %}
+      <title>
+        {{ page_title }}
+        Cuadro Decorativo,
+        {{ shop.name }}
+      </title>
+    {% else %}
+      <title>{{ page_title }}</title>
+    {% endif %}
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+    {% render 'social-meta-tags' %}
+
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '96x96' }}" type="image/png">
+
+    <link rel="stylesheet" href="{{ 'custom-main.min.css' | asset_url }}" defer>
+    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" defer>
+    {%- comment -%}<!--link rel="stylesheet" href="{{ 'megamenu.css'  | asset_url }}" defer-->{%- endcomment -%}
+    <link rel="stylesheet" href="{{ 'menu0722.css'  | asset_url }}" defer>
+    <link rel="stylesheet" href="{{ 'extra.css'  | asset_url }}" defer>
+    <link rel="preload" as="script" href="{{ 'theme.min.js' | asset_url }}" defer>
+    <link rel="preconnect" href="https://cdn.shopify.com" defer>
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" defer>
+    <link rel="dns-prefetch" href="https://productreviews.shopifycdn.com" defer>
+    <link rel="dns-prefetch" href="https://ajax.googleapis.com" defer>
+    <link rel="dns-prefetch" href="https://maps.googleapis.com" defer>
+    <link rel="dns-prefetch" href="https://maps.gstatic.com" defer>
+    <link rel="canonical" href="{{ canonical_url }}" defer>
+    {% include 'custom_css' %}
+
+    <script src="{{ 'jquery-3-6-0.min.js' | asset_url }}"></script>
+    <script src="{{ 'jquery-migrate-1.4.1.min.js'  | asset_url }}"></script>
+    {%- comment -%}<!--script src="{{ 'megamenu.js'  | asset_url }}" defer="defer"></script-->{%- endcomment -%}
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function () {
+          !(function (w, d, t) {
+            w.TiktokAnalyticsObject = t;
+            var ttq = (w[t] = w[t] || []);
+            (ttq.methods = [
+              'page',
+              'track',
+              'identify',
+              'instances',
+              'debug',
+              'on',
+              'off',
+              'once',
+              'ready',
+              'alias',
+              'group',
+              'enableCookie',
+              'disableCookie',
+            ]),
+              (ttq.setAndDefer = function (t, e) {
+                t[e] = function () {
+                  t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+                };
+              });
+            for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+            (ttq.instance = function (t) {
+              for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]);
+              return e;
+            }),
+              (ttq.load = function (e, n) {
+                var i = 'https://analytics.tiktok.com/i18n/pixel/events.js';
+                (ttq._i = ttq._i || {}),
+                  (ttq._i[e] = []),
+                  (ttq._i[e]._u = i),
+                  (ttq._t = ttq._t || {}),
+                  (ttq._t[e] = +new Date()),
+                  (ttq._o = ttq._o || {}),
+                  (ttq._o[e] = n || {});
+                var o = document.createElement('script');
+                (o.type = 'text/javascript'), (o.async = !0), (o.src = i + '?sdkid=' + e + '&lib=' + t);
+                var a = document.getElementsByTagName('script')[0];
+                a.parentNode.insertBefore(o, a);
+              });
+
+            ttq.load('CG527S3C77UCPVD6B2P0');
+            ttq.page();
+          })(window, document, 'ttq');
+        }, 1000);
+      });
+    </script>
+
+    {%- comment -%}Few prefech to increase performance on commonly used third-parties{%- endcomment -%}
+    {% render 'css-variables' %}
+    {{ content_for_header }}
+    {% include 'settings_theme_instance' %}
+    {% render 'microdata-schema', prom_v3:prom_v3,dacbs_v1:dacbs_v1,dalbs_v1:dalbs_v1,dcabs_v1:dcabs_v1,dfrbs_v1:dfrbs_v1,dpobs_v1:dpobs_v1,dpibs_v1:dpibs_v1, %}
+    <script defer="defer">
+      // This allows to expose several variables to the global scope, to be used in scripts
+      window.theme = {
+        pageType: {{ request.page_type | json }},
+        cartCount: {{ cart.item_count | json }},
+        moneyFormat: {{ shop.money_format | json }},
+        moneyWithCurrencyFormat: {{ shop.money_with_currency_format | json }},
+        showDiscount: {% if settings.show_discount %}true{% else %}false{% endif %},
+        discountMode: {{ settings.discount_mode | json }},
+        searchMode: {{ settings.search_mode | json }},
+        cartType: {{ settings.cart_type | json }}
+      };
+
+      window.routes = {
+        rootUrl: {{ routes.root_url | json }},
+        rootUrlWithoutSlash: {% if routes.root_url == '/' %}''{% else %}{{ routes.root_url | json }}{% endif %},
+        cartUrl: {{ routes.cart_url | json }},
+        cartAddUrl: {{ routes.cart_add_url | json }},
+        cartChangeUrl: {{ routes.cart_change_url | json }},
+        searchUrl: {{ routes.search_url | json }},
+        productRecommendationsUrl: {{ routes.product_recommendations_url | json }}
+      };
+
+      window.languages = {
+        productRegularPrice: {{ 'product.general.regular_price' | t | json }},
+        productSalePrice: {{ 'product.general.sale_price' | t | json }},
+        collectionOnSaleLabel: {{ 'collection.product.discount_html' | t | json }},
+        productFormUnavailable: {{ 'product.form.unavailable' | t | json }},
+        productFormAddToCart: {% if product.template_suffix == 'pre-order' %}{{ 'product.form.pre_order' | t | json }}{% else %}{{ 'product.form.add_to_cart' | t | json }}{% endif %},
+        productFormSoldOut: {{ 'product.form.sold_out' | t | json }},
+        productAdded: {{ 'product.form.added' | t | json }},
+        productAddedShort: {{ 'product.form.added_short' | t | json }},
+        shippingEstimatorNoResults: {{ 'cart.shipping_estimator.no_results_title' | t | json }},
+        shippingEstimatorOneResult: {{ 'cart.shipping_estimator.one_result_title' | t | json }},
+        shippingEstimatorMultipleResults: {{ 'cart.shipping_estimator.multiple_results_title' | t | json }},
+        shippingEstimatorErrors: {{ 'cart.shipping_estimator.errors' | t | json }}
+      };
+
+      window.lazySizesConfig = {
+        loadHidden: false,
+        hFac: 0.8,
+        expFactor: 3,
+        customMedia: {
+          '--phone': '(max-width: 640px)',
+          '--tablet': '(min-width: 641px) and (max-width: 1023px)',
+          '--lap': '(min-width: 1024px)'
+        }
+      };
+
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+
+    {%- if request.page_type == 'customers/addresses' -%}
+      <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+      <script src="{{ 'customer_area.js' | shopify_asset_url }}" defer="defer"></script>
+    {%- endif -%}
+
+    <script src="{{ 'theme.min.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
+
+    {%- if request.page_type != 'cart' -%}
+      <script defer="defer">
+        (function () {
+          window.onpageshow = function () {
+            // We force re-freshing the cart content onpageshow, as most browsers will serve a cache copy when hitting the
+            // back button, which cause staled data
+            document.documentElement.dispatchEvent(
+              new CustomEvent('cart:refresh', {
+                bubbles: true,
+                detail: { scrollToTop: false },
+              })
+            );
+          };
+        })();
+      </script>
+    {%- endif -%}
+
+    <script src="{{ 'ajaxinate-2.js'  | asset_url }}"></script>
+    {{ shop.metafields.okendo.ReviewsWidgetStyleTag }}
+    {{ shop.metafields.okendo.StyleCustomizations }}
+
+    <!-- =========================================Header========================================= -->
+    <!-- Global Site Tag (gtag.js) - Google AdWords: xxxxxxxxxxxxxx -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-824666955"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'AW-824666955', { send_page_view: false });
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1QC3P8XPV5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-1QC3P8XPV5');
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        if (window.location.href.includes('products')) {
+          var productsGoogle = [];
+          productsGoogle.push({
+            item_name: document.querySelector('.product-meta__title').innerText,
+            price: document.querySelector('.price').innerText.replace(/\D/g, '') / 100,
+          });
+          gtag('event', 'view_item', {
+            currency: 'MXN',
+            items: productsGoogle,
+          });
+          console.log('view_item');
+        }
+      });
+    </script>
+
+    {%- if template contains 'product' -%}
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          document.querySelector('.product-form__add-button').addEventListener('click', function () {
+            console.log('upd6-mar-23');
+            var productsGoogle = [];
+            productsGoogle.push({
+              item_name: document.querySelector('.product-meta__title').innerText,
+              price: document.querySelector('.price').innerText.replace(/\D/g, '') / 100,
+            });
+
+            gtag('event', 'add_to_cart', {
+              currency: 'MXN',
+              items: productsGoogle,
+            });
+            gtag('event', 'conversion', { send_to: 'AW-824666955/va0cCJ_6odEBEMvWnYkD' });
+
+            console.log('add_to_cart');
+          });
+        });
+      </script>
+    {%- endif -%}
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        console.log('DOM is ready');
+
+        document.querySelector('.search-bar__input').addEventListener('click', function () {
+          gtag('event', 'conversion', { send_to: 'AW-824666955/wDPyCKX6odEBEMvWnYkD' });
+
+          console.log('search');
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        console.log('DOM is ready');
+
+        if (window.location.href.includes('canvaslab')) {
+          gtag('event', 'conversion', { send_to: 'AW-824666955/pkd_CJb6odEBEMvWnYkD' });
+        }
+      });
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        console.log('DOM is ready');
+
+        if (window.location.href.includes('products')) {
+          gtag('event', 'conversion', { send_to: 'AW-824666955/4i6nCJz6odEBEMvWnYkD' });
+          console.log('conv prod');
+        }
+      });
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        console.log('DOM is ready');
+        if ($('.cart-recap__checkout').length > 0) {
+          document.querySelector('.cart-recap__checkout').addEventListener('click', function () {
+            gtag('event', 'conversion', { send_to: 'AW-824666955/m9PUCKL6odEBEMvWnYkD' });
+            console.log('pay');
+          });
+        }
+      });
+    </script>
+
+    <!-- Optimize + GA4 -->
+    <script src="https://www.googleoptimize.com/optimize.js?id=OPT-T2JT2RK"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-824666955"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'AW-824666955');
+    </script>
+  </head>
+  <!-- Fraud Blocker Tracker -->
+  <script type="text/javascript">
+    (function () {
+      var s = document.createElement('script'),
+        h = document.head;
+      s.async = 1;
+      s.src = 'https://monitor.fraudblocker.com/fbt.js?sid=SgcV7Itt5ZqXR82ozH-p5';
+      h.appendChild(s);
+    })();
+  </script>
+  <noscript>
+    <a href="https://fraudblocker.com" rel="nofollow">
+      <img src="https://monitor.fraudblocker.com/fbt.gif?sid=SgcV7Itt5ZqXR82ozH-p5" alt="Fraud Blocker">
+    </a>
+  </noscript>
+  <!-- End Fraud Blocker Tracker -->
+
+  <body
+    class="warehouse--v1 {% if settings.animation_image_zoom %}features--animate-zoom{% endif%} template-{{ request.page_type | handle }} {% if request.page_type contains '/' %}template-{{ request.page_type | split: '/' | last | handle }}{% endif %}"
+    data-instant-intensity="viewport"
+  >
+    {% capture the_snippet_content %}{% render 'socialshopwave-helper' %}{% endcapture %}
+    {% unless the_snippet_content contains 'Liquid error' %}
+      {{ the_snippet_content }}
+    {% endunless %}
+
+    {%- if template contains 'product' -%}
+      {%- style -%}
+        div#widget-fave-html {
+          margin-top: 0px !important;
+        }
+        @media screen and (max-width: 640px) {
+          div#widget-fave-html {
+            margin-top: 9px !important;
+          }
+        }
+      {%- endstyle -%}
+    {%- endif -%}
+
+    <a href="#main" class="visually-hidden skip-to-content">{{ 'general.accessibility.skip_to_content' | t }}</a>
+    <span class="loading-bar"></span>
+
+    {% section 'announcement-bar' %}
+
+    {%- unless request.page_type == 'cart' -%}
+      {%- comment -%}As required by Shopify rules, popup must be removed on cart page to remove distraction{%- endcomment -%}
+      {% section 'popups' %}
+    {%- endunless -%}
+
+    {% section 'header' %}
+
+    <main id="main" role="main">
+      {{ content_for_layout }}
+    </main>
+
+    {%- if request.page_type == 'blog' or request.page_type == 'article' or request.page_type == 'page' -%}
+      {% section 'static-newsletter' %}
+    {%- endif -%}
+
+    {% section 'text-with-icons' %}
+    {% section 'footer' %}
+
+    <ul hidden>
+      <li id="a11y-new-window-message">{{ 'general.accessibility.new_window' | t }}</li>
+    </ul>
+    {%- if template contains 'product' -%}
+      {% comment %} {% include 'new-single-product' %} {% endcomment %}
+    {%- endif -%}
+
+    {% if template contains 'product' %}{% render 'product-personalizer' %}{% endif -%}
+    {%- include 'social-login' %}
+
+    {% comment %}
+      {% if template contains "collection" %}
+           <script defer="defer">
+             document.addEventListener("DOMContentLoaded", function() {
+               var endlessScroll = new Ajaxinate({
+                 container: '#CanvasLab-Loop',
+                 pagination: '#CanvasLab-Pagination',
+                 method: 'scroll',
+                 loadingText: 'Cargando Más'
+               });
+             });
+           </script>
+         {% endif %}
+    {% endcomment %}
+
+    <!-- Slick -->
+    <link type="text/css" href="{{ 'slick.min.css' | asset_url }}">
+    <script type="text/javascript" src="{{ 'slick.min.js' | asset_url }}" defer="defer"></script>
+
+    <!-- Zoko -->
+    <script>
+      window['__idWdgt9362__'] = '00000000-0000-0000-0000-000000000000';
+      var script = document.createElement('script');
+      script.src = 'https://atlantis.live.zoko.io/scripts/main.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    </script>
+
+    <!-- Clarity -->
+    <!--
+      script type="text/javascript" defer="defer">
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "8vf16u3m2v");
+      </script
+    -->
+
+    {%- comment -%} Fancy Product Designer setup - only remove after uninstall {%- endcomment -%}
+    {%- render 'fpd-snippet-v2' with product as product, cart as cart -%}
+
+    {% render 'special-offers' %}
+
+    <!-- =========================================Footer========================================= -->
+    <!-- google dynamic remarketing tag for theme.liquid -->
+    {% if template contains 'product' %}
+      <script type="text/javascript">
+        var json_product = {{ product | json }};
+      </script>
+      <script>
+        var event_name = 'view_item';
+        var ecomm_prodid = [];
+        for (var i = 0; i < json_product.variants.length; i++)
+          ecomm_prodid.push('shopify_MX_{{product.id}}_' + json_product.variants[i].id);
+      </script>
+      <script type="text/javascript">
+        var google_tag_params = {
+          ecomm_prodid: ecomm_prodid,
+          ecomm_pagetype: 'product',
+          ecomm_totalvalue: parseFloat('{{ product.price | money_without_currency | remove: ","}}'),
+        };
+      </script>
+    {% elsif template contains 'collection' %}
+      <script type="text/javascript">
+        var event_name = 'view_item_list';
+        var google_tag_params = {
+          ecomm_pagetype: 'category',
+        };
+      </script>
+    {% elsif template contains 'cart' %}
+      <script type="text/javascript">
+        var event_name="add_to_cart"
+          var id = new Array();
+          {% for item in cart.items %}
+          id.push('shopify_MX_{{item.product.id}}_{{item.variant.id}}');
+           {% endfor %}
+
+           var google_tag_params = {
+             ecomm_prodid: id,
+             ecomm_pagetype: 'cart',
+             ecomm_totalvalue: parseFloat('{{ cart.total_price | money_without_currency | remove: ","}}')
+           };
+      </script>
+    {% elsif template contains 'search' %}
+      <script type="text/javascript">
+        var event_name = 'view_search_results';
+        var google_tag_params = {
+          ecomm_pagetype: 'searchresults',
+        };
+      </script>
+    {% elsif template contains 'index' %}
+      <script type="text/javascript">
+        var event_name = 'home';
+        var google_tag_params = {
+          ecomm_pagetype: 'home',
+        };
+      </script>
+    {% else %}
+      <script type="text/javascript">
+        var event_name = 'other';
+        var google_tag_params = {
+          ecomm_pagetype: 'other',
+        };
+      </script>
+    {% endif %}
+    <script>
+      gtag('event', event_name, {
+        ecomm_prodid: window.google_tag_params.ecomm_prodid,
+        ecomm_pagetype: window.google_tag_params.ecomm_pagetype,
+        ecomm_totalvalue: window.google_tag_params.ecomm_totalvalue,
+        google_business_vertical: 'retail',
+      });
+    </script>
+    {%- if template contains 'product' -%}
+      <script>
+        document.querySelector('button.product-form__add-button').addEventListener('click', function () {
+          var content_id_value_0 = $('span.price.price--highlight').html();
+          $('span.price.price--highlight')
+            .find('span')
+            .each(function () {
+              $(this).remove();
+            });
+          var price_value = $('span.price.price--highlight').text();
+          price_value = price_value.replace(/,/, '');
+          price_value = parseFloat(price_value);
+          var content_id_value = $('span.product-meta__sku-number').text();
+          var title = $('h1.product-meta__title.heading.h1').text();
+          var options = '';
+          $('span.product-form__selected-value').each(function () {
+            options = options + ', ' + $(this).text();
+          });
+          var description_value = title + options;
+          $('span.price.price--highlight').html(content_id_value_0);
+          console.log('Descripcion: ' + description_value);
+          console.log('SKU: ' + content_id_value);
+          console.log('Precio: ' + price_value);
+
+          ttq.instance('CG527S3C77UCPVD6B2P0').track('AddToCart', {
+            content_type: 'product',
+            quantity: 1,
+            description: description_value,
+            content_id: content_id_value,
+            currency: 'MXN',
+            value: price_value,
+          });
+
+          console.log('Description after submission to TT step 2: ' + description_value);
+          console.log('SKU after submission to TT step 2: ' + content_id_value);
+          console.log('Price after submission to TT step 2: ' + price_value);
+        });
+      </script>
+    {%- endif -%}
+    <style>
+      #ssw-signup-accept-terms-marketing {
+        display: none !important;
+      }
+    </style>
+    <script>
+      $(document).ready(function () {
+        setTimeout(function () {
+          $('#ssw-customer-accepts_marketing').attr('type', 'checkbox');
+          $('#ssw-customer-accepts_marketing').val('true');
+        }, 2000);
+      });
+    </script>
+    {% render 'appikon-discounts' %}
+    {% render 'gw-custom-scripts' %} 
+
+    {% include 'customUpload' %}
+  </body>
+  {% include 'special_banks' %}
+  {%- if template contains 'product' -%}
+    {% include 'controlDescuentos' %}
+    {% comment %} {% include 'new-single-product' %} {% endcomment %}
+  {%- endif -%}
+  
+</html>

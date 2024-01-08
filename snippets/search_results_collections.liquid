@@ -1,0 +1,98 @@
+{%- assign term = "color" -%} 
+{%- assign how_many = 0 -%} 
+{%- assign string_collection_titles = "" -%}
+{%- assign string_collection_titles_output = "" -%}
+{%- assign string_collection_links = "" -%}
+{%- for collection in collections -%}
+    {%- assign string_collection_titles = string_collection_titles | append: "'" | append: collection.title -%}
+    {%- assign string_collection_titles = string_collection_titles | append: "'," -%}
+    {%- assign string_collection_titles = string_collection_titles | downcase | replace: 'á', 'a' | replace: 'é', 'e'  | replace: 'í', 'i'  | replace: 'ó', 'o'  | replace: 'ú', 'u'  -%}
+    {%- assign string_collection_titles_output = string_collection_titles_output | append: "'" | append: collection.title -%}
+    {%- assign string_collection_titles_output = string_collection_titles_output | append: "'," -%}
+    {%- assign string_collection_links = string_collection_links | append: "'" | append: collection.url -%}
+    {%- assign string_collection_links = string_collection_links | append: "'," -%}
+    {%- assign how_many = how_many | plus: 1 -%} 
+{%- endfor -%}
+{%- assign titles = string_collection_titles | split: "," -%}
+{%- assign titles_output = string_collection_titles_output | split: "," -%}
+{%- assign links = string_collection_links | split: "," -%}
+<div id="container_collections_resultset" class="container container--flush hidden">
+    <div class="link-search-results">
+      <div class="link-search-results">
+        <div class="card">
+            <header class="card__section card__section--tight">
+              <h2 class="card__title heading h1">Resultados en Colecciones:</h2>
+            </header>
+            <div class="card__section card__section--no-padding">
+              <ul id="collections_resultset" class="link-search-results__list" role="list">
+              </ul>
+            </div>
+        </div> 
+      </div>
+    </div>
+</div>
+<style>
+  #main{
+      margin:40px 20px;
+  }
+  .page__header--centered{
+      text-align:left !important;
+  }
+  #main .container {
+      background:#fff !important;
+      border-radius:3px;
+      border:1px solid #f3f3f3;
+      margin-top:20px;
+      margin-bottom:20px;
+      padding:40px;
+  }
+  #container_collections_resultset{
+      margin-top: -132px !important;
+      border-top: none !important;
+  }
+  #container_collections_resultset.hidden{
+      display: none !important;
+  }
+  @media screen and (max-width: 640px){
+    #container_collections_resultset{
+        margin-top: -102px !important;
+    }
+  }
+</style>
+<script defer>
+  function getQ() {
+      $.urlParam = function(name){
+          var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+          if (results==null) {
+              return null;
+          }
+          return decodeURI(results[1]) || 0;
+      }
+      var out = $.urlParam('q');
+      out = out.toLowerCase();
+      const strings = [{{ string_collection_titles }}];
+      const titles = [{{ string_collection_titles_output }}];
+      const links = [{{ string_collection_links }}];
+      var results = [];
+      for (var i = 0; i < strings.length; i++) {
+          if (strings[i].includes(out)) {
+              results.push("<li class=\"link-search-results__list-item\"><a class=\"link-search-results__link\" href=\""+links[i]+"\">"+titles[i]+"</a></li>");
+          }
+      }
+      results = results.toString();
+      results = results.replaceAll(",", "");
+      $('#collections_resultset').append(results);
+      if (results.length > 0){
+          setTimeout(function(){
+              $('#container_collections_resultset').removeClass('hidden');
+          }, 10);    
+      }else{
+          setTimeout(function(){
+              $('#container_collections_resultset').addClass('hidden');
+          }, 10); 
+      }
+  }
+  $(document).ready(function(){
+      setTimeout(getQ, 100);
+  });
+</script>

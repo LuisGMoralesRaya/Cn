@@ -1,0 +1,37 @@
+<div class="container container--medium">
+  <header class="page__header ">
+    <h1 class="page__title heading h1">{{ page.title }}</h1>
+  </header>
+
+  <div class="page__content rte">
+    {{ page.content }}
+  </div>
+</div>
+<style>
+  #main{margin:40px 20px;}
+  .page__header--centered{text-align:left !important;}
+  #main .container {background:#fff !important; border-radius:3px; border:1px solid #f3f3f3; margin-top:20px; margin-bottom:20px; padding:40px;}
+  
+  .contenido {
+  display: none;
+  overflow: hidden;
+}
+</style>
+<script>
+var coll = document.getElementsByClassName("titulo");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+

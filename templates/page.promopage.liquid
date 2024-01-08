@@ -1,0 +1,68 @@
+<div class="container container--medium">
+  
+  <header class="page__header ">
+    <h1 class="page__title heading h1">{{ page.title }}</h1>
+    
+    
+{% comment %}  
+{% assign stk_year = 2022  %}
+{% assign stk_month = 5  %}
+{% assign stk_day = 23  %}
+{% assign stk_hour = 00 %}
+{% assign stk_minute = 00  %}
+{% assign stk_date_str =  stk_year | append: '-' | append: stk_month | append: '-' | append: stk_day  | append: ' ' | append: stk_hour | append: ':' | append: stk_minute | append: '-06:00' %}
+          
+          
+{% assign stk_date_human = stk_date_str| date: '%Y-%m-%d %H:%M' %}                  
+{% assign stk_date = stk_date_str| date: '%s'%}        
+{% assign today_date = 'now' | date: '%s' %}
+
+    
+{% if today_date >= stk_date %}
+	<style>
+    .promobanner_1{display:block;}
+    .promobanner_2{display:none;}
+    </style>
+{% else %}
+  	<style>
+      .promobanner_1{display:none;}
+      .promobanner_2{display:block;} 
+    
+    </style>
+{% endif %} 
+    
+ {% endcomment %}   
+    
+    
+    
+    
+    
+    
+    
+    
+   
+    
+    <!--<img loading="lazy" width="auto" height="100%" class="stk_page_promo_banner promobanner_2" src="{{page.metafields.my_fields.banner | file_url}}" title="promociones">-->
+
+  </header>
+   
+    
+      <img loading="lazy" width="auto" height="100%" class="stk_page_promo_banner promobanner_1" src="{{page.metafields.my_fields.banner | file_url}}" title="promo">
+
+  <br>
+
+  <div class="page__content rte">
+    {{ page.content }}
+  </div>
+</div>
+<style>
+  .promobanner_2{display;none !important;}
+  .stk_page_promo_banner{width:100% !important; display:block;}
+  #main{margin:40px 20px;}
+  .page__header--centered{text-align:left !important;}
+  #main .container {background:#fff !important; border-radius:3px; border:1px solid #f3f3f3; margin-top:20px; margin-bottom:20px; padding:40px;}
+  
+  h1{font-size:32px !important;}
+  h2{font-size:24px !important; color:#000000 !important;}
+  h3{font-size:18px !important; color:#000000 !important;}
+</style>

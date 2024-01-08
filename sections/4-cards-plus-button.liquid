@@ -1,0 +1,534 @@
+<style>
+  	html body .okeReviews .okeReviews-reviewsCarousel{
+    	margin-bottom: var(--desktop-container-gutter) !important;
+    }
+  	#four_cards_container.{{ section.settings.section_title | handleize }} {
+          margin: 0 !important;
+          display: table !important;
+        width: 100% !important;
+          max-width: 1480px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding: 0 var(--desktop-container-gutter);
+    }
+    
+    #four_cards_container.{{ section.settings.section_title | handleize }} .row{
+        height: 14rem;
+        display: inline-block !important;
+        position: relative !important;
+        float: left !important;
+        overflow: hidden !important;
+        margin-bottom: 20px !important;
+    }
+    
+    #four_cards_container.{{ section.settings.section_title | handleize }} .row.one{
+        width: 100% !important;	
+    }
+    
+    #four_cards_container.{{ section.settings.section_title | handleize }} .row.two{
+        width: calc((100% - 20px) / 2);
+    }
+    
+    #four_cards_container.{{ section.settings.section_title | handleize }} .row.two:not(:nth-child(2)) {
+        margin-right: 20px;
+    }
+      
+    #four_cards_container.{{ section.settings.section_title | handleize }} .row.three{
+        width: calc((100% - 40px) / 3);
+    }
+    
+    #four_cards_container.{{ section.settings.section_title | handleize }} .row.three:not(:nth-child(3)) {
+        margin-right: 20px;
+    }
+      
+    #four_cards_container.{{ section.settings.section_title | handleize }} .row.four{
+        width: calc((100% - 60px) / 4);
+    }
+    
+    #four_cards_container.{{ section.settings.section_title | handleize }} .row.four:not(:nth-child(4)) {
+        margin-right: 20px;
+    }
+    
+    #four_cards_container.{{ section.settings.section_title | handleize }} .row section,
+    #four_cards_container.{{ section.settings.section_title | handleize }} .row aside{
+        display: inline-block !important;
+        float: left !important;
+        width: 100% !important;
+        height: 100% !important;
+          position: absolute !important;
+    }
+      
+    #four_cards_container.{{ section.settings.section_title | handleize }} .row section {
+        padding: 0.5rem !important;
+        background-color: transparent !important;
+    }
+      
+    #four_cards_container.{{ section.settings.section_title | handleize }} .row > aside{
+        background-size: cover !important;
+          background-repeat: no-repeat !important;
+        background-position: center center !important;
+        transition: transform 3s;
+    }
+    
+  	#four_cards_container.{{ section.settings.section_title | handleize }} div.fixer.no-zoom .row:hover > aside {
+      transform: unset !important; 
+    }
+  	#four_cards_container.{{ section.settings.section_title | handleize }} div.fixer.zoom .row:hover > aside {
+      transform: scale(1.5) !important; 
+    }
+    
+    #four_cards_container.{{ section.settings.section_title | handleize }} .row section info {
+        display: table !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+    
+    #four_cards_container.{{ section.settings.section_title | handleize }} .row section info div.holder {
+        display: table-cell !important;
+    }
+    
+    #four_cards_container.{{ section.settings.section_title | handleize }} .row section info div.holder div{
+        display: inline-block;
+        padding: 0.5rem !important;
+        width: auto !important;
+        text-decoration: none !important;
+          transition: all 0.3s !important;
+        position: relative !important;
+          font-weight: 600 !important;
+          line-height: 1.3em !important;
+    }
+      
+    
+      
+    .{{ section.settings.section_title | handleize }}+#button_holder {
+        margin: 0 !important;
+      	text-align: center !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: 1480px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding: 0 var(--desktop-container-gutter);
+        margin-bottom: calc(var(--desktop-container-gutter) + 7px) !important;
+    }
+  
+  	.{{ section.settings.section_title | handleize }}+#button_holder #button_four_cards{
+      	display: inline-block !important;
+        font-size: {{ section.settings.button_font_size }}px !important;
+      	padding: 0.5em 1.5em !important;
+        font-weight: {{ section.settings.button_font_weight }} !important;
+        color: {{ section.settings.button_text_color }} !important;
+        background-color: {{ section.settings.button_background_color }} !important;
+      	transition: all 0.3s !important;
+      	margin: 0 auto !important;
+    }
+  	.{{ section.settings.section_title | handleize }}+#button_holder #button_four_cards:hover{
+        color: {{ section.settings.button_text_color }} !important;
+        background-color: {{ section.settings.button_background_color_hover }} !important;
+    }
+    
+    @media screen and (max-width: 1024px){
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row {
+            height: 16rem !important;
+        }
+    }
+    @media screen and (max-width: 820px){
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row.four{
+            width: calc((100% - 20px) / 2);
+              margin-right: 20px;
+        }
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row section info div.holder a{
+          font-size: 20px !important;
+        }
+        
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row.four:nth-child(2),
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row.four:nth-child(4){
+            margin-right: unset !important;
+        }
+    }
+    @media screen and (max-width: 640px){
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row{
+            margin-right: 10px !important;
+            margin-bottom: 10px !important;
+        }
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row.two{
+            width: calc((100% - 10px) / 2) !important;
+        }
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row.three{
+            width: calc((100% - 10px) / 2) !important;
+        }
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row.three:nth-child(2) {
+            margin-right: unset !important;
+        }
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row.three:nth-child(3) {
+              margin: 0 auto !important;
+        }
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row.four{
+            width: calc((100% - 10px) / 2) !important;
+        }
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row.four:nth-child(2),
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row.four:nth-child(4){
+            margin-right: unset !important;
+        }
+        #four_cards_container.{{ section.settings.section_title | handleize }} {
+            padding: 0 var(--mobile-container-gutter) !important;
+        }
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row{
+            width: 100% !important;
+            padding: 0 !important;
+        }
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row.two:nth-child(2),
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row.three:nth-child(3),
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row.four:nth-child(4){
+            margin-bottom: 10px !important;
+        }
+    
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row aside{
+              background-position: left bottom !important;
+        }
+          
+        #four_cards_container.{{ section.settings.section_title | handleize }} .row section info div.holder a{
+            padding: 0.5rem !important;
+          	font-size: calc(var(--base-text-font-size) - 1px) !important;
+        }
+    }
+    </style>
+    <section>
+      	<div class="container">
+            <header class="section__header" style="margin-bottom:15px !important;">
+                <h2 class="section__title heading h3">{{ section.settings.section_title }}</h2>
+            </header>
+        </div>
+        <div id="four_cards_container" class="{{ section.settings.section_title | handleize }}">
+          <div class="fixer {% if section.settings.show_zoom == true %}zoom{% else %}no-zoom{% endif %}">
+            {% assign iteration_number = 0 %}
+            
+            {% for block in section.blocks %}
+                {% assign iteration_copy_background_color = block.settings.copy_background_color %}
+                {% assign iteration_copy_text_color = block.settings.copy_text_color %}
+                {% assign bck_op = block.settings.background_opacity | times: 0.01 %}
+                <div class="row {{ ' ' }} {%- if section.blocks.size == 4 -%}four{%- endif -%}{%- if section.blocks.size == 3 -%}three{%- endif -%}{%- if section.blocks.size == 2 -%}two{%- endif -%}{%- if section.blocks.size == 1 -%}one{%- endif -%}">             	
+                      <aside load="lazy" class="lazyload it_{{ iteration_number }}" style='background-image:url("{% if section.settings.show_zoom == true %}{{ block.settings.image | img_url: '600x600', crop: 'center', scale: 2  }}{% else %}{{ block.settings.image | img_url: '600x' }}{% endif %}")'>
+                      <div class="overlay" 
+                           style="background: linear-gradient(to bottom, transparent 23%, {{ block.settings.overlay_color }}) !important;
+                                  opacity: {{ bck_op }} !important;
+                                  width:100% !important;
+                                  height:100% !important;
+                                  position: absolute !important;
+                                  top: 0 !important;
+                                  left: 0 !important;
+                                  mix-blend-mode: {{ block.settings.overlay_type }} !important;">
+                      </div>
+                    </aside>
+                  	<a load="lazy" class="lazyload it_{{ iteration_number }}" href="{{ block.settings.link }}">
+                        <section style="text-align:{{ block.settings.h_align }};">
+                              {% style %}
+                                #four_cards_container.{{ section.settings.section_title | handleize }} .row section info div.holder div.it_{{ iteration_number }}{
+                                    color: {{ iteration_copy_text_color }} !important;
+                                    font-size:{{ block.settings.font_size_copy | append: 'px' }};
+                                    text-shadow: 2px 2px rgba(0,0,0,{{ txt_sh }}) !important;
+                                    font-weight: {{ block.settings.copy_weight }} !important;
+                          			position: relative !important;
+                                }
+                          		#four_cards_container.{{ section.settings.section_title | handleize }} .row section info div.holder div.it_{{ iteration_number }}:hover::before{
+                                    position: absolute !important;
+                          			display: block !important;
+                          			width: 100% !important;
+                          			height: 100% !important;
+                          			top: 0 !important;
+                          			left: 0 !important;
+                          			background-color: {{ iteration_copy_background_color }} !important;
+                          			opacity: {{ copy_background_opacity | times: 0.01 }} !important;
+                                }
+                                #four_cards_container.{{ section.settings.section_title | handleize }} .row section info div.holder div.it_{{ iteration_number }}:hover{
+                                    color:{{ iteration_copy_background_color }} !important;
+                          			position: relative !important;
+                                }
+                          		#four_cards_container.{{ section.settings.section_title | handleize }} .row section info div.holder div.it_{{ iteration_number }}:hover::before{
+                                    position: absolute !important;
+                          			display: block !important;
+                          			width: 100% !important;
+                          			height: 100% !important;
+                          			top: 0 !important;
+                          			left: 0 !important;
+                          			background-color: {{ iteration_copy_text_color }} !important;
+                          			opacity: {{ copy_background_opacity | times: 0.01 }} !important;
+                                }
+                              {% endstyle %}
+                            <info>
+                                <div class="holder" style="vertical-align:{{ block.settings.v_align }};">
+                                    <div load="lazy" class="lazyload it_{{ iteration_number }}">{{ block.settings.copy_text }}</div>
+                                </div class="holder">
+                            </info>
+                        </section>
+                    </a>
+                </div>
+                {% assign iteration_number = iteration_number | plus: 1 %}
+            {% endfor %}
+          </div>
+        </div>
+        {% if section.settings.show_button == true %}
+            <div id="button_holder">
+              <a id="button_four_cards" href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
+            </div>
+        {% endif %}
+      <script defer="defer">
+        function four_cards_resizer() {
+              setTimeout(function() {
+                var auto_height = $('#four_cards_container .fixer > .row:nth-child(1)').width();
+                $('#four_cards_container .row').each(function(){
+                    $(this).attr('style','height:'+auto_height+'px!important');
+                });
+            }, 100);
+        }
+        $(window).load(function() {
+            four_cards_resizer();
+        });
+    
+        window.addEventListener('resize', function(event) {
+              four_cards_resizer();
+        }, true);
+      </script>
+    </section>
+    {% schema %}
+    {
+        "name": "4 Cards + Button",
+        "settings": [
+			{
+                "type": "text",
+                "id": "section_title",
+                "label": "Title",
+                "default": "Four cards",
+				"info": "Please change the name of this section, it's imperative in order to isolate the visual properties of the actual section in case there are many instances called at the same time."
+            },
+            {
+                "type": "checkbox",
+                "id": "show_button",
+                "label": "Show Button",
+                "default": true
+            },
+            {
+                "type": "text",
+                "id": "button_text",
+                "label": "Button's Text",
+                "default": "Click me"
+            },
+            {
+                "type": "url",
+                "id": "button_link",
+                "label": "Button's Link",
+                "default": "/collections"
+            },
+            {
+                "type": "range",
+                "id": "button_font_size",
+                "min":  12,
+                "max":  38,
+                "step":  1,
+                "label": "Button's Font Size",
+                "default":  30
+            },
+            {
+                "type": "select",
+                "id": "button_font_weight",
+                "default": "300",
+                "label": "Button's font weight",
+                "options": [
+                {
+                    "value": "200",
+                    "label": "Slim"
+                },
+                {
+                    "value": "300",
+                    "label": "Normal"
+                },
+                {
+                    "value": "600",
+                    "label": "Bold"
+                },
+                {
+                    "value": "800",
+                    "label": "Extra Bold"
+                }]
+            },
+            {
+                "type": "color",
+                "id": "button_text_color",
+                "label": "Button's text color",
+                "default": "#ffffff"
+            },
+            {
+                "type": "color",
+                "id": "button_background_color",
+                "label": "Button's background color",
+                "default": "#f0297c"
+            },
+            {
+                "type": "color",
+                "id": "button_background_color_hover",
+                "label": "Button's background color on Hover",
+                "default": "#00adef"
+            },
+            {
+                "type": "checkbox",
+                "id": "show_zoom",
+                "label": "Show Zoom in children (block hover)",
+                "default": true
+            }],
+        "class": "spaced-section spaced-section--full-width",
+        "max_blocks": 4,
+        "blocks": [
+        {
+            "type": "card",
+            "name": "Card",
+            "settings": [
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Card image"
+            },
+            {
+                "type": "range",
+                "id": "background_opacity",
+                "min":  0,
+                "max":  100,
+                "step":  1,
+                "label": "Background Opacity",
+                "default":  40
+            },
+            {
+                "type": "color",
+                "id": "overlay_color",
+                "label": "Overlay color",
+                "default": "#000000"
+            },
+            {
+                "type": "select",
+                "id": "overlay_type",
+                "default": "unset",
+                "label": "Overlay Type",
+                "options": [
+                {
+                    "value": "hard-light",
+                    "label": "Hard Light"
+                },
+                {
+                    "value": "unset",
+                    "label": "Normal"
+                },
+                {
+                    "value": "multiply",
+                    "label": "Multiply"
+                }]
+            },
+            {
+                "type": "text",
+                "id": "copy_text",
+                "label": "Copy Text",
+                "default": "Click me"
+            },
+            {
+                "type": "url",
+                "id": "link",
+                "label": "Link",
+                "default": "/collections"
+            },
+            {
+                "type": "range",
+                "id": "font_size_copy",
+                "min":  12,
+                "max":  38,
+                "step":  1,
+                "label": "Font size for copy",
+                "default":  30
+            },
+            {
+                "type": "select",
+                "id": "copy_weight",
+                "default": "300",
+                "label": "Copy font weight",
+                "options": [
+                {
+                    "value": "200",
+                    "label": "Slim"
+                },
+                {
+                    "value": "300",
+                    "label": "Normal"
+                },
+                {
+                    "value": "600",
+                    "label": "Bold"
+                },
+                {
+                    "value": "800",
+                    "label": "Extra Bold"
+                }]
+            },
+            {
+                "type": "color",
+                "id": "copy_text_color",
+                "label": "Copy text color",
+                "default": "#000000"
+            },
+            {
+                "type": "color",
+                "id": "copy_background_color",
+                "label": "Copy background color",
+                "default": "#FFFFFF"
+            },
+            {
+                "type": "range",
+                "id": "copy_background_opacity",
+                "min":  0,
+                "max":  100,
+                "step":  1,
+                "label": "Background Opacity",
+                "default":  100
+            },
+            {
+                "type": "select",
+                "id": "h_align",
+                "default": "center",
+                "label": "Copy horizontal alignment",
+                "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }]
+            },
+            {
+                "type": "select",
+                "id": "v_align",
+                "default": "middle",
+                "label": "Copy vertical alignment",
+                "options": [
+                {
+                    "value": "top",
+                    "label": "Top"
+                },
+                {
+                    "value": "middle",
+                    "label": "Center"
+                },
+                {
+                    "value": "bottom",
+                    "label": "Bottom"
+                }]
+            }]
+    
+        }],
+        "presets": [
+        {
+            "name": "4 Cards + Button"
+        }]
+    }
+    {% endschema %}

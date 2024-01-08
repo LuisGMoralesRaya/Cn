@@ -1,0 +1,329 @@
+<div style="position:absolute;top:0;left:0;width:100%;height:100%;" class="holder">
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x01.jpg?v=1614121331');"></div>
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x02.jpg?v=1614121331');"></div>
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x03.jpg?v=1614121331');"></div>
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x04.jpg?v=1614121331');"></div>
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x05.jpg?v=1614121331');"></div>
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x06.jpg?v=1614121331');"></div>
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x07.jpg?v=1614121331');"></div>
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x08.jpg?v=1614121331');"></div>
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x09.jpg?v=1614121331');"></div>
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x10.jpg?v=1614121331');"></div>
+</div> 
+<section>
+  <script defer="defer">
+  ;(function($) {
+  "use strict";
+
+  var ver = 'Lite-1.7';
+  var msie = /MSIE/.test(navigator.userAgent);
+
+  $.fn.cycle = function(options) {
+      return this.each(function() {
+          options = options || {};
+
+          if (this.cycleTimeout) 
+              clearTimeout(this.cycleTimeout);
+
+          this.cycleTimeout = 0;
+          this.cyclePause = 0;
+
+          var $cont = $(this);
+          var $slides = options.slideExpr ? $(options.slideExpr, this) : $cont.children();
+          var els = $slides.get();
+          if (els.length < 2) {
+              if (window.console)
+                  console.log('terminating; too few slides: ' + els.length);
+              return; // don't bother
+          }
+
+          // support metadata plugin (v1.0 and v2.0)
+          var opts = $.extend({}, $.fn.cycle.defaults, options || {}, $.metadata ? $cont.metadata() : $.meta ? $cont.data() : {});
+          var meta = $.isFunction($cont.data) ? $cont.data(opts.metaAttr) : null;
+          if (meta)
+              opts = $.extend(opts, meta);
+
+          opts.before = opts.before ? [opts.before] : [];
+          opts.after = opts.after ? [opts.after] : [];
+          opts.after.unshift(function(){ opts.busy=0; });
+
+          // allow shorthand overrides of width, height and timeout
+          var cls = this.className;
+          opts.width = parseInt((cls.match(/w:(\d+)/)||[])[1], 10) || opts.width;
+          opts.height = parseInt((cls.match(/h:(\d+)/)||[])[1], 10) || opts.height;
+          opts.timeout = parseInt((cls.match(/t:(\d+)/)||[])[1], 10) || opts.timeout;
+
+          if ($cont.css('position') == 'static') 
+              $cont.css('position', 'relative');
+          if (opts.width) 
+              $cont.width(opts.width);
+          if (opts.height && opts.height != 'auto') 
+              $cont.height(opts.height);
+
+          var first = 0;
+          $slides.css({position: 'absolute', top:0}).each(function(i) {
+              $(this).css('z-index', els.length-i);
+          });
+
+          $(els[first]).css('opacity',1).show(); // opacity bit needed to handle reinit case
+          if (msie) 
+              els[first].style.removeAttribute('filter');
+
+          if (opts.fit && opts.width) 
+              $slides.width(opts.width);
+          if (opts.fit && opts.height && opts.height != 'auto') 
+              $slides.height(opts.height);
+          if (opts.pause) 
+              $cont.hover(function(){this.cyclePause=1;}, function(){this.cyclePause=0;});
+
+          var txFn = $.fn.cycle.transitions[opts.fx];
+          if (txFn)
+              txFn($cont, $slides, opts);
+
+          $slides.each(function() {
+              var $el = $(this);
+              this.cycleH = (opts.fit && opts.height) ? opts.height : $el.height();
+              this.cycleW = (opts.fit && opts.width) ? opts.width : $el.width();
+          });
+
+          if (opts.cssFirst)
+              $($slides[first]).css(opts.cssFirst);
+
+          if (opts.timeout) {
+              // ensure that timeout and speed settings are sane
+              if (opts.speed.constructor == String)
+                  opts.speed = {slow: 600, fast: 200}[opts.speed] || 400;
+              if (!opts.sync)
+                  opts.speed = opts.speed / 2;
+              while((opts.timeout - opts.speed) < 250)
+                  opts.timeout += opts.speed;
+          }
+          opts.speedIn = opts.speed;
+          opts.speedOut = opts.speed;
+
+          opts.slideCount = els.length;
+          opts.currSlide = first;
+          opts.nextSlide = 1;
+
+          // fire artificial events
+          var e0 = $slides[first];
+          if (opts.before.length)
+              opts.before[0].apply(e0, [e0, e0, opts, true]);
+          if (opts.after.length > 1)
+              opts.after[1].apply(e0, [e0, e0, opts, true]);
+
+          if (opts.click && !opts.next)
+              opts.next = opts.click;
+          if (opts.next)
+              $(opts.next).unbind('click.cycle').bind('click.cycle', function(){return advance(els,opts,opts.rev?-1:1);});
+          if (opts.prev)
+              $(opts.prev).unbind('click.cycle').bind('click.cycle', function(){return advance(els,opts,opts.rev?1:-1);});
+
+          if (opts.timeout)
+              this.cycleTimeout = setTimeout(function() {
+                  go(els,opts,0,!opts.rev);
+              }, opts.timeout + (opts.delay||0));
+      });
+  };
+
+  function go(els, opts, manual, fwd) {
+      if (opts.busy) 
+          return;
+      var p = els[0].parentNode, curr = els[opts.currSlide], next = els[opts.nextSlide];
+      if (p.cycleTimeout === 0 && !manual) 
+          return;
+
+      if (manual || !p.cyclePause) {
+          if (opts.before.length)
+              $.each(opts.before, function(i,o) { o.apply(next, [curr, next, opts, fwd]); });
+          var after = function() {
+              if (msie)
+                  this.style.removeAttribute('filter');
+              $.each(opts.after, function(i,o) { o.apply(next, [curr, next, opts, fwd]); });
+              queueNext(opts);
+          };
+
+          if (opts.nextSlide != opts.currSlide) {
+              opts.busy = 1;
+              $.fn.cycle.custom(curr, next, opts, after);
+          }
+          var roll = (opts.nextSlide + 1) == els.length;
+          opts.nextSlide = roll ? 0 : opts.nextSlide+1;
+          opts.currSlide = roll ? els.length-1 : opts.nextSlide-1;
+      } else {
+        queueNext(opts);
+      }
+
+      function queueNext(opts) {
+          if (opts.timeout)
+              p.cycleTimeout = setTimeout(function() { go(els,opts,0,!opts.rev); }, opts.timeout);
+      }
+  }
+
+  // advance slide forward or back
+  function advance(els, opts, val) {
+      var p = els[0].parentNode, timeout = p.cycleTimeout;
+      if (timeout) {
+          clearTimeout(timeout);
+          p.cycleTimeout = 0;
+      }
+      opts.nextSlide = opts.currSlide + val;
+      if (opts.nextSlide < 0) {
+          opts.nextSlide = els.length - 1;
+      }
+      else if (opts.nextSlide >= els.length) {
+          opts.nextSlide = 0;
+      }
+      go(els, opts, 1, val>=0);
+      return false;
+  }
+
+  $.fn.cycle.custom = function(curr, next, opts, cb) {
+      var $l = $(curr), $n = $(next);
+      $n.css(opts.cssBefore);
+      var fn = function() {$n.animate(opts.animIn, opts.speedIn, opts.easeIn, cb);};
+      $l.animate(opts.animOut, opts.speedOut, opts.easeOut, function() {
+          $l.css(opts.cssAfter);
+          if (!opts.sync)
+              fn();
+      });
+      if (opts.sync)
+          fn();
+  };
+
+  $.fn.cycle.transitions = {
+      fade: function($cont, $slides, opts) {
+          $slides.not(':eq(0)').hide();
+          opts.cssBefore = { opacity: 0, display: 'block' };
+          opts.cssAfter  = { display: 'none' };
+          opts.animOut = { opacity: 0 };
+          opts.animIn = { opacity: 1 };
+      },
+      fadeout: function($cont, $slides, opts) {
+          opts.before.push(function(curr,next,opts,fwd) {
+              $(curr).css('zIndex',opts.slideCount + (fwd === true ? 1 : 0));
+              $(next).css('zIndex',opts.slideCount + (fwd === true ? 0 : 1));
+          });
+          $slides.not(':eq(0)').hide();
+          opts.cssBefore = { opacity: 1, display: 'block', zIndex: 1 };
+          opts.cssAfter  = { display: 'none', zIndex: 0 };
+          opts.animOut = { opacity: 0 };
+          opts.animIn = { opacity: 1 };
+      }
+  };
+
+  $.fn.cycle.ver = function() { return ver; };
+
+  // @see: http://malsup.com/jquery/cycle/lite/
+  $.fn.cycle.defaults = {
+      animIn:        {},
+      animOut:       {},
+      fx:           'fade',
+      after:         null,
+      before:        null,
+      cssBefore:     {},
+      cssAfter:      {},
+      delay:         0,
+      fit:           0,
+      height:       'auto',
+      metaAttr:     'cycle',
+      next:          null,
+      pause:         false,
+      prev:          null,
+      speed:         1000,
+      slideExpr:     null,
+      sync:          true,
+      timeout:       4000
+  };
+
+  })(jQuery);
+  </script>
+  <style>
+    .holder{
+        z-index: -2 !important;
+    }
+    .holder > div{
+      	background-position: center -40vh !important;
+        background-size: inherit !important;
+      	background-repeat: no-repeat !important;
+    }
+    #main > section > div.container > div > a {
+        background: #f0297c;
+        color: #fff;
+        padding: 10px !important;
+        font-weight: 800;
+        border-radius: 3px !important;
+        text-decoration: none !important;
+    }
+    p.empty-state__code {
+        color: #1e2d7d !important;
+        font-size: 9vh !important;
+        font-weight: 800 !important;
+        line-height: 0.025vh;
+        margin-top: 100px !important;
+    }
+    @media screen and (min-width: 641px){
+      html {
+          padding-bottom: 0 !important;
+      }
+    }
+    @media screen and (max-width: 640px){
+      footer.footer {
+          margin-top: -49px !important;
+      }
+    }
+    .screen{
+    	z-index: -1 !important;
+    }
+    .empty-state {
+        margin: 48px auto 0 auto !important;
+    }
+    ht
+  </style>
+  <div id="hiddenpics" style="display:none!important;">
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x01.jpg?v=1614121331">
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x02.jpg?v=1614121331">
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x03.jpg?v=1614121331">
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x04.jpg?v=1614121331">
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x05.jpg?v=1614121331">
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x06.jpg?v=1614121331">
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x07.jpg?v=1614121331">
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x08.jpg?v=1614121331">
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x09.jpg?v=1614121331">
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x10.jpg?v=1614121331">
+  </div>
+  <div class="container">
+    <div class="empty-state">
+      <p class="empty-state__code">404</p>
+      <p class="empty-state__heading heading h1">Este es un muro sin cuadros{% comment %}{{ '404.general.title' | t }}{% endcomment %}</p>
+      <p class="empty-state__description">Busca entre nuestras <a style="font-weight:800;text-decoration:underline;" href="/collections">miles de opciones</a> para llenarlo, o <a style="font-weight:800;text-decoration:underline;" href="/pages/sube-tu-foto">¡sube tu foto!</a>{% comment %}{{ '404.general.content' | t }}{% endcomment %}</p>
+
+      <form class="empty-state__quick-form" action="{{ routes.search_url }}" method="get">
+        <input type="hidden" name="type" value="product">
+        <div class="form__connected-item">
+          <div class="form__input-wrapper form__input-wrapper--labelled">
+            <input id="4O4-search" type="text" class="form__field form__field--text" name="q" autocomplete="off" autocorrect="off">
+            <label for="4O4-search" class="form__floating-label">{{ '404.general.search' | t }}</label>
+          </div>
+
+          <button type="submit" class="form__connection button button--primary" aria-label="{{ '404.general.search' | t }}">{% render 'icon', icon: 'search' %}</button>
+        </div>
+      </form>
+
+      <a href="{{ routes.root_url }}" class="empty-state__link link link--accented">{{ '404.general.continue_shopping' | t }}</a>
+    </div>
+  </div>
+  <script>
+    $("div.holder").after('<div style="position:absolute;top:0;left:0;width:100%;height:100%;" class="screen"></div>');
+    var img = "https://cdn.shopify.com/s/files/1/0258/6276/6677/files/x02.jpg?v=1614121331";
+    $('.holder').cycle({
+        timeout: 2000,
+        before: function (currSlideElement, nextSlideElement) {
+            $('#flash').css({
+                'background-image': 'url('+img+')'
+            });
+            img += 20;
+        }
+    });
+  </script>
+</section><script id="esc-redirects-404-script" src="https://redirects.eastsideco.io/js/app.js"></script><script id="esc-redirects-404-script" src="https://easyredirects.esc-apps-cdn.com/app.js"></script>

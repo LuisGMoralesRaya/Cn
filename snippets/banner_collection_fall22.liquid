@@ -1,0 +1,154 @@
+<style>
+  .banner_collection_nux_fall_22 {
+    position: fixed !important;
+    right: 0 !important;
+    bottom: 110px !important;
+    z-index: 99 !important;
+    background: rgb(21 178 238 / 92%) !important;
+    border-radius: 30px !important;
+    padding: 10px !important;
+    max-width: 280px !important;
+    text-align: center !important;
+    box-shadow: -3px 3px 10px rgb(0 0 0 / 33%) !important;
+    transition: all 0.5s !important;
+    transform: scale(0) !important;
+  }
+  .banner_collection_nux_fall_22.visible{
+    transform: scale(1) !important;
+  }
+  .banner_collection_nux_fall_22 .wrapper_content {
+    position: relative !important;
+  }
+  .banner_collection_nux_fall_22 #close {
+    position: absolute !important;
+    font-size: 40px !important;
+    line-height: 1em !important;
+    right: 0 !important;
+    top: -9px !important;
+    padding: 0px 0px 10px 10px !important;
+    cursor: pointer !important;
+  }
+  .banner_collection_nux_fall_22 p {
+    color: #fff !important;
+    font-size: 25px !important;
+    line-height: 1em !important;
+    font-weight: 600 !important;
+    padding: 15px 19px !important;
+    margin: 0 0 -10px 0 !important;
+  }
+  .banner_collection_nux_fall_22 img {
+    max-width: 100% !important;
+  }
+  .banner_collection_nux_fall_22 img.id_1 {
+    display: block !important;
+  }
+  .banner_collection_nux_fall_22 img.id_2 {
+    display: none !important;
+  }
+  .banner_collection_nux_fall_22 a:not(#close) {
+    background: #f0297c !important;
+    padding: 16px 0 !important;
+    display: block !important;
+    max-width: 70% !important;
+    width: auto !important;
+    margin: 0px auto 20px auto !important;
+    font-weight: 600 !important;
+    color: #fff !important;
+    font-size: 18px !important;
+    line-height: 1em !important;
+  }
+  @media screen and (max-width:450px){
+    .avoid_mobile{
+      display: none !important;
+    }
+    .banner_collection_nux_fall_22 {
+      right: 10px !important;
+      bottom: 10px !important;
+      z-index: 99999 !important;
+      width: calc(100% - 20px) !important;
+      max-width: calc(100% - 20px) !important;
+      transform: translateX(-5px) !important;
+      padding: 5px 0 !important;
+      border-radius: 20px !important;
+      transition: all 0.5s !important;
+      transform: scale(0) !important;
+    }
+    .banner_collection_nux_fall_22.visible{
+      transform: scale(1) !important;
+    }
+    .banner_collection_nux_fall_22 #close {
+      font-size: 22px !important;
+      top: -28px !important;
+      right: -16px !important;
+      padding: 30px !important;
+      z-index: 1200 !important;
+    }
+    .banner_collection_nux_fall_22 p {
+      padding: 5px 5px 7px 5px !important;
+      font-size: 17px !important;
+    }
+    .banner_collection_nux_fall_22 img.id_1 {
+      display: none !important;
+    }
+    .banner_collection_nux_fall_22 img.id_2 {
+      display: block !important;
+      max-height: 42vh !important;
+      width: auto !important;
+      margin: 0 auto !important;
+    }
+    .banner_collection_nux_fall_22 a:not(#close) {
+      padding: 5px !important;
+      max-width: 50% !important;
+      font-size: 16px !important;
+      margin-bottom: 3px !important;
+    }
+  }
+</style>
+<script>
+  /*function getNUX() {
+    $.urlParam = function(name){
+      var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      if (results==null) {
+         return null;
+      }
+      return decodeURI(results[1]) || 0;
+    }
+    var out = $.urlParam('nux');
+    var timer = 1000;
+    if( out === "fall22" ){
+      {% if collection.metafields.custom.custom_products == true %}
+        var banner_collection_pop = '<div class="banner_collection_nux_fall_22"><div class="wrapper_content"><span id="close">&#xD7;</span><p>MÁS DE<br class="avoid_mobile"> 60,000 OPCIONES</p><img loading="lazy" width="auto" height="100%" class="id_1" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Asset_-Colecciones.png?v=1661981873"/><img loading="lazy" width="auto" height="100%" class="id_2" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Colecciones_Opcion_2.png?v=1662407102"/><a href="/collections/">Ver Colecciones</a></div></div>';
+        var timer = 10000;
+      {% else %}
+        var banner_collection_pop = '<div class="banner_collection_nux_fall_22"><div class="wrapper_content"><span id="close">&#xD7;</span><p>¿No encuentras lo que buscas?</p><img loading="lazy" width="auto" height="100%" class="id_1"src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Asset_-_Personalizados.png?v=1661981873"/><img loading="lazy" width="auto" height="100%" class="id_2" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Personalizados_Opcion_2.png?v=1662407102"/><a href="/pages/personalizados">Sube tu Foto</a></div></div>';
+        var timer = 15000;
+      {% endif %}
+      $('#beacon-container').before(banner_collection_pop);
+      setTimeout(function(){
+        $('.banner_collection_nux_fall_22').addClass('visible');
+      }, timer);
+    }
+  }*/
+  function getNUX() {
+    {% if collection.metafields.custom.custom_products == true %}
+      var banner_collection_pop = '<div class="banner_collection_nux_fall_22"><div class="wrapper_content"><span id="close">&#xD7;</span><p>MÁS DE<br class="avoid_mobile"> 60,000 OPCIONES</p><img loading="lazy" width="auto" height="100%" class="id_1" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Asset_-Colecciones.png?v=1661981873"/><img loading="lazy" width="auto" height="100%" class="id_2" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Colecciones_Opcion_2.png?v=1662407102"/><a href="/collections/">Ver Colecciones</a></div></div>';
+      var timer = 16000;
+    {% else %}
+      var banner_collection_pop = '<div class="banner_collection_nux_fall_22"><div class="wrapper_content"><span id="close">&#xD7;</span><p>¿No encuentras lo que buscas?</p><img loading="lazy" width="auto" height="100%" class="id_1"src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Asset_-_Personalizados.png?v=1661981873"/><img loading="lazy" width="auto" height="100%" class="id_2" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Personalizados_Opcion_2.png?v=1662407102"/><a href="/pages/personalizados">Sube tu Foto</a></div></div>';
+      var timer = 56000;
+    {% endif %}
+    $('#beacon-container').before(banner_collection_pop);
+    setTimeout(function(){
+      $('.banner_collection_nux_fall_22').addClass('visible');
+    }, timer);
+  }
+  $(document).on('click', '#close' , function(){
+    $('.banner_collection_nux_fall_22').removeClass('visible');
+    setTimeout(function(){
+      $('.banner_collection_nux_fall_22').remove();
+    }, 4000);
+  });
+  $(document).ready(function(){
+    setTimeout(getNUX, 1000);
+  });
+</script>

@@ -1,0 +1,56 @@
+{% section 'css_gateways' %}
+<style>
+  .slideshow.slideshow--preserve-ratio.slideshow--edge2edge {
+    background-image: url(https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Header_-_arte_moderno.jpg?v=1631149090) !important;
+  }
+  
+  .rte .video-wrapper {
+    margin-top: unset !important;
+  }
+  @media screen and (max-width:640px){
+	#shopify-section-fc_gcm_00 {
+      transform: translateY(20px);
+    }
+    #shopify-section-fc_gcm_01 {
+      transform: translateY(20px);
+    }
+    #shopify-section-collection-list {
+      transform: translateY(20px);
+    }
+    #shopify-section-ch_gd_03 {
+      transform: translateY(0px) !important;
+    }
+    #shopify-section-fc_novedades {
+      transform: translateY(-20px);
+    }
+    #shopify-section-ch_gc_02 {
+      transform: translateY(-20px);
+      padding-bottom: 20px;
+      margin-bottom: -40px;
+    }
+    #shopify-section-it_gd_02 > section {
+      margin-bottom: 0 !important;
+    }
+  }
+</style>
+{% section 'slideshow-gcm' %}
+{% section 'ch_gd_01' %}
+{% section 'highlights' %}
+{% section 'fc_gcm_00' %}
+{% section 'fc_gcm_01' %}
+{% section 'collection-list' %}
+{% section 'fc_gcm_02' %}
+{% section 'fc_gca_03' %}
+{% section 'it_gd_01' %}
+{% section 'ch_gd_03' %}
+{% section 'fc_novedades' %}
+{% section 'ch_gc_02' %}
+{% section 'it_gd_02' %}
+{% section 'js_gateways' %}
+
+<script>
+  $(window).load(function(){
+    $('#block-fbdc291c-3c5d-4440-91e0-13c03368886e > div > div.slideshow__content-wrapper > div > a').before('<a style="margin-right:20px;" href="https://canvaslab.com/collections" class="slideshow__button button">Ver Colecciones</a>');
+  });
+
+</script>

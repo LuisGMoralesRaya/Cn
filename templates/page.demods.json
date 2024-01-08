@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "pf-0000fef0": {
+      "type": "pf-0000fef0",
+      "disabled": true,
+      "settings": {}
+    },
+    "16577549583b6edb18": {
+      "type": "apps",
+      "settings": {}
+    },
+    "1657688604d145b78d": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Otras_colecciones_populares_Arte_clasico_grande_06851e04-ee6e-4408-b102-a80f99861412.jpg",
+        "image_position": "left",
+        "image_width": 30,
+        "title": "Your title",
+        "content": "<p>Use this text to share information about your brand with your customers.<br\/>Describe a product, share announcements, or welcome customers to your store.<\/p>",
+        "button_text": "Our products",
+        "button_link": "shopify:\/\/collections\/all"
+      }
+    }
+  },
+  "order": [
+    "pf-0000fef0",
+    "16577549583b6edb18",
+    "1657688604d145b78d"
+  ]
+}

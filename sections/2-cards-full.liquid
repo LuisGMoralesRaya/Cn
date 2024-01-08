@@ -1,0 +1,113 @@
+<style>
+#two_cards_container_full {
+  	margin: 0 !important;
+  	display: table !important;
+    width: 100% !important;
+  	max-width: 1480px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 var(--desktop-container-gutter);
+}
+
+#two_cards_container_full .row{
+	height: auto !important;
+    display: inline-block !important;
+    position: relative !important;
+    float: left !important;
+    overflow: hidden !important;
+    margin-bottom: var(--desktop-container-gutter) !important;
+}
+
+#two_cards_container_full .row.one{
+	width: 100% !important;	
+}
+
+#two_cards_container_full .row.two{
+    width: calc((100% - 20px) / 2);
+}
+
+#two_cards_container_full .row.two:not(:nth-child(2)) {
+    margin-right: 20px;
+}
+
+#two_cards_container_full .row section{
+	display: inline-block !important;
+	float: left !important;
+	width: 100% !important;
+	height: 100% !important;
+  	position: absolute !important;
+}
+
+@media screen and (max-width: 1024px){
+    #two_cards_container_full .row {
+        height: auto !important;
+    }
+}
+  @media screen and (max-width: 768px){
+    #two_cards_container_full .row {
+        height: auto !important;
+    }
+}
+@media screen and (max-width: 640px){
+	#two_cards_container_full {
+		padding: 0 var(--mobile-container-gutter) !important;
+	}
+	#two_cards_container_full .row.two{
+		width: 100% !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+	#two_cards_container_full .row.two:nth-last-child(1){
+      	margin-top: var(--mobile-container-gutter) !important;
+		margin-bottom: var(--desktop-container-gutter) !important;
+	}
+    #two_cards_container_full .row {
+        height: auto !important;
+    }
+}
+</style>
+<section>
+    <div id="two_cards_container_full">
+      <div class="fixer">
+        {% assign iteration_number = 0 %}
+        
+        {% for block in section.blocks %}
+            <div class="row {{ ' ' }} {%- if section.blocks.size > 1 -%}two{%- else -%}one{%- endif -%}">
+                <a class="it_{{ iteration_number }}" href="{{ block.settings.link }}">
+                  <img loading="lazy" alt="Simple hipervínculo: {{ block.settings.link }}" class="it_{{ iteration_number }}" src='{{ block.settings.image | image_url: width: 700 }}' height="auto" width="100%">
+                </a>
+            </div>
+        	{% assign iteration_number = iteration_number | plus: 1 %}
+        {% endfor %}
+      </div>
+    </div>
+</section>
+{% schema %}
+{
+    "name": "2 Cards - Fully clickable",
+    "class": "spaced-section spaced-section--full-width",
+    "max_blocks": 2,
+    "blocks": [
+    {
+        "type": "card",
+        "name": "Card",
+        "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Card image"
+        },
+        {
+            "type": "url",
+            "id": "link",
+            "label": "Link",
+            "default": "/collections"
+        }]
+
+    }],
+    "presets": [
+    {
+        "name": "2 Cards - Fully clickable"
+    }]
+}
+{% endschema %}

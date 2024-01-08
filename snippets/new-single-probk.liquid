@@ -1,0 +1,876 @@
+{% include 'settings_theme_instance' %}
+
+{% include 'delivery_notice_warning' %}
+
+{% assign includedTagsArray = includedTagsString | split:"," %}
+
+{% for includedTag in includedTagsArray %}
+  {% if product.tags contains includedTag %}
+  	{% assign isolated_discount_per_tag_proceed = 1 %}
+  {% endif %}
+{% endfor %}
+
+ 
+{% if prom_v1 contains '6 MSI' %}
+  {% assign calc_months = 6 %}
+{% elsif prom_v1 contains '9 MSI' %}
+  {% assign calc_months = 9 %}
+{% elsif prom_v1 contains '12 MSI' %}
+  {% assign calc_months = 12 %}
+{% elsif prom_v1 contains '18 MSI' %}
+  {% assign calc_months = 18 %}
+{% else %}
+  {% assign calc_months = 0 %}
+{% endif %}
+
+<script>
+;(function($) {
+  
+    /* CONSTS */
+  
+    const months = {{calc_months}};
+    
+    const is_gc_0 = $('.tt-product-single-info > h1.tt-title').text();
+    const is_gc_1 = is_gc_0.indexOf('iftCard') >= 0;
+    if (is_gc_1 == false) {
+      $('.below-atc').addClass('visible');
+    }
+  
+    const d = new Date();
+  	const time_d = d.getDate();
+  	const time_h = d.getHours();
+  	const time_m = d.getMinutes();
+  	const time_s = d.getSeconds();
+
+    const plus = 1;
+  
+    const weekday = new Array(7);
+    weekday[0] = "Domingo";
+    weekday[1] = "Lunes";
+    weekday[2] = "Martes";
+    weekday[3] = "Miércoles";
+    weekday[4] = "Jueves";
+    weekday[5] = "Viernes";
+    weekday[6] = "Sábado";
+
+    const month = new Array(12);
+    month[0] = "Enero";
+    month[1] = "Febrero";
+    month[2] = "Marzo";
+    month[3] = "Abril";
+    month[4] = "Mayo";
+    month[5] = "Junio";
+    month[6] = "Julio";
+    month[7] = "Agosto";
+    month[8] = "Septiembre";
+    month[9] = "Octubre";
+    month[10] = "Noviembre";
+    month[11] = "Diciembre";
+    
+	console.log('{{ isolated_discount_per_tag_proceed }}');
+  	{% unless isolated_discount_per_tag_proceed == 1 %}
+  
+        const pos_desc = {{ dpobs_v1 }};
+        const pix_desc = {{ dpibs_v1 }};
+        const can_desc = {{ dcabs_v1 }};
+        const acr_desc = {{ dacbs_v1 }};
+        const alu_desc = {{ dalbs_v1 }};
+        const fra_desc = {{ dfrbs_v1 }};
+        const phf_desc = {{ dpfbs_v1 }};
+        const cs2_desc = {{ dcs2s_v1 }};
+        const col_desc = {{ dcobs_v1 }};
+
+        const tier_1_desc = {{ dact1_v1 }};
+        const tier_2_desc = {{ dact2_v1 }};
+        const tier_3_desc = {{ dact3_v1 }};
+        const tier_4_desc = {{ dact4_v1 }};
+        const tier_5_desc = {{ dact5_v1 }};
+        const tier_6_desc = {{ dact6_v1 }};
+
+    {% else %}
+
+        const pos_desc = {{ ditbs_v1 }};
+        const pix_desc = {{ ditbs_v1 }};
+        const can_desc = {{ ditbs_v1 }};
+        const acr_desc = {{ ditbs_v1 }};
+        const alu_desc = {{ ditbs_v1 }};
+        const fra_desc = {{ ditbs_v1 }};
+        const phf_desc = {{ ditbs_v1 }};
+        const cs2_desc = {{ ditbs_v1 }};
+        const col_desc = {{ ditbs_v1 }};
+
+        const tier_1_desc = {{ ditbs_v1 }};
+        const tier_2_desc = {{ ditbs_v1 }};
+        const tier_3_desc = {{ ditbs_v1 }};
+        const tier_4_desc = {{ ditbs_v1 }};
+        const tier_5_desc = {{ ditbs_v1 }};
+        const tier_6_desc = {{ ditbs_v1 }};
+
+    {% endunless %}
+      
+    const tier_1 = ["100 x 100 cm", "140 x 70 cm", "160 x 80 cm", "200 x 100 cm", "220 x 110 cm", "240 x 120 cm", "150 x 50 cm", "240 x 80 cm", "120 x 80 cm", "135 x 90 cm", "150 x 100 cm", "165 x 110 cm", "180 x 120 cm", "160 x 40 cm", "160 x 120 cm", "70 x 140 cm", "80 x 160 cm", "100 x 200 cm", "110 x 220 cm", "120 x 240 cm", "50 x 150 cm", "80 x 240 cm", "80 x 120 cm", "90 x 135 cm", "100 x 150 cm", "110 x 165 cm", "120 x 180 cm", "40 x 160 cm", "120 x 160 cm"];
+    const tier_2 = ["70 x 70 cm", "80 x 80 cm", "90 x 90 cm", "120 x 120 cm", "80 x 40 cm", "100 x 50 cm", "120 x 60 cm", "180 x 90 cm", "180 x 60 cm", "210 x 70 cm", "75 x 50 cm", "105 x 70 cm", "200 x 50 cm", "240 x 60 cm", "80 x 60 cm", "100 x 75 cm", "120 x 90 cm", "40 x 80 cm", "50 x 100 cm", "60 x 120 cm", "90 x 180 cm", "60 x 180 cm", "70 x 210 cm", "50 x 75 cm", "70 x 105 cm", "50 x 200 cm", "60 x 240 cm", "60 x 80 cm", "75 x 100 cm", "90 x 120 cm"];
+    const tier_3 = ["90 x 30 cm", "60 x 40 cm", "60 x 45 cm", "30 x 90 cm", "40 x 60 cm", "45 x 60 cm"];
+    const tier_4 = ["20 x 20 cm", "40 x 40 cm", "50 x 50 cm", "60 x 60 cm", "40 x 20 cm", "60 x 30 cm", "60 x 20 cm", "120 x 40 cm", "30 x 20 cm", "45 x 30 cm", "90 x 60 cm", "80 x 20 cm", "120 x 30 cm", "20 x 40 cm", "30 x 60 cm", "20 x 60 cm", "40 x 120 cm", "20 x 30 cm", "30 x 45 cm", "60 x 90 cm", "20 x 80 cm", "30 x 120 cm"];
+    const tier_5 = ["25 x 25 cm", "30 x 30 cm", "40 x 30 cm", "30 x 40 cm"];
+  	
+	//Enmarcados negros a cancelar STARTS
+  	//const black_framed_forbidden = ["20 x 60 cm","20 x 80 cm","30 x 60 cm","30 x 90 cm","40 x 60 cm","40 x 80 cm","45 x 60 cm","50 x 50 cm","50 x 75 cm","60 x 20 cm","60 x 30 cm","60 x 40 cm","60 x 45 cm","60 x 60 cm","60 x 80 cm","75 x 50 cm","80 x 20 cm","80 x 40 cm","80 x 60 cm","90 x 30 cm"];
+  	//Enmarcados negros a cancelar ENDS
+ 
+  	/* VARS */
+  
+  	if (time_d == {{output_dnw_d}} && time_h > {{output_dnw_h}} && time_m > {{output_dnw_m}} && time_s > {{output_dnw_s}}) {
+      var output_dnw_ac = '{{output_dnw_ac_2}}';
+      var output_dnw_al = '{{output_dnw_al_2}}';
+      var output_dnw_ca = '{{output_dnw_ca_2}}';
+      var output_dnw_fr = '{{output_dnw_fr_2}}';
+      var output_dnw_pi = '{{output_dnw_pi_2}}';
+      var output_dnw_po = '{{output_dnw_po_2}}';
+      var output_dnw_all = '{{output_dnw_all_2}}';
+    }else{
+      var output_dnw_ac = '{{output_dnw_ac_1}}';
+      var output_dnw_al = '{{output_dnw_al_1}}';
+      var output_dnw_ca = '{{output_dnw_ca_1}}';
+      var output_dnw_fr = '{{output_dnw_fr_1}}';
+      var output_dnw_pi = '{{output_dnw_pi_1}}';
+      var output_dnw_po = '{{output_dnw_po_1}}';
+      var output_dnw_all = '{{output_dnw_all_1}}';
+    }
+  
+  
+    /* FUNCTIONS */
+
+    function getWholes(num) {
+        var str = num.toString();
+        var subs = ".";
+        var n = str.includes(subs);
+        var l = str.length;
+        if (n == true) {
+            var res = parseFloat(str.replace(str.substring(str.indexOf("."), l), ""));
+            var res_1 = res.toLocaleString('us-US', { style: 'currency', currency: 'USD' });
+            var res_2 = res_1.toString().replace("$", "");
+            var res_3 = res_2.replace(".00", "");
+            var res_4 = res_3.replace("US", "");
+              var pos = str.indexOf(",00");
+              if (pos > 3){
+         var res_5 = res_4.replace(",00", "");
+              }else{
+                 var res_5 = res_4;
+              }
+            var res_6 = res_5.replace("D", "");
+            var res_7 = res_6.replace(".", ",");
+            var res_8 = res_7.replace(" ", "");
+            return res_8;
+        } else {
+            var str_1 = str.toLocaleString('us-US', { style: 'currency', currency: 'USD' });
+            var str_2 = str_1.toString().replace("$", "");
+            var str_3 = str_2.replace(".00", "");
+            var str_4 = str_3.replace("US", "");
+            var str_5 = str_4.replace(",00", "");
+            var str_6 = str_5.replace("D", "");
+            var str_7 = str_6.replace(".", ",");
+            var str_8 = str_7.replace(" ", "");
+            return str_8;
+        }
+    }
+
+    function getCents(num) {
+        var amount = parseFloat(num);
+        var cents_float = amount * 100;
+        var cents = parseInt(cents_float);
+        var str = cents.toString();
+        var l = str.length;
+        var res = str.substring(l - 2, l);
+        return res;
+    }
+  
+    function cant_add_to_cart(){
+    var disabled_atc = $('.product-form__add-button.button.button--disabled' ).length;
+        setTimeout(function() {
+          if(disabled_atc > 0){
+            $('.product-form__option:nth-child(2) .block-swatch:not(.block-swatch--disabled) input').eq(0).click();
+          }
+        }, 120);
+    }
+    
+    function step3(mat) {
+      
+      var material = mat;
+      
+      
+      {% if product.tags contains '01-custom' or product.tags contains '04-clc' or product.tags contains '01-clp' or product.title contains 'uadro personalizado ' %}
+        
+        $('.material_description').each(function(){
+          $(this).removeAttr('style');
+        });
+        $('.material_video').each(function(){
+          $(this).removeAttr('style');
+        });
+        $('.material_delivery_time').each(function(){
+          $(this).removeAttr('style');
+        });
+      
+        if (material == "ac"){
+          
+          $('#cart_attr.ca_pr select#perfil option[data-profile="not_canvas"]').remove();
+          $('#cart_attr.ca_pr').attr('style','display:none !important;');
+          $('#cart_attr.ca_pr select#perfil').append('<option value="No es Canvas" data-profile="not_canvas" selected="selected">No es Canvas</option>');
+          $('#acr_d.material_description').attr('style','display:inline-block !important;');
+          $('#acr_v.material_video').attr('style','display:inline-block !important;');
+          $('#acr_t.material_delivery_time').attr('style','display:inline-block !important;');
+          {% if product.tags contains '04-clc' or product.tags contains '01-clp' or product.title contains 'uadro personalizado ' %}
+             {% if product.tags contains 'MwEp8UY7' or product.title contains 'uadro personalizado ' %}
+                $('#swatch_ml').removeAttr('style');
+                $('#cart_attr.fr_ml #marialuisa').val("No");
+             {% endif %}
+          {% endif %}
+          
+        }else if (material == "al"){
+          
+          $('#cart_attr.ca_pr select#perfil option[data-profile="not_canvas"]').remove();
+          $('#cart_attr.ca_pr').attr('style','display:none !important;');
+          $('#cart_attr.ca_pr select#perfil').append('<option value="No es Canvas" data-profile="not_canvas" selected="selected">No es Canvas</option>');
+          $('#alu_d.material_description').attr('style','display:inline-block !important;');
+          $('#alu_v.material_video').attr('style','display:inline-block !important;');
+          $('#alu_t.material_delivery_time').attr('style','display:inline-block !important;');
+          {% if product.tags contains '04-clc' or product.tags contains '01-clp' or product.title contains 'uadro personalizado ' %}
+             {% if product.tags contains 'MwEp8UY7' or product.title contains 'uadro personalizado ' %}
+                $('#swatch_ml').removeAttr('style');
+                $('#cart_attr.fr_ml #marialuisa').val("No");
+             {% endif %}
+          {% endif %}
+          
+        }else if (material == "ca"){
+          
+          $('#cart_attr.ca_pr select#perfil option[data-profile="not_canvas"]').remove();
+          $('#cart_attr.ca_pr').attr('style','display:inline-block !important;');
+          $('#can_d.material_description').attr('style','display:inline-block !important;');
+          $('#can_v.material_video').attr('style','display:inline-block !important;');
+          $('#can_t.material_delivery_time').attr('style','display:inline-block !important;');
+          {% if product.tags contains '04-clc' or product.tags contains '01-clp or product.title contains 'uadro personalizado ' %}
+             {% if product.tags contains 'MwEp8UY7' or product.title contains 'uadro personalizado ' %}
+                $('#swatch_ml').removeAttr('style');
+                $('#cart_attr.fr_ml #marialuisa').val("No");
+             {% endif %}
+          {% endif %}
+          
+        }else if (material == "fr"){
+          
+          $('#cart_attr.ca_pr select#perfil option[data-profile="not_canvas"]').remove();
+          $('#cart_attr.ca_pr').attr('style','display:none !important;');
+          $('#cart_attr.ca_pr select#perfil').append('<option value="No es Canvas" data-profile="not_canvas" selected="selected">No es Canvas</option>');
+          $('#fra_d.material_description').attr('style','display:inline-block !important;');
+          $('#fra_v.material_video').attr('style','display:inline-block !important;');
+          $('#fra_t.material_delivery_time').attr('style','display:inline-block !important;');
+          {% if product.tags contains '04-clc' or product.tags contains '01-clp' or product.title contains 'uadro personalizado ' %}
+             {% if product.tags contains 'MwEp8UY7' or product.title contains 'uadro personalizado ' %}
+                $('#swatch_ml').attr('style','display:inline-block !important;');
+             {% endif %}
+          {% endif %}
+          
+        }else if (material == "pi"){
+          
+          $('#cart_attr.ca_pr select#perfil option[data-profile="not_canvas"]').remove();
+          $('#cart_attr.ca_pr').attr('style','display:none !important;');
+          $('#cart_attr.ca_pr select#perfil').append('<option value="No es Canvas" data-profile="not_canvas" selected="selected">No es Canvas</option>');
+          $('#pix_d.material_description').attr('style','display:inline-block !important;');
+          $('#pix_v.material_video').attr('style','display:inline-block !important;');
+          $('#pix_t.material_delivery_time').attr('style','display:inline-block !important;');
+          {% if product.tags contains '04-clc' or product.tags contains '01-clp' or product.title contains 'uadro personalizado ' %}
+             {% if product.tags contains 'MwEp8UY7' or product.title contains 'uadro personalizado ' %}
+                $('#swatch_ml').removeAttr('style');
+                $('#cart_attr.fr_ml #marialuisa').val("No");
+             {% endif %}
+          {% endif %}
+          
+        }else if (material == "po"){
+          
+          $('#cart_attr.ca_pr select#perfil option[data-profile="not_canvas"]').remove();
+          $('#cart_attr.ca_pr').attr('style','display:none !important;');
+          $('#cart_attr.ca_pr select#perfil').append('<option value="No es Canvas" data-profile="not_canvas" selected="selected">No es Canvas</option>');
+          $('#pos_d.material_description').attr('style','display:inline-block !important;');
+          $('#pos_v.material_video').attr('style','display:inline-block !important;');
+          $('#pos_t.material_delivery_time').attr('style','display:inline-block !important;');
+          {% if product.tags contains '04-clc' or product.tags contains '01-clp' or product.title contains 'uadro personalizado ' %}
+             {% if product.tags contains 'MwEp8UY7' or product.title contains 'uadro personalizado ' %}
+                $('#swatch_ml').removeAttr('style');
+                $('#cart_attr.fr_ml #marialuisa').val("No");
+             {% endif %}
+          {% endif %}
+          
+        }
+      
+      {% endif %}
+            
+      if (output_dnw_ac === 0 && output_dnw_al === 0 && output_dnw_ca === 0 && output_dnw_pi === 0 && output_dnw_po === 0 && output_dnw_all === 0, output_dnw_fr === 0 ){
+        return;
+      } else{
+        var output_dnw = null
+        
+        if (material == "ac" && output_dnw_ac != "0"){
+          output_dnw = output_dnw_ac;
+        }else if (material == "al" && output_dnw_al != "0"){
+          output_dnw = output_dnw_al;
+        }else if (material == "ca" && output_dnw_ca != "0"){
+          output_dnw = output_dnw_ca;
+        }else if (material == "fr" && output_dnw_fr != "0"){
+          output_dnw = output_dnw_fr;
+        }else if (material == "pi" && output_dnw_pi != "0"){
+          output_dnw = output_dnw_pi;
+        }else if (material == "po" && output_dnw_po != "0"){
+          output_dnw = output_dnw_po;
+        }else if (output_dnw_all != "0"){
+          output_dnw = output_dnw_all;
+        }
+        
+        setTimeout(function() {
+          if (output_dnw == null || output_dnw == "" ){
+            $('#delivery_notice').removeClass('dnwp');
+            $('#delivery_notice_warning').each(function(){
+              $(this).remove();
+            });
+          } else {
+            $('#delivery_notice_warning').each(function(){
+              $(this).remove();
+            });
+            $('#delivery_notice').addClass('dnwp');
+            $('#delivery_notice #dmsg').html('<div id="delivery_notice_warning" style="height: auto; width 100%; margin-top: 10px;">'+output_dnw+'</div>');
+          }
+          
+        }, 1000);
+        
+      }
+      
+    }
+
+    function step2(des_val) { 
+          setTimeout(function() {
+              $('.product-block-list__item--info .price-list span.price').addClass('visually-hidden');
+              $('.product-block-list__item--info .price-list span.price span').remove();
+              if ($('.product-block-list__item--info .price-list span.price:nth-child(2)').length) {
+                  /*var cat_price_0 = $('.product-block-list__item--info .price-list span.price:nth-child(1)').text().replace("$", "");*/
+                  // Lo de abajo arregla un problema con los sets -que son items que traen un 10% OFF-, toma el precio original real del item, no hace descuento sobre descuento
+                  var cat_price_0 = $('.product-block-list__item--info .price-list span.price:nth-child(2)').text().replace("$", "");
+                  var cat_price_start = $('.product-block-list__item--info .price-list span.price:nth-child(2)').text();
+              }else{
+                  var cat_price_0 = $('.product-block-list__item--info .price-list span.price:nth-child(1)').text().replace("$", "");
+                  var cat_price_start = $('.product-block-list__item--info .price-list span.price:nth-child(1)').text();
+              }
+              var cat_price_1 = cat_price_0.replace(/\,/g, '');
+              const cat_price = parseFloat(cat_price_1);
+              setTimeout(function() {
+                  var sale_price = cat_price - (cat_price * des_val);
+                  var sale_price_o = getWholes(parseFloat(sale_price));
+                  var sale_price_oo = getCents(parseFloat(sale_price));
+                  if (des_val > 0) {
+                      if ($('.product-block-list__item--info .price-list span.price:nth-child(2)').length) {
+                          /* sirve para swatches */
+                          $('.product-block-list__item--info .price-list span.price:nth-child(1)').html('<span class="visually-hidden">Sale Price</span><span style="margin-right:5px">$</span>'+sale_price_o+'.'+sale_price_oo);
+                          $('.product-block-list__item--info .price-list span.price:nth-child(2)').html('<span class="visually-hidden">Regular Price</span>'+cat_price_start+'');
+                      }else{
+                          $('.product-block-list__item--info .price-list span.price').addClass('price--highlight');
+                          $('.product-block-list__item--info .price-list span.price.price--highlight').after('<span class="price price--compare"></span>');
+                          /* sirve para cargar producto */
+                          $('.product-block-list__item--info .price-list span.price:nth-child(1)').html('<span class="visually-hidden">Sale Price</span><span style="margin-right:5px">$</span>'+sale_price_o+'.'+sale_price_oo);
+                          $('.product-block-list__item--info .price-list span.price:nth-child(2)').html('<span class="visually-hidden">Regular Price</span>'+cat_price_start+'');
+                      }
+                      setTimeout(function() {
+                          $('.product-block-list__item--info .price-list span.price').removeClass('visually-hidden');
+                          var ok_001 = cat_price - sale_price;
+                          var ok_001_o = getWholes(parseFloat(ok_001));
+                          var ok_001_oo = getCents(parseFloat(ok_001));
+                          var ok_001_ooo = Math.round((100*ok_001)/cat_price);
+                          $('.price-list + #save').html('Ahorras $'+ok_001_o+'.'+ok_001_oo+' (<span style="line-height: 26px !important;">'+ok_001_ooo+'%</span>)');
+                      }, 10);
+                  } else {
+                      setTimeout(function() {
+                          $('.product-block-list__item--info .price-list span.price').removeClass('visually-hidden');
+                          $('.price-list + #save').html('');
+                      }, 10);
+                  }
+                
+                  if (months > 0 ){
+                      var mi_0 = parseFloat((sale_price + 0.4) / months).toFixed(2);
+                      $('#msi_holder').html('<i style="line-height: 1.2em !important; display: block !important; ">O '+months+' pagos de <strong>$'+mi_0+'</strong> a <span id="msi_notice">MSI</span>' );
+                  }else{
+                      var mi_0 = parseFloat( sale_price * 1.204 );
+                      var mi_1 = parseFloat( mi_0 / 12 );
+            		  var mi_2 = mi_1.toFixed(2);
+                      var mi_3 = getWholes(mi_2);
+                      var mi_4 = getCents(mi_2);
+                      var mi_5 = mi_3+'.'+mi_4;
+                      var mi_6 = mi_5.toString().replace(",", "");
+                      var mi_7 = parseFloat(mi_6 * 12);
+                      var mi_8 = mi_7.toFixed(2);
+                      var mi_9 = getWholes(mi_8);
+                      var mi_10 = getCents(mi_8);
+                      $('#msi_holder').html('<i style="line-height: 1.2em !important; display: block !important; ">O 12 pagos de <strong>$'+mi_3+'.'+mi_4+'</strong> (Total: $<strong class="pr">'+mi_9+'.'+mi_10+'</strong>) <!--<small>usando <b>Mercado Pago</b></small>--></i>' );
+                  }
+                  
+              }, 60);
+          }, 120);
+    }
+
+    function step1(mat, inf_limit, sup_limit, des_val, acr_declaration, pix_declaration) {
+      setTimeout(function() {
+        var boundary1 = parseInt(inf_limit);
+        var boundary2 = parseInt(sup_limit);
+        var is_acr = Boolean(acr_declaration);
+        var is_pix = Boolean(pix_declaration);
+        var discount = parseFloat(des_val);
+        var material = mat;
+        
+        var today = new Date();
+        today.setDate(today.getDate());
+        var dstart = new Date();
+        var dstart2 = "", noOfDaysToAdd = boundary1, count = 0;
+        while(count < noOfDaysToAdd){
+            dstart2 = new Date(dstart.setDate(dstart.getDate() + 1));
+            if(dstart2.getDay() != 0 && dstart2.getDay() != 6){
+               count++;
+            }
+        }
+        var weekendDays_dstart_dend = 0;
+        var dayMilliseconds_se = 1000 * 60 * 60 * 24;
+        var dend = new Date();
+        dend.setMonth(dstart2.getMonth());
+        dend.setDate(dstart2.getDate() + boundary2);
+        const saved_dstart = new Date(dstart);
+        while (dstart <= dend) {
+            var day = dstart.getDay();
+            if (day == 0 || day == 6) {
+                weekendDays_dstart_dend++;
+            }
+            dstart = new Date(+dstart + dayMilliseconds_se);
+        }
+        dstart = saved_dstart;
+        dend.setDate(dend.getDate() + weekendDays_dstart_dend);
+        if (dend.getDay() == 6) {
+            dend.setDate(dend.getDate() + 2);
+        } else if (dend.getDay() == 0) {
+            dend.setDate(dend.getDate() + 1);
+        }
+        var starting_point = weekday[dstart.getDay()];
+        var ending_point = weekday[dend.getDay()];
+        var modstart = month[dstart.getMonth()];
+        var modend = month[dend.getMonth()];
+        var datstart = dstart.getDate();
+        var datend = dend.getDate();
+        
+        
+        
+        var deluxe = true;
+        {% comment %}
+        var deluxe = false;
+        switch (material) {
+          case 'ac':
+            deluxe = true;
+            break;
+          case 'al':
+            deluxe = true;
+            break;
+          default:
+        }
+        {% endcomment %}
+        
+        /*START 1 temporary fix*/
+        /*if (is_pix === true) {
+          var copy_delivery_notice = 'Recíbelo del <strong>Viernes, 4 de Diciembre</strong> al <strong>Lunes, 7 de Diciembre</strong> si ordenas ahora con Envío Express.';
+        }else{*/
+        /*END 1 temporary fix*/
+         //var copy_delivery_notice = 'Recíbelo del <strong>' + starting_point + ', ' + datstart + ' de ' + modstart + '</strong> al <strong>' + ending_point + ', ' + datend + ' de ' + modend + '</strong> si ordenas ahora con Envío Express.';
+        /* if (deluxe == true){
+          {% comment %}
+		  var copy_delivery_notice = 'Recíbelo el <strong>' + starting_point + ', ' + datstart + ' de ' + modstart + '</strong> con Envío Express.<strong style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;">Los productos de lujo, como este, pueden demorar hasta 5 días más en ser entregados.</strong>';
+          $('#delivery_notice').html('<div id="dnotice"><img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/envios.svg?v=1612722564" class="icon_tde" ></div><div id="dmsg" class="dl">' + copy_delivery_notice +'</div>');
+          {% endcomment %}
+          var copy_delivery_notice = 'Recíbelo el <strong>' + starting_point + ', ' + datstart + ' de ' + modstart + '</strong> con Envío Express.<br><strong style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;margin-top: 10px;">Información Importante para Nuestros Clientes:</strong><span style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;">Queremos asegurarnos de que tu experiencia de compra con nosotros sea siempre positiva. Por eso, te informamos que, debido a la alta demanda en estas fechas decembrinas, las empresas de paquetería a nivel nacional pueden experimentar retrasos que están fuera de nuestro control.</span><span style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;margin-top: 10px;">Tu Pedido Está Asegurado Aunque no podemos garantizar una fecha de entrega exacta en este momento, queremos que sepas que la entrega de tu pedido si está garantizada.</span><span style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;margin-top: 10px;">Nuestro compromiso con tu satisfacción permanece firme. Agradecemos tu comprensión y paciencia en esta temporada alta. ¡Gracias por elegirnos!</span>';
+          $('#delivery_notice').html('<div id="dnotice"><img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/envios.svg?v=1612722564" class="icon_tde" ></div><div id="dmsg" class="dl">' + copy_delivery_notice +'</div>');
+        } */
+        console.log("ESSS e {{ product.variants.first.title }}" )
+        console.log("ESSS e {{ product.title }}" )
+        var elTituloProducto = "{{ product.title }}"
+        var elTitulodeVariante = "{{ product.variants.first.title }}"
+        let date = new Date()
+        let day = date.getDate()
+        let month = date.getMonth() + 1
+        let year = date.getFullYear()
+
+        let validoFecha = "";
+        if(month < 10){
+            validoFecha = ${day}-0${month}-${year}
+        }else{
+            validoFecha = ${day}-${month}-${year})
+        }
+          console.log(validoFecha)
+        if(elTituloProducto != "Acrilico" || elTituloProducto != "Aluminio" || elTituloProducto != "PixSet" ||){
+          if(validoFecha < "14-DIC"){
+            // Notice No garantizo - ASAP
+            $('#delivery_notice').html('<div id="dnotice"><img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/envios.svg?v=1612722564" class="icon_tde" ></div><div id="dmsg" class="dl">' + copy_delivery_notice +'</div>');
+          }else{
+            //Notice no llega - 14 Dic
+            $('#delivery_notice').html('<div id="dnotice"><img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/envios.svg?v=1612722564" class="icon_tde" ></div><div id="dmsg" class="dl">' + copy_delivery_notice +'</div>');
+          }
+        }else{
+            // Notice no llega - 11 Dic 
+            $('#delivery_notice').html('<div id="dnotice"><img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/envios.svg?v=1612722564" class="icon_tde" ></div><div id="dmsg" class="dl">' + copy_delivery_notice +'</div>');
+        }
+        {% comment %}
+        else{
+          console.log("Check If pix ")
+          console.log(is_pix)
+          if (is_pix == true) {
+            var copy_delivery_notice = 'Recíbelo a partir del <strong>Martes, 24 de Octubre</strong> si ordenas ahora con Envío Express.';
+          $('#delivery_notice').html('<div id="dnotice"><img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/envios.svg?v=1612722564" class="icon_tde" ></div><div id="dmsg">' + copy_delivery_notice +'</div>');
+            
+          }else{
+            var copy_delivery_notice = 'Recíbelo el <strong>' + starting_point + ', ' + datstart + ' de ' + modstart + '</strong> con Envío Express.';
+          $('#delivery_notice').html('<div id="dnotice"><img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/envios.svg?v=1612722564" class="icon_tde" ></div><div id="dmsg">' + copy_delivery_notice +'</div>');
+
+          }
+        }
+        {% endcomment %}
+        
+        $('#delivery_notice').addClass('visible_cl');
+               
+
+        if (is_acr === true) {
+            
+            var title_0 = $('.product-meta > h1.product-meta__title.heading.h1').text().toString();
+            var title_1 = title_0.lastIndexOf("personalizado ");
+            var title_2 = title_0.substring(title_1, title_0.length);
+            var title_option = title_2.replace("personalizado ", "");
+            var layout_title = title_0.lastIndexOf("ayout");
+            var swatch1_current_option = $('.product-form__variants > .product-form__option:nth-child(1) > .product-form__option-name .product-form__selected-value').text().toString();
+            var swatch2_current_option = $('.product-form__variants > .product-form__option:nth-child(2) > .product-form__option-name .product-form__selected-value').text().toString();       
+            if(layout_title >= 0 ){
+                {% if product.tags contains 'tier1' %}
+                  step2(tier_1_desc);
+                {% elsif product.tags contains 'tier2' %}
+                  step2(tier_2_desc);
+                {% elsif product.tags contains 'tier3' %}
+                  step2(tier_3_desc);
+                {% elsif product.tags contains 'tier4' %}
+                  step2(tier_4_desc);
+                {% elsif product.tags contains 'tier5' %}
+                  step2(tier_5_desc);
+                {% elsif product.tags contains 'tier6' %}
+                  step2(tier_6_desc);
+                {% endif%}
+                
+            }else if (swatch1_current_option != ''){
+                
+                if ($.inArray(swatch1_current_option, tier_1) > -1 || $.inArray(swatch2_current_option, tier_1) > -1 || $.inArray(title_option, tier_1) > -1) {
+                    step2(tier_1_desc);
+                }
+                if ($.inArray(swatch1_current_option, tier_2) > -1 || $.inArray(swatch2_current_option, tier_2) > -1 || $.inArray(title_option, tier_2) > -1) {
+                    step2(tier_2_desc);
+                }
+                if ($.inArray(swatch1_current_option, tier_3) > -1 || $.inArray(swatch2_current_option, tier_3) > -1 || $.inArray(title_option, tier_3) > -1) {
+                    step2(tier_3_desc);
+                }
+                if ($.inArray(swatch1_current_option, tier_4) > -1 || $.inArray(swatch2_current_option, tier_4) > -1 || $.inArray(title_option, tier_4) > -1) { 
+                    step2(tier_4_desc);
+                }
+                if ($.inArray(swatch1_current_option, tier_5) > -1 || $.inArray(swatch2_current_option, tier_5) > -1 || $.inArray(title_option, tier_5) > -1) {
+                    step2(tier_5_desc);
+                }
+            }else if(swatch2_current_option != ''){
+              
+                if ($.inArray(swatch2_current_option, tier_1) > -1 || $.inArray(swatch1_current_option, tier_1) > -1 || $.inArray(title_option, tier_1) > -1) {
+                    step2(tier_1_desc);
+                }
+                if ($.inArray(swatch2_current_option, tier_2) > -1 || $.inArray(swatch1_current_option, tier_2) > -1 || $.inArray(title_option, tier_2) > -1) {
+                    step2(tier_2_desc);
+                }
+                if ($.inArray(swatch2_current_option, tier_3) > -1 || $.inArray(swatch1_current_option, tier_3) > -1 || $.inArray(title_option, tier_3) > -1) {
+                    step2(tier_3_desc);
+                }
+                if ($.inArray(swatch2_current_option, tier_4) > -1 || $.inArray(swatch1_current_option, tier_4) > -1 || $.inArray(title_option, tier_4) > -1) {
+                    step2(tier_4_desc);
+                }
+                if ($.inArray(swatch2_current_option, tier_5) > -1 || $.inArray(swatch1_current_option, tier_5) > -1 || $.inArray(title_option, tier_5) > -1) {
+                    step2(tier_5_desc);
+                }
+            }else{
+              
+                if ($.inArray(title_option, tier_1) > -1) {
+                    step2(tier_1_desc);
+                }
+                if ($.inArray(title_option, tier_2) > -1) {
+                    step2(tier_2_desc);
+                }
+                if ($.inArray(title_option, tier_3) > -1) {
+                    step2(tier_3_desc);
+                }
+                if ($.inArray(title_option, tier_4) > -1) {
+                    step2(tier_4_desc);
+                }
+                if ($.inArray(title_option, tier_5) > -1) {
+                    step2(tier_5_desc);
+                }
+            }
+
+        } else {
+            step2(discount);
+        }
+      }, 240);
+    }
+
+    function step0(ssg) {
+      
+      /* VARS */
+      
+      var po_inl = {{ tepof_v1 }} + plus;
+      var po_sul = {{ tepof_v2 }} /* inferior limit + this value, real superior limit = 7 */ ;
+      var pi_inl = {{ tepif_v1 }} + plus;
+      var pi_sul = {{ tepif_v2 }} /* inferior limit + this value, real superior limit = 7 */ ;
+      var ca_inl = {{ tecaf_v1 }} + plus;
+      var ca_sul = {{ tecaf_v2 }} /* inferior limit + this value, real superior limit = 5 */ ;
+      var ac_inl = {{ teacf_v1 }} + plus;
+      var ac_sul = {{ teacf_v2 }} /* inferior limit + this value, real superior limit = 10 */ ;
+      var al_inl = {{ tealf_v1 }} + plus;
+      var al_sul = {{ tealf_v2 }} /* inferior limit + this value, real superior limit = 10 */ ;
+      var fr_inl = {{ tefrf_v1 }} + plus;
+      var fr_sul = {{ tefrf_v2 }} /* inferior limit + this value, real superior limit = 10 */ ;
+      var pf_inl = {{ tepff_v1 }} + plus;
+      var pf_sul = {{ tepff_v2 }} /* inferior limit + this value, real superior limit = 10 */ ;
+      var co_inl = {{ tecof_v1 }} + plus;
+      var co_sul = {{ tecof_v2 }} /* inferior limit + this value, real superior limit = 10 */ ;
+
+      var second_swatch_group = ssg;
+      
+      var title = $('.product-meta > h1.product-meta__title.heading.h1').text().toString();
+      
+      var swatch1 = $('.product-form__variants > .product-form__option:nth-child(1) > .product-form__option-name').text().toString();
+      var swatch2 = $('.product-form__variants > .product-form__option:nth-child(2) > .product-form__option-name').text().toString();
+      var swatch3 = $('.product-form__variants > .product-form__option:nth-child(3) > .product-form__option-name').text().toString();
+
+      var v_mb_poster_title = title.indexOf('ster') >= 0;
+      var v_mb_pergamino_title = title.indexOf('gamino') >= 0;
+      var v_mb_pixset_title = title.indexOf('ixSet') >= 0;
+      var v_mb_canvas_title = title.indexOf('anvas') >= 0;
+      var v_mb_acrilico_title = title.indexOf('crílico') >= 0;
+      var v_mb_aluminio_title = title.indexOf('luminio') >= 0;
+      var v_mb_enmarcado_title = title.indexOf('nmarcado') >= 0;
+      var v_mb_portarretratos_title = title.indexOf('ortarretrato') >= 0;
+      var v_mb_set2_title = title.indexOf('Set de 2') >= 0;
+      var v_mb_collage_title = title.indexOf('ollage') >= 0;
+
+      var v_mb_poster_s1 = swatch1.indexOf('ster') >= 0;
+      var v_mb_pergamino_s1 = swatch1.indexOf('gamino') >= 0;
+      var v_mb_pixset_s1 = swatch1.indexOf('ixSet') >= 0;
+      var v_mb_canvas_s1 = swatch1.indexOf('anvas') >= 0;
+      var v_mb_acrilico_s1 = swatch1.indexOf('crílico') >= 0;
+      var v_mb_aluminio_s1 = swatch1.indexOf('luminio') >= 0;
+      var v_mb_enmarcado_s1 = swatch1.indexOf('nmarcado') >= 0;
+      var v_mb_portarretratos_s1 = swatch1.indexOf('ortarretrato') >= 0;
+
+      var v_mb_poster_s2 = swatch2.indexOf('ster') >= 0;
+      var v_mb_pergamino_s2 = swatch2.indexOf('gamino') >= 0;
+      var v_mb_pixset_s2 = swatch2.indexOf('ixSet') >= 0;
+      var v_mb_canvas_s2 = swatch2.indexOf('anvas') >= 0;
+      var v_mb_acrilico_s2 = swatch2.indexOf('crílico') >= 0;
+      var v_mb_aluminio_s2 = swatch2.indexOf('luminio') >= 0;
+      var v_mb_enmarcado_s2 = swatch2.indexOf('nmarcado') >= 0;
+      var v_mb_portarretratos_s2 = swatch2.indexOf('ortarretrato') >= 0;
+      
+      var v_mb_new_custom = title.indexOf('uadro personalizado ') >= 0;
+           
+      /* END VARS */
+      
+      cant_add_to_cart();
+      setTimeout(function() {
+        
+        if (v_mb_poster_title == true || v_mb_poster_s1 == true || v_mb_poster_s2 == true || v_mb_pergamino_title == true || v_mb_pergamino_s1 == true || v_mb_pergamino_s2 == true) {
+            $('#ml-no').click();
+            $('#swatch_ml').removeAttr('style');
+            if (time_h > 8 && time_m > 30 && time_s > 00) {
+              po_inl = po_inl;            
+            }else{
+              po_inl = po_inl - 1;
+            }
+          	
+            step1('po',po_inl, po_sul, pos_desc, false, false);
+            step3("po");
+            if (v_mb_new_custom == true){
+              $('.product-form__option:nth-child(2)').removeAttr('style');
+              $('.product-form__option:nth-child(2) .block-swatch:nth-child(1) input').click();
+            }else{
+              $('.product-form__option:nth-child(3)').removeAttr('style');
+              $('.product-form__option:nth-child(3) .block-swatch:nth-child(1) input').click();
+            }
+        }
+        if (v_mb_pixset_title == true || v_mb_pixset_s1 == true || v_mb_pixset_s2 == true) {
+            $('#ml-no').click();
+            $('#swatch_ml').removeAttr('style');
+          	if (time_h > 14 && time_m > 00 && time_s > 00) {
+              pi_inl = pi_inl;            
+            }else{
+              pi_inl = pi_inl - 1;
+            }
+          
+            step1('pi',pi_inl, pi_sul, pix_desc, false, true);
+            step3("pi");
+            if (v_mb_new_custom == true){
+              $('.product-form__option:nth-child(2)').removeAttr('style');
+              $('.product-form__option:nth-child(2) .block-swatch:nth-child(1) input').click();
+            }else{
+              $('.product-form__option:nth-child(3)').removeAttr('style');
+              $('.product-form__option:nth-child(3) .block-swatch:nth-child(1) input').click();
+            }
+        }
+        if (v_mb_canvas_title == true || v_mb_canvas_s1 == true || v_mb_canvas_s2 == true) {
+            $('#ml-no').click();
+            $('#swatch_ml').removeAttr('style');
+          	if (time_h > 12 && time_m > 00 && time_s > 00) {
+              ca_inl = ca_inl;            
+            }else{
+              ca_inl = ca_inl - 1;
+            }
+          	
+            step1('ca',ca_inl, ca_sul, can_desc, false, false);
+            step3("ca");
+            if (v_mb_new_custom == true){
+              $('.product-form__option:nth-child(2)').removeAttr('style');
+              $('.product-form__option:nth-child(2) .block-swatch:nth-child(1) input').click();
+            }else{
+              $('.product-form__option:nth-child(3)').removeAttr('style');
+              $('.product-form__option:nth-child(3) .block-swatch:nth-child(1) input').click();
+            }
+        }
+        if (v_mb_aluminio_title == true || v_mb_aluminio_s1 == true || v_mb_aluminio_s2 == true) {
+            $('#ml-no').click();
+            $('#swatch_ml').removeAttr('style');
+          	if (time_h > 8 && time_m > 00 && time_s > 00) {
+              al_inl = al_inl;            
+            }else{
+              al_inl = al_inl - 1;
+            }
+          
+            step1('al',al_inl, al_sul, alu_desc, false, false);
+            step3("al");
+            if (v_mb_new_custom == true){
+              $('.product-form__option:nth-child(2)').removeAttr('style');
+              $('.product-form__option:nth-child(2) .block-swatch:nth-child(1) input').click();
+            }else{
+              $('.product-form__option:nth-child(3)').removeAttr('style');
+              $('.product-form__option:nth-child(3) .block-swatch:nth-child(1) input').click();
+            }
+        }
+        if (v_mb_acrilico_title == true || v_mb_acrilico_s1 == true || v_mb_acrilico_s2 == true) {
+            $('#ml-no').click();
+            $('#swatch_ml').removeAttr('style');
+          	if (time_h > 8 && time_m > 00 && time_s > 00) {
+              ac_inl = ac_inl;            
+            }else{
+              ac_inl = ac_inl - 1;
+            }
+          	
+            step1('ac',ac_inl, ac_sul, acr_desc, true, false);
+            step3("ac");
+            if (v_mb_new_custom == true){
+              $('.product-form__option:nth-child(2)').removeAttr('style');
+              $('.product-form__option:nth-child(2) .block-swatch:nth-child(1) input').click();
+            }else{
+              $('.product-form__option:nth-child(3)').removeAttr('style');
+              $('.product-form__option:nth-child(3) .block-swatch:nth-child(1) input').click();
+            }
+        }
+        if (v_mb_enmarcado_title == true || v_mb_enmarcado_s1 == true || v_mb_enmarcado_s2 == true) {
+          	if (time_h > 8 && time_m > 30 && time_s > 00) {
+              fr_inl = fr_inl;            
+            }else{
+              fr_inl = fr_inl - 1;
+            }
+          
+            step1('fr',fr_inl, fr_sul, fra_desc, false, false);
+            
+            step3("fr");
+            
+            if (v_mb_new_custom == true){
+              var active_framed = $( ".product-form__option:nth-child(2) .block-swatch:nth-child(1):not(.block-swatch--disabled)" ).length;
+            }else{
+              var active_framed = $( ".product-form__option:nth-child(3) .block-swatch:nth-child(1):not(.block-swatch--disabled)" ).length;
+            }
+
+            if(active_framed == 0 && ssg != 1){
+              	if (v_mb_new_custom == true){
+                  $('.product-form__option:nth-child(2) .block-swatch:nth-child(2) input').click();
+                }else{
+                  $('.product-form__option:nth-child(3) .block-swatch:nth-child(2) input').click();
+                }
+            }
+          
+          if (v_mb_new_custom == true){
+            $('.product-form__option:nth-child(2)').attr('style','display:block!important;');
+          }else{
+            $('.product-form__option:nth-child(3)').attr('style','display:block!important;');
+          }
+        }
+        if (v_mb_portarretratos_title == true || v_mb_portarretratos_s1 == true || v_mb_portarretratos_s2 == true) {
+          	if (time_h > 8 && time_m > 30 && time_s > 00) {
+              pf_inl = pf_inl;            
+            }else{
+              pf_inl = pf_inl - 1;
+            }
+            
+            step1('pf',pf_inl, pf_sul, phf_desc, false, false);
+            step3("pf");
+        }
+        if (v_mb_collage_title == true) {
+          	if (time_h > 8 && time_m > 30 && time_s > 00) {
+              co_inl = co_inl;            
+            }else{
+              co_inl = co_inl - 1;
+            }
+            
+            step1('co',co_inl, co_sul, col_desc, false, false);
+            step3("co");
+        }
+        if (v_mb_set2_title == true) {
+          	if (time_h > 12 && time_m > 00 && time_s > 00) {
+              ca_inl = ca_inl;            
+            }else{
+              ca_inl = ca_inl - 1;
+            }
+          
+            step1('ca', ca_inl, ca_sul, cs2_desc, false, false);
+            step3("ca");
+        }
+      }, 240);
+    }
+
+
+    /* DOM EVENTS */
+
+    $(window).load(function() {
+        setTimeout(function() {
+            step0();
+        }, 1000);
+    });
+
+    $('body').on('DOMSubtreeModified', '.product-form__variants > .product-form__option:nth-child(1) > .product-form__option-name', function() {
+        setTimeout(function() {
+            step0();
+        }, 1000);
+    });
+
+    $('body').on('DOMSubtreeModified', '.product-form__variants > .product-form__option:nth-child(2) > .product-form__option-name', function() {
+        setTimeout(function() {
+            step0(1);
+        }, 1000);
+    });
+
+    {% unless product.title contains 'uadro personalizado' %}
+  	$('body').on('DOMSubtreeModified', '.product-form__variants > .product-form__option:nth-child(3) > .product-form__option-name', function() {
+        setTimeout(function() {
+            step0(1);
+        }, 1000);
+    });
+    {% endunless %}
+      
+})(jQuery);
+ 
+</script>

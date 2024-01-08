@@ -1,0 +1,150 @@
+<style>
+  header.page__header.page__header--stack.page__header--centered {
+    text-align: left !important;
+    align-items: unset !important;
+    margin: 10px 0 5px 0 !important;
+    font-size: 17px !important;
+    flex-direction: unset !important;
+    display: inline-block !important;
+  }
+  html body .shopify-section h2.h1 {
+      font-size: 20px !important;
+  }
+  @media screen and (min-width:641px){
+    .shopify-section:nth-child(2) {
+      margin-top: 50px !important;
+    }
+  }
+  @media screen and (max-width:640px){
+    .shopify-section:nth-child(2) {
+      margin-top: 40px !important;
+    }
+  }
+  
+  header.page__header > a {
+    display: contents !important;
+    width: auto !important;
+  }
+  .page__title.heading.h1 {
+    display: inline-block !important;
+  }
+  .collapser {
+    display: inline-block!important;
+    /*width: 20px!important;
+    height: 20px!important;*/
+    width: 12px!important;
+    height: 14px!important;
+    background: #1e2d7d!important;
+    margin-left: 10px!important;
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+    transition: all 0.9s !important;
+    transform: rotate(90deg) !important;
+  }
+  .collapser.right{
+    transform: translateY(1px) !important;
+  }
+  .grid{
+    height: auto !important;
+    transition: all 0.9s !important;
+    overflow: hidden !important;
+  }
+  .grid.short{
+    height: 0 !important;
+    transition: all 0.9s !important;
+    margin-bottom: -40px!important;
+  }
+  .shopify-section .collection-list__section{
+    transition: all 0.9s !important;
+  }
+  .shopify-section .collection-list__section.collapse{
+    transition: all 0.9s !important;
+    margin: 0 !important;
+  }
+  .grid .aspect-ratio {
+    transition: all 0.9s !important;
+    padding-bottom: 100% !important;
+  }
+  .grid.short .aspect-ratio {
+    padding-bottom: 0px !important;
+  }
+  .shopify-section.collection-group > section {
+    margin-top: -158px !important;
+    padding-top: 158px !important;
+  }
+  div#shopify-section-quick-links-b {
+    margin-top: 80px !important;
+  }
+  #navigator {
+    display: block !important;
+    margin-top: 20px !important;
+    margin-bottom: 40px !important;
+  }
+  #navigator > a {
+    background: #00adef;
+    margin: 10px 10px 0 0 !important;
+    padding: 10px 15px !important;
+    color: #fff !important;
+    display: inline-block !important;
+    flex: unset !important;
+    font-weight: 600 !important;
+  }
+  
+  .grid__cell p.h2 {
+    font-size: 1.3rem !important;
+  }
+  @media screen and (max-width:460px){
+    .grid__cell p.h2 {
+      font-size: 1rem !important;
+    }  
+  }
+  @media screen and (max-width:400px){
+    .grid__cell p.h2 {
+      font-size: .98rem !important;
+      padding: 0 5px !important;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }  
+  }
+  
+</style>
+<div class="container">
+  <div class="page__sub-header">
+    <nav aria-label="{{ 'general.breadcrumb.title' | t }}" class="breadcrumb">
+      <ol class="breadcrumb__list" role="list">
+        <li class="breadcrumb__item">
+          <a class="breadcrumb__link link" href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a> {%- render 'icon', icon: 'arrow-right' -%}
+        </li>
+
+        <li class="breadcrumb__item">
+          <span class="breadcrumb__link">{{ 'collection.general.all_collections' | t }}</span>
+        </li>
+      </ol>
+    </nav>
+  </div>
+  <header class="page__header--centered">
+    <h1 class="page__title heading h1" style="display:block!important;width:100%!important;text-align:center!important;margin-top:35px;">Colecciones</h1>
+  </header>
+  <div id="navigator"></div>
+</div>
+{% section 'list-collections-template-b-01' %}
+{% section 'list-collections-template-b-02' %}
+{% section 'list-collections-template-b-03' %}
+{% section 'list-collections-template-b-04' %}
+{% section 'list-collections-template-b-05' %}
+{% section 'list-collections-template-b-06' %}
+{% section 'list-collections-template-b-07' %}
+{% section 'list-collections-template-b-08' %}
+{% section 'list-collections-template-b-09' %}
+{% section 'quick-links-b' %}
+<script defer="defer">
+  $(document).ready(function(){
+    setTimeout(function() {
+      $("div[id*='shopify-section-list-collections-template']").addClass("collection-group");
+      $("body").find('.collection-group').each(function(){
+        var link = $(this).attr("id");
+        var title = $(this).find(".page__title.heading.h1").text();
+        $("#navigator").append("<a href='#"+link+"'>"+title+"</a>");
+      });
+    }, 100);
+  });
+</script>

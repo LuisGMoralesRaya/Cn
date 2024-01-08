@@ -1,0 +1,177 @@
+<style>
+  header, footer {
+    display: none !important;
+  }
+  #main #widget-fave-html, #beacon-container, #shopify-section-text-with-icons, #shopify-section-header {
+    display: none !important;
+  }
+  .product-block-list__item--description, .product-block-list__item--trust, 
+  .product-block-list__item--content, .section, .nav-bar, .page__sub-header {
+    display: none !important;
+  }
+  html body span#msi_holder {
+    display: none !important;
+  }
+  /* .product-block-list__wrapper > div:nth-child(3) {
+    display: block !important;
+  } */
+  .fpd-element-toolbar-smart.fpd-type-image {    
+    left: 20px !important;
+    top: 175.201px !important;
+    bottom: unset !important;
+    right: unset !important;
+    width: unset !important;
+    position: absolute !important;
+  }  
+
+  .product-block-list__item--ifo {
+    display: none !important;
+  }
+  button[data-plyr="fullscreen"] {
+    display: none !important;
+  }
+  div[id^='zoko-'], div[id*='zoko-']{
+    display: none !important;
+  }
+  #vajroAddToCart {
+    width: 100% !important;
+  }
+  .product-form__add-button {
+    pointer-events: none !important;
+  }
+  .product-meta > h1, .product-meta > .product-meta__label-list {
+    margin: 0px !important;
+  }
+</style>
+<script>
+ 
+  let isVajroSDKScriptLoaded = false;
+  let vajroSDKScript = document.createElement("script");
+  vajroSDKScript.type = "text/javascript";
+  vajroSDKScript.src = "https://praveenvajro.github.io/lowcode/vajro-sdk-latest/vajro-sdk-new.js";
+  vajroSDKScript.id = "vajro-sdk-script";
+  vajroSDKScript.onload = function () {
+    isVajroSDKScriptLoaded = true;
+  };
+  document.getElementsByTagName("head")[0].appendChild(vajroSDKScript);
+
+  function hideAddButton () {
+    let handleElemFunction = null;
+    handleElemFunction = setInterval(function () {
+      if(document.getElementById("vajroAddToCart")) {
+        document.getElementById("vajroAddToCart").style.cssText = "pointer-events: none; opacity: 0.4;";
+        showAddButton();
+        clearInterval(handleElemFunction);
+      }
+    }, 100);
+  }
+  function showAddButton() {
+    let handleElemFunction = null;
+    handleElemFunction = setInterval(function () {
+      if(document.getElementById("vajroAddToCart") && document.getElementsByClassName("price--compare")[0]) {
+        document.getElementById("vajroAddToCart").style.cssText = "";
+        clearInterval(handleElemFunction);
+      }
+    }, 100);
+  }
+  hideAddButton();
+  
+  function handleAddToCart() {
+    const productId = document.querySelector('.ssw-fave-btn')?.getAttribute('data-product-id') || '';
+    let customAttributes = {};
+    let formElem = document.querySelector('[action="/cart/add"]');
+    let formInputElem = formElem?.querySelector('[name="id"]');
+    let variantId = formInputElem ? formInputElem.value : '';
+
+    VajroSDK.addLineItemToCart()
+      .setProductId(productId.toString())
+      .setVariantId(variantId.toString())
+      .setQuantity(1)
+      .exec().then(res => {
+        VajroSDK
+          .showToastMessage()
+          .setMessage('Added to cart successfully')
+          .exec();
+      
+        VajroSDK
+          .navigateTo()
+          .setNavigationType('CART')
+          .setHandle('')
+          .exec();
+      }, error => {
+        VajroSDK
+          .showToastMessage()
+          .setMessage('Somthing went wrong')
+          .exec()
+      })
+  }
+  
+  let replaceElemFunction = null;
+   replaceElemFunction = setInterval(function () {
+    var old_element = document.getElementsByClassName('product-form__add-button')[0];
+    var new_element = old_element && old_element.cloneNode(true) || null;
+    let {VajroSDK = null, FPD = null} = window;
+    if(old_element && VajroSDK && isVajroSDKScriptLoaded) {
+      clearInterval(replaceElemFunction);
+      var btnParentElement = document.createElement('div');
+      btnParentElement.setAttribute("id", "vajroAddToCart");
+      
+      old_element.parentNode.replaceChild(btnParentElement, old_element);
+
+      document.getElementById("vajroAddToCart").appendChild(new_element);
+      document.getElementById("vajroAddToCart").addEventListener('click', handleAddToCart);
+      
+      document.querySelector('a#gara-sp').remove();
+      document.querySelector('div#timer_SingleProduct').remove();
+      calcPrice();
+    }
+  }, 300);
+
+
+  $('body').on('DOMSubtreeModified', '.product-form__variants > .product-form__option:nth-child(1) > .product-form__option-name', function() {
+    hideAddButton();
+    setTimeout(function() {
+      calcPrice();
+    }, 1000);
+  });
+
+  $('body').on('DOMSubtreeModified', '.product-form__variants > .product-form__option:nth-child(2) > .product-form__option-name', function() {
+    hideAddButton();
+    setTimeout(function() {
+      calcPrice();
+    }, 1000);
+  });
+
+  $('body').on('DOMSubtreeModified', '.product-form__variants > .product-form__option:nth-child(3) > .product-form__option-name', function() {
+    hideAddButton();
+    setTimeout(function() {
+      calcPrice();
+    }, 1000);
+  });
+
+  const percentageDiscount = 50;
+
+  function calcPrice () {
+    let replaceElemFunction = null;
+    replaceElemFunction = setInterval(function () {
+      let originalPrice = document.getElementsByClassName("price--compare")[0].innerText;
+      if(originalPrice) {
+        clearInterval(replaceElemFunction);
+        const priceHighlight = document.getElementsByClassName("price--highlight")[0];
+        const updatePercentageDiscount = document.getElementById("save");
+        const removeTextinPrice  = originalPrice.replace(/[^0-9\.]+/g, "");
+        const percentageCal = ((Number(percentageDiscount) / 100) *  Number(removeTextinPrice)).toFixed(2);
+        const formatPrice = (Number(removeTextinPrice) - Number(percentageCal)).toFixed(2);
+        priceHighlight.innerHTML = `<span class="visually-hidden">Sale Price</span><span style="margin-right:5px">$</span>${ formatNumbertoPrice(formatPrice) }`;
+        updatePercentageDiscount.innerHTML = `Ahorras $${ formatNumbertoPrice(percentageCal) } (<span style="line-height: 26px !important;">${ percentageDiscount }%</span>)`;
+      }
+    }, 500);
+  }
+
+  function formatNumbertoPrice (num) {
+    let convertPrice = new Intl.NumberFormat('us-US').format(num);
+    const checkDec = convertPrice?.split(".");
+    const filterPrice = checkDec.length === 2 ? checkDec[1].length === 1 ? convertPrice += "0" : convertPrice : convertPrice;
+    return filterPrice;
+  }
+</script>

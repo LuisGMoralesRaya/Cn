@@ -1,0 +1,107 @@
+<style>
+  .banner_cart_fall22{
+    display: none;
+  }
+  .banner_cart_fall22.visible {
+    display: block;
+    background: #fff;
+    margin-bottom: 30px;
+    position: relative;
+    min-height: 60px;
+  }
+  .banner_cart_fall22.visible .wrapper_content{
+    position: relative;
+    min-height: 60px;
+  }
+  .banner_cart_fall22.visible .wrapper_content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .banner_cart_fall22.visible .wrapper_content .slide{
+    position: absolute;
+  }
+  .banner_cart_fall22.visible .wrapper_content .slide img {
+    max-width: 60px;
+  }
+  .banner_cart_fall22.visible .wrapper_content .slide span {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 19px;
+    margin-left: 8px;
+    color: #1f0d59;
+    line-height: 60px;
+  }
+  @media screen and (max-width:1024px){
+    .banner_cart_fall22.visible .wrapper_content .slide span {
+      font-size: 18px;
+    }
+  }
+  @media screen and (max-width:640px){
+    .banner_cart_fall22.visible {
+      margin-bottom: 18px;
+    }
+  }
+  @media screen and (max-width:600px){
+    .banner_cart_fall22.visible .wrapper_content .slide img {
+      max-width: 50px;
+      margin-top: 5px;
+    }
+    .banner_cart_fall22.visible .wrapper_content .slide span {
+      font-size: 17px;
+    }
+  }
+  @media screen and (max-width:550px){
+    .banner_cart_fall22.visible .wrapper_content .slide img {
+      max-width: 40px;
+      margin-top: 10px;
+    }
+    .banner_cart_fall22.visible .wrapper_content .slide span {
+      font-size: 16px;
+    }
+  }
+  @media screen and (max-width:460px){
+    .banner_cart_fall22.visible {
+      min-height: 110px;
+      padding-top: 23px;
+    }
+    .banner_cart_fall22.visible .wrapper_content .slide img {
+      display: block;
+      margin: 0 auto;
+      max-width: 60px;
+    }
+    .banner_cart_fall22.visible .wrapper_content .slide span {
+      line-height: 1.2em !important;
+      display: inline-block !important;
+      text-align: center !important;
+      margin: 0 !important;
+      padding: 0 10px !important;
+    }
+  }
+</style>
+<script>
+  function getNUX() {
+    /*$.urlParam = function(name){
+      var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      if (results==null) {
+         return null;
+      }
+      return decodeURI(results[1]) || 0;
+    }
+    var out = $.urlParam('nux');
+    if( out === "f22-1" ){
+      var banner_cart = '<div class="banner_cart_fall22"><div id="wrapper_content_banner_cart_fall22" class="wrapper_content"><div class="slide"><img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Garantia.gif?v=1662500842"/><span>Cambios y Devoluciones Gratis</span></div></div>';
+    }
+    if( out === "f22-2" ){
+      var banner_cart = '<div class="banner_cart_fall22"><div id="wrapper_content_banner_cart_fall22" class="wrapper_content"><div class="slide"><img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Garantia_envio.gif?v=1662500842"/><span>Cambios y Devoluciones Gratis + Envío Gratis</span></div></div>';
+    }*/
+    var banner_cart = '<div class="banner_cart_fall22"><div id="wrapper_content_banner_cart_fall22" class="wrapper_content"><div class="slide"><img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Garantia_envio.gif?v=1662500842"/><span>Cambios y Devoluciones Gratis + Envío Gratis</span></div></div>';
+    $('form.cart-recap').before(banner_cart);
+    setTimeout(function(){
+      $('.banner_cart_fall22').addClass('visible');
+    }, 1000);
+  }
+  $(document).ready(function(){
+    setTimeout(getNUX, 1000);
+  });
+</script>

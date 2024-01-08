@@ -1,0 +1,90 @@
+<div class="contactbg"></div>
+<div class="container container--medium">
+  <header class="page__header " style="margin:0px !important">
+    <h1 class="page__title heading h1" >Contacto</h1>
+    
+   
+  </header>
+  
+  <div class="page__content rte">
+    <div class="cl_left">{{ page.content }}</div>
+    <div class="cl_right">
+      <br><br>
+      <strong>¿Buscas hablar directamente con nosotros?</strong>
+      <ul class="icon_list">
+        <li>
+          <a href="tel:8113662090">
+          Tel: 811 366 2090
+          </a>
+        </li>
+        <li>
+          <a href="mailto:hola@canvaslab.com">
+          hola@canvaslab.com
+          </a>
+        </li>
+      
+      </ul>
+      
+      <span style="font-size:12px !important;">El medio más rápido para recibir respuesta es nuestro chat en vivo.</span>
+   
+      
+      <button type="button" onclick="openChat()" class="product-form__add-button button button--primary">Empezar chat</button>
+      <br><br><hr><br>
+      <strong>Horarios</strong>
+      <ul class="icon_list">
+        <li>
+          L-V: 8:00 - 20:00 hrs
+        </li>
+        <li>
+          S: 9:30 - 13:30 hrs
+        </li>
+      
+      </ul>
+      
+    
+   
+<script type="text/javascript">// <![CDATA[
+function openChat(){
+Beacon('open');
+}
+// ]]></script>
+    </div>
+    
+      </div>
+</div>
+<style>
+  #main{margin:40px 20px;}
+  .page__header--centered{text-align:left !important;}
+  #main .container {background:#fff !important; border-radius:3px; border:1px solid #f3f3f3; margin-top:20px; margin-bottom:20px; padding:40px;}
+  .contactbg{
+  /*background:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/t/65/assets/canvas-procontact.jpg?v=1626932075');*/
+    
+    background:url('https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Galeria-Artistas-Asociados_-_editada-pichi.jpg?v=1627076458');
+    
+  height:300px !important;  
+  background-position:center center;
+  background-size: cover;
+    margin:-40px -20px;
+  }
+  
+  @media only screen and (max-width: 768px) {
+  .cl_left{display:block; width:100%; vertical-align:top;}  
+  .cl_right{display:block; width:100%;vertical-align:top;margin-top:-40px;}
+    iframe{margin: 0px -20px !important; }
+
+}
+  @media only screen and (min-width: 769px) {
+  .cl_left{display:inline-block; width:60%; vertical-align:top;}  
+  .cl_right{display:inline-block; width:39%;vertical-align:top;} 
+}
+  
+  
+   
+  iframe .frmTitle{display:none !important;}
+  iframe .formBodyDiv{margin:0px !important; padding:0px !important;}
+  .page__content{margin:0px !important;}
+  ul{list-style:none;}
+  .icon_list li{display:block;}
+  .button{background-color:#5000ea !important;}
+  
+</style>

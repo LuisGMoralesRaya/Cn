@@ -1,0 +1,18 @@
+{% unless product == empty %}
+  <script type="application/json" id="ProductJson-FPD">
+    {{ product | json }}
+  </script>
+{% endunless %}
+
+{% unless cart == empty %}
+  <script type="application/json" id="CartJSON-FPD">
+    {{ cart | json }}
+  </script>
+{% endunless %}
+
+<script type="text/javascript">
+  if(typeof window.FPD == "undefined") {
+    window.FPD = {};
+  }
+  window.FPD.money_format = "{{ shop.money_format }}";
+</script>

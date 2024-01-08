@@ -1,0 +1,687 @@
+{% include 'settings_theme_instance' %}
+
+{%- comment -%}We start by creating a lot of useful variables !{%- endcomment -%}
+
+{%- assign items_per_page = cart.attributes.collection_products_per_page | default: section.settings.default_products_per_page -%}
+
+{%- assign has_visible_tags = false -%}
+
+{%- if section.settings.show_filters -%}
+  {%- if section.settings.filter_type == 'tag' -%}
+    {%- for tag in collection.all_tags -%}
+      {%- unless tag contains '__' -%}
+        {%- assign has_visible_tags = true -%}
+        {%- break -%}
+      {%- endunless -%}
+    {%- endfor -%}
+  {%- elsif section.settings.filter_type == 'group' -%}
+    {%- for tag in collection.all_tags -%}
+      {%- assign tag_parts = tag | split: '_' -%}
+
+      {%- if tag_parts.size >= 2 -%}
+        {%- assign has_visible_tags = true -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- assign quick_links_menu = linklists[section.settings.quick_links] -%}
+
+{%- if quick_links_menu.links.size > 0 or has_visible_tags -%}
+  {%- assign has_filters = true -%}
+{%- else -%}
+  {%- assign has_filters = false -%}
+{%- endif -%}
+
+{%- if has_filters -%}
+  {%- capture grid_classes -%}1/3--tablet-and-up 1/{{ section.settings.products_per_row }}--desk{%- endcapture -%}
+{%- else -%}
+  {%- capture grid_classes -%}1/3--tablet 1/{{ section.settings.products_per_row }}--lap-and-up{%- endcapture -%}
+{%- endif -%}
+
+{%- assign view_mode = cart.attributes.collection_layout | default: section.settings.default_view_layout -%}
+
+{%- capture section_settings -%}
+{
+  "currentSortBy": {{ collection.sort_by | default: collection.default_sort_by | json }},
+  "currentTags": [{% for tag in current_tags %}{{ tag | handle | json }}{% unless forloop.last %},{% endunless %}{% endfor %}],
+  "filterType": {{ section.settings.filter_type | json }},
+  "defaultLayout": {{ section.settings.default_view_layout | json }},
+  "defaultProductsPerPage": {{ section.settings.default_products_per_page | json }},
+  "isAutomatic": {% if collection.current_vendor != blank %}true{% else %}false{% endif %},
+  "gridClasses": {{ grid_classes | json }}
+}
+{%- endcapture -%}
+
+<section data-section-id="{{ section.id }}" data-section-type="collection" data-section-settings='{{ section_settings }}'>
+  <div class="container container--flush">
+    <div class="page__sub-header">
+      <nav aria-label="{{ 'general.breadcrumb.title' | t }}" class="breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li class="breadcrumb__item">
+            <a class="breadcrumb__link link" href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a> {%- render 'icon', icon: 'arrow-right' -%}
+          </li>
+
+          <li class="breadcrumb__item">
+            {%- if current_tags -%}
+              <a class="breadcrumb__link link" href="{{ collection.url }}" {% unless current_tags %}aria-current="page"{% endunless %}>
+                {%- if collection.handle == 'all' -%}
+                  {{- 'collection.general.all_products' | t -}}
+                {%- else -%}
+                  {{- collection.title -}}
+                {%- endif -%}
+              </a>
+
+              {%- render 'icon', icon: 'arrow-right' -%}
+            {%- else -%}
+              <span class="breadcrumb__link" aria-current="page">
+                {%- if collection.handle == 'all' -%}
+                  {{- 'collection.general.all_products' | t -}}
+                {%- else -%}
+                  {{- collection.title -}}
+                {%- endif -%}
+              </span>
+            {%- endif -%}
+          </li>
+
+          {%- if current_tags -%}
+            <li class="breadcrumb__item">
+              {%- if section.settings.filter_type == 'tag' -%}
+                {%- assign tag = current_tags.first -%}
+              {%- elsif section.settings.filter_type == 'group' -%}
+                {%- assign tag = current_tags.first | split: '_' | last -%}
+              {%- endif -%}
+
+              <span class="breadcrumb__link" aria-current="page">{{ tag | capitalize }}</span>
+            </li>
+          {%- endif -%}
+        </ol>
+      </nav>
+    </div>
+
+    <div {% if has_filters %}class="layout"{% endif %}>
+      {%- comment -%}
+      --------------------------------------------------------------------------------------
+      FILTER BAR (DESKTOP)
+      --------------------------------------------------------------------------------------
+      {%- endcomment -%}
+
+      {%- if has_filters -%}
+        <div class="layout__section layout__section--secondary hidden-pocket">
+          <div class="card">
+            {%- if quick_links_menu.links.size > 0 -%}
+              <div class="card__section card__section--tight">
+                <p class="card__title--small heading h2">{{ quick_links_menu.title }}</p>
+
+                <ul class="collection__filter-linklist" role="list">
+                  {%- for link in quick_links_menu.links -%}
+                    <li>
+                      {%- if link.links.size > 0 -%}
+                        {%- capture link_id -%}filter-{% increment link_id %}{%- endcapture -%}
+
+                        <button class="collection__filter-link link link--primary {% if link.active or link.child_active %}is-active{% endif %}" data-action="toggle-collapsible" aria-controls="{{ link_id }}" aria-expanded="{% if link.active or link.child_active %}true{% else %}false{% endif %}">
+                          {{ link.title }} {% if link.type == 'collection_link' and section.settings.quick_links_show_products_count %}({{ link.object.products_count }}){% endif %} {%- render 'icon', icon: 'arrow-bottom' -%}
+                        </button>
+
+                        <div id="{{ link_id }}" class="collection__filter-collapsible" {% if link.active or link.child_active %}aria-hidden="false" style="height: auto"{% else %}aria-hidden="true"{% endif %}>
+                          <ul class="collection__filter-linklist" role="list">
+                            {%- for sub_link in link.links -%}
+                              <li>
+                                <a href="{{ sub_link.url }}" class="collection__filter-link link link--primary {% if sub_link.active %}is-active{% endif %}">{{ sub_link.title }} {% if sub_link.type == 'collection_link' and section.settings.quick_links_show_products_count %}({{ sub_link.object.products_count }}){% endif %}</a>
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        </div>
+                      {%- else -%}
+                        <a href="{{ link.url }}" class="collection__filter-link link link--primary {% if link.active %}is-active{% endif %}">{{ link.title }} {% if link.type == 'collection_link' and section.settings.quick_links_show_products_count %}({{ link.object.products_count }}){% endif %}</a>
+                      {%- endif -%}
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.show_filters and has_visible_tags -%}
+
+            {% assign allowed_cats_shape = "Cuadrado,Horizontal,Vertical,Panorámico,Alargado" | split: ',' %}
+            {% assign allowed_cats_basematerials = "Individuales,diseños-especiales,Layouts,PixSets,Sets" | split: ',' %}
+            {% assign allowed_cats_artisticmovement = "art-nouveau,barroco,gotico,impresionismo,neoclasicismo,postimpresionismo,realismo,renacimiento,rococo,romanticismo,simbolismo,surrealismo" | split: ',' %}
+            {% assign allowed_cats_collections = "abstracto,alimentos,animales,arquitectura,arte-clasico,Arte Clásico,blanco-y-negro,botanica,cielo-y-espacio,ciudades,colorido,deportes,fashionista,frases,gamers,girl-power,historica,humor,hype,iconos-y-celebridades,ilustraciones,mapas,minimalista,motivacional,musica,niños,paisajes,peliculas,series-de-tv,anime,caricaturas,playas-y-mares,pop-art,religion,yoga-&-zen" | split: ',' %}
+            {% assign allowed_cats_artists = "alexandre-cabanel,alfons-mucha,amedeo-modigliani,anton-van-dyck,banksy,bartolome-esteban-murillo,camille-corot,camille-pisarro,caravaggio,caspar-david-friedrich,claude-monet,david-alfaro-siqueiros,diego-velazquez,edgar-degas,edouard-manet,edvard-munch,edward-hopper,el-bosco,eugene-delacroix,fernando-botero,francisco-de-goya,francois-bucher,georges-braque,georges-seurat,giotto,gustav-klimt,ivan-aivazovsky,jacques-louis-david,jean-francois-millet,jean-honore-fragonard,johannes-vermeer,john-collier,john-everett-millais,john-william-goddard,john-william-waterhouse,jose-clemente-orozco,joseph-mallord-william-turner,juan-gris,katsushika-hokusai,leonardo-da-vinci,marc-chagall,maria-izquierdo,marie-louise-elisabeth-vigee-lebrun,masaccio,miguel-angel,norman-rockwell,paul-cezanne,paul-gauguin,paul-klee,pierre-auguste-renoir,piet-mondrian,rafael-sanzio,rembrandt-van-rijn,remedios-varo,rosa-bonheur,sandro-botticelli,vincent-van-gogh,wassily-kandinsky,william-adolphe-bouguereau" | split: ',' %}
+            {% assign allowed_cats_partners = "2025mx,adriana-sosa,adrian-garcia,alan-ortiz,alemi,andres-blasquez,david-aste,designs-by-andrea,dram,edward-giovanni-reyna,efrain-malo,eggshibit,el-pinta-cuadros,emmanuel-ramirez,eric-de-lucio,ezdrifter,fernando-garcia-cortez,gina-villalobos,hctr,isaac-laniado,josue-altamira,juni-anker,laura-campos,luis-rodrigo-magaña-andrade,luis-oleg,lunnawabi,marce-islas,marcela-illustrates,marcos-rodriguez,mauricio-silerio,mayka-ienova,monoceroz,najesi,gerardo-rodela---neoleón,rahma-projekt,raul-ruz,rev,rodrigo-zabal,yorckh" | split: ',' %}
+            {% assign allowed_cats_subcategories = "star-wars,futbol,nba,nfl,caballos,cebras,elefantes,koalas,osos,tiburones,assassin's creed,bioshock,call of duty,fallout,final fantasy,fortnite,god of war,grand theft auto,halo,league of legends,mario bros,metal gear solid,mortal kombat,nintendo,resident evil,the legend of zelda,the witcher,world of warcraft,la loteria,adventure time,alien,avengers,bastardos sin gloria,bob esponja,caballeros del zodiaco,capitán américa,dc,django sin cadenas,dragon ball z,drive,eso,friends,frozen,game of thrones,garfield,halloween,harry potter,he-man,hey arnold,kill bill,liga de la justicia,lilo and stitch,looney tunes,lord of the rings,los simpsons,marvel,mickey mouse and friends,my little pony,one piece,paw patrol,películas famosas,perros de reserva,pokémon,pulp fiction,ranma y medio,resident evil,rick and morty,rocky,sailor moon,sangre por sangre,scarface,spider-man,stranger things,superhéroes,tarantino,the big bang theory,thundercats,tortugas ninja,venom" | split: ',' %}
+
+            <div class="card__section card__section--tight">
+                  <p class="card__title--small heading h5 outer">{{ 'collection.filter.all' | t }}</p>
+
+                  <div class="collection__active-filters">
+                    {%- for tag in current_tags -%}
+
+                        <div class="collection__active-filter-item">
+                          <button class="collection__active-filter-cross" data-action="toggle-tag" data-tag="{{ tag | handle }}">{% render 'icon', icon: 'close' %}</button>
+                          
+                          {% assign words = tag | split: '-' %}
+                          {% if word == "y" or word == "a" or word == "o" or word == "e" %}
+                            {{word}}
+                          {% elsif word == "disenos" %}
+                            {{"diseños"}}
+                          {% else %}
+                            {% for word in words %}{{ word | capitalize }} {% endfor %}  
+                          {% endif %}
+                        
+                        </div>
+                    {%- endfor -%}
+
+                    {%- if current_tags != blank and current_tags.size > 1 -%}
+                      <button class="collection__clear-filter button button--small button--transparent button--full" data-action="clear-tags">{{ 'collection.filter.clear_all' | t }}</button>
+                    {%- endif -%}
+                  </div>
+
+
+             {% assign control_shape = false %}
+             {% assign control_base = false %}
+             {% assign control_movement = false %}
+             {% assign control_subject = false %}
+             {% assign control_famous = false %}
+             {% assign control_partners = false %}
+             {% assign control_sub = false %}
+
+             {%- for instance_tag in collection.all_tags -%}
+                 {%- if allowed_cats_shape contains instance_tag -%}
+                       {% assign control_shape = true %}
+                 {%- endif -%}
+                 {%- if allowed_cats_basematerials contains instance_tag -%}
+                       {% assign control_base = true %}
+                 {%- endif -%}
+                 {%- if allowed_cats_artisticmovement contains instance_tag -%}
+                       {% assign control_movement = true %}
+                 {%- endif -%}
+                 {%- if allowed_cats_collections contains instance_tag -%}
+                       {% assign control_subject = true %}
+                 {%- endif -%}
+                 {%- if allowed_cats_artists contains instance_tag -%}
+                       {% assign control_famous = true %}
+                 {%- endif -%}
+                 {%- if allowed_cats_partners contains instance_tag -%}
+                       {% assign control_partners = true %}
+                 {%- endif -%}
+                 {%- if allowed_cats_subcategories contains instance_tag -%}
+                       {% assign control_sub = true %}
+                 {%- endif -%}
+             {%- endfor -%}
+
+                 {%- if control_shape == true -%}
+                      <p class="card__title--small heading h4">Forma</p>
+                      {%- if section.settings.filter_type == 'tag' -%}
+                        <div class="collection__filter-group">
+                          <ul class="collection__filter-checkbox-list" role="list">
+                            {%- for tag in collection.all_tags -%}
+                              {%- if allowed_cats_shape contains tag -%}
+                                {%- unless tag contains '__' -%}
+                                  <li class="collection__filter-checkbox">
+                                    <div class="checkbox-wrapper">
+                                      <input type="radio" class="checkbox" id="{{ link_id }}-tag-{{ tag | handle }}" name="tag-filter" data-action="toggle-tag" data-tag="{{ tag | handle }}" {% if current_tags contains tag %}checked="checked"{% endif %}>
+                                      {% render 'icon', icon: 'check' %}
+                                    </div>                              
+                                    {% assign words = tag | split: '-' %}
+                                    {% if word == "y" or word == "a" or word == "o" or word == "e" %}
+                                        <label for="{{ link_id }}-tag-{{ tag | handle }}">{{word}}</label>
+                                    {% else %}
+                                        <label for="{{ link_id }}-tag-{{ tag | handle }}">{% for word in words %}{{ word | capitalize }} {% endfor %}</label> 
+                                    {% endif %}
+                                  </li>
+                                {%- endunless -%}
+                              {%- endif -%}
+                            {%- endfor -%}
+                          </ul>
+                        </div>
+                      {%- endif -%}
+                 {%- endif -%}
+              
+
+                  {%- if control_base == true -%}
+                      <p class="card__title--small heading h4">Tipo de Diseño</p>
+                      {%- if section.settings.filter_type == 'tag' -%}
+                        <div class="collection__filter-group">
+                          <ul class="collection__filter-checkbox-list" role="list">
+                            {%- for tag in collection.all_tags -%}
+                              {%- if allowed_cats_basematerials contains tag -%}
+                                {%- unless tag contains '__' -%}
+                                  <li class="collection__filter-checkbox">
+                                    <div class="checkbox-wrapper">
+                                      <input type="radio" class="checkbox" id="{{ link_id }}-tag-{{ tag | handle }}" name="tag-filter" data-action="toggle-tag" data-tag="{{ tag | handle }}" {% if current_tags contains tag %}checked="checked"{% endif %}>
+                                      {% render 'icon', icon: 'check' %}
+                                    </div>
+                                    {% assign words = tag | split: '-' %}
+                                    {% if word == "y" or word == "a" or word == "o" or word == "e" %}
+                                        <label for="{{ link_id }}-tag-{{ tag | handle }}">{{word}}</label>
+                                    {% else %}
+                                        <label for="{{ link_id }}-tag-{{ tag | handle }}">{% for word in words %}{{ word | capitalize }} {% endfor %}</label> 
+                                    {% endif %}
+                                  </li>
+                                {%- endunless -%}
+                              {%- endif -%}
+                            {%- endfor -%}
+                          </ul>
+                        </div>
+                      {%- endif -%}
+                  {%- endif -%}
+
+
+                  {%- if control_movement == true -%}
+                      <p class="card__title--small heading h4">Movimiento Artístico</p>
+                      {%- if section.settings.filter_type == 'tag' -%}
+                        <div class="collection__filter-group">
+                          <ul class="collection__filter-checkbox-list" role="list">
+                            {%- for tag in collection.all_tags -%}
+                              {%- if allowed_cats_artisticmovement contains tag -%}
+                                {%- unless tag contains '__' -%}
+                                  <li class="collection__filter-checkbox">
+                                    <div class="checkbox-wrapper">
+                                      <input type="radio" class="checkbox" id="{{ link_id }}-tag-{{ tag | handle }}" name="tag-filter" data-action="toggle-tag" data-tag="{{ tag | handle }}" {% if current_tags contains tag %}checked="checked"{% endif %}>
+                                      {% render 'icon', icon: 'check' %}
+                                    </div>
+                                    {% assign words = tag | split: '-' %}
+                                    {% if word == "y" or word == "a" or word == "o" or word == "e" %}
+                                        <label for="{{ link_id }}-tag-{{ tag | handle }}">{{word}}</label>
+                                    {% else %}
+                                        <label for="{{ link_id }}-tag-{{ tag | handle }}">{% for word in words %}{{ word | capitalize }} {% endfor %}</label> 
+                                    {% endif %}
+                                  </li>
+                                {%- endunless -%}
+                              {%- endif -%}
+                            {%- endfor -%}
+                          </ul>
+                        </div>
+                      {%- endif -%}
+                  {%- endif -%}
+
+
+                  {%- if control_subject == true -%}
+                      <p class="card__title--small heading h4">Tema</p>
+                      {%- if section.settings.filter_type == 'tag' -%}
+                        <div class="collection__filter-group">
+                          <ul class="collection__filter-checkbox-list" role="list">
+                            {%- for tag in collection.all_tags -%}
+                              {%- if allowed_cats_collections contains tag -%}
+                                {%- unless tag contains '__' -%}
+                                  <li class="collection__filter-checkbox">
+                                    <div class="checkbox-wrapper">
+                                      <input type="radio" class="checkbox" id="{{ link_id }}-tag-{{ tag | handle }}" name="tag-filter" data-action="toggle-tag" data-tag="{{ tag | handle }}" {% if current_tags contains tag %}checked="checked"{% endif %}>
+                                      {% render 'icon', icon: 'check' %}
+                                    </div>                              
+                                    {% assign words = tag | split: '-' %}
+                                    {% if word == "y" or word == "a" or word == "o" or word == "e" %}
+                                        <label for="{{ link_id }}-tag-{{ tag | handle }}">{{word}}</label>
+                                    {% else %}
+                                        <label for="{{ link_id }}-tag-{{ tag | handle }}">{% for word in words %}{{ word | capitalize }} {% endfor %}</label> 
+                                    {% endif %}
+                                  </li>
+                                {%- endunless -%}
+                              {%- endif -%}
+                            {%- endfor -%}
+                          </ul>
+                        </div>
+                      {%- endif -%}
+                  {%- endif -%}
+
+
+                  {%- if control_famous == true -%}
+                      <p class="card__title--small heading h4">Artistas Famosos</p>
+                      {%- if section.settings.filter_type == 'tag' -%}
+                        <div class="collection__filter-group">
+                          <ul class="collection__filter-checkbox-list" role="list">
+                            {%- for tag in collection.all_tags -%}
+                              {%- if allowed_cats_artists contains tag -%}
+                                {%- unless tag contains '__' -%}
+                                  <li class="collection__filter-checkbox">
+                                    <div class="checkbox-wrapper">
+                                      <input type="radio" class="checkbox" id="{{ link_id }}-tag-{{ tag | handle }}" name="tag-filter" data-action="toggle-tag" data-tag="{{ tag | handle }}" {% if current_tags contains tag %}checked="checked"{% endif %}>
+                                      {% render 'icon', icon: 'check' %}
+                                    </div>
+                                    {% assign words = tag | split: '-' %}
+                                    {% if word == "y" or word == "a" or word == "o" or word == "e" %}
+                                        <label for="{{ link_id }}-tag-{{ tag | handle }}">{{word}}</label>
+                                    {% else %}
+                                        <label for="{{ link_id }}-tag-{{ tag | handle }}">{% for word in words %}{{ word | capitalize }} {% endfor %}</label> 
+                                    {% endif %}
+                                  </li>
+                                {%- endunless -%}
+                              {%- endif -%}
+                            {%- endfor -%}
+                          </ul>
+                        </div>
+                      {%- endif -%}
+                  {%- endif -%}
+
+
+                  {%- if control_partners == true -%}
+                      <p class="card__title--small heading h4">Artistas Asociados</p>
+                      {%- if section.settings.filter_type == 'tag' -%}
+                        <div class="collection__filter-group">
+                          <ul class="collection__filter-checkbox-list" role="list">
+                            {%- for tag in collection.all_tags -%}
+                              {%- if allowed_cats_partners contains tag -%}
+                                {%- unless tag contains '__' -%}
+                                  <li class="collection__filter-checkbox">
+                                    <div class="checkbox-wrapper">
+                                      <input type="radio" class="checkbox" id="{{ link_id }}-tag-{{ tag | handle }}" name="tag-filter" data-action="toggle-tag" data-tag="{{ tag | handle }}" {% if current_tags contains tag %}checked="checked"{% endif %}>
+                                      {% render 'icon', icon: 'check' %}
+                                    </div>
+                                    {% assign words = tag | split: '-' %}
+                                    {% if word == "y" or word == "a" or word == "o" or word == "e" %}
+                                        <label for="{{ link_id }}-tag-{{ tag | handle }}">{{word}}</label>
+                                    {% else %}
+                                        <label for="{{ link_id }}-tag-{{ tag | handle }}">{% for word in words %}{{ word | capitalize }} {% endfor %}</label> 
+                                    {% endif %}
+                                  </li>
+                                {%- endunless -%}
+                              {%- endif -%}
+                            {%- endfor -%}
+                          </ul>
+                        </div>
+                      {%- endif -%}
+                  {%- endif -%}
+
+
+                  {%- if control_sub == true -%}
+                      <p class="card__title--small heading h4">Subcategorías</p>
+                      {%- if section.settings.filter_type == 'tag' -%}
+                        <div class="collection__filter-group">
+                          <ul class="collection__filter-checkbox-list" role="list">
+                            {%- for tag in collection.all_tags -%}
+                              {%- if allowed_cats_subcategories contains tag -%}
+                                {%- unless tag contains '__' -%}
+                                  <li class="collection__filter-checkbox">
+                                    <div class="checkbox-wrapper">
+                                      <input type="radio" class="checkbox" id="{{ link_id }}-tag-{{ tag | handle }}" name="tag-filter" data-action="toggle-tag" data-tag="{{ tag | handle }}" {% if current_tags contains tag %}checked="checked"{% endif %}>
+                                      {% render 'icon', icon: 'check' %}
+                                    </div>
+                                    {% assign words = tag | split: '-' %}
+                                    {% if word == "y" or word == "a" or word == "o" or word == "e" %}
+                                        <label for="{{ link_id }}-tag-{{ tag | handle }}">{{word}}</label>
+                                    {% else %}
+                                        <label for="{{ link_id }}-tag-{{ tag | handle }}">{% for word in words %}{{ word | capitalize }} {% endfor %}</label> 
+                                    {% endif %}
+                                  </li>
+                                {%- endunless -%}
+                              {%- endif -%}
+                            {%- endfor -%}
+                          </ul>
+                        </div>
+                      {%- endif -%}
+                  {%- endif -%}
+
+
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- comment -%}🚀{%- endcomment -%}
+      
+      {%- assign collection_banner = collection.metafields.global.collection_banner -%}
+      
+        <div {% if has_filters %}class="layout__section"{% endif %}>
+          <div class="collection">
+
+            {%- comment -%}
+            --------------------------------------------------------------------------------------
+            TOP PART (COLLECTION INFO + TOOLBAR)
+            --------------------------------------------------------------------------------------
+            {%- endcomment -%}
+
+
+              <div class="card {% if collection.products_count == 0 %}clearfix{% endif %}">
+                <header class="card__header {% unless collection.template_suffix == 'brand' %}card__header--tight{% endunless %}">
+                  {%- comment -%}
+                  IMPLEMENTATION NOTE: unfortunately I was forced to add a lot of extra div (collection__meta, collection__meta-inner, collection__header-inner,...)
+                                       to be able to accommodate with the brand related layout which make things more complicated...
+                  {%- endcomment -%}
+
+                  <div class="collection__header {% if collection.template_suffix == 'brand' %}collection__header--brand{% endif %}">
+                    {%- if section.settings.show_collection_image and collection.image and collection.all_products_count > 0 and collection.template_suffix == 'brand' -%}
+                      <div class="collection__brand-logo-wrapper hidden-pocket">
+                        <div class="collection__brand-logo-image lazyload image--fade-in" data-bg="{{ collection.image | img_url: '250x' }}"></div>
+                      </div>
+                    {%- endif -%}
+
+                    <div class="collection__header-inner">
+                      <div class="collection__meta">
+                        {%- if section.settings.show_collection_image and collection.image and collection.all_products_count > 0 and collection.template_suffix == 'brand' -%}
+                          <div class="collection__brand-logo-wrapper hidden-lap-and-up">
+                            <div class="collection__brand-logo-image lazyload image--fade-in" data-bg="{{ collection.image | img_url: '250x' }}"></div>
+                          </div>
+                        {%- endif -%}
+
+                        <div class="collection__meta-inner">
+                          <h2 class="collection__title heading h1">
+                            {%- if collection.handle == 'all' -%}
+                              {{- 'collection.general.all_products' | t -}}
+                            {%- else -%}
+                              {{- collection.title -}}
+                            {%- endif -%}
+                          </h2>
+
+                          <p class="collection__products-count text--small hidden-desk">{{ 'collection.general.products_count' | t: count: collection.all_products_count }}</p>
+                        </div>
+                      </div>
+
+                      {%- if collection.description != blank -%}
+                        {%- assign allow_collapse_description = false -%} 
+
+                        {%- if section.settings.collapse_collection_description -%}
+                          {%- assign allow_collapse_description = true -%}
+                        {%- endif -%}
+
+                        <div class="collection__description {% if allow_collapse_description %}expandable-content{% endif %}" aria-expanded="false">
+                          <div class="rte">
+                           {%- comment -%} {{ collection.description }} {%- endcomment -%}
+                          </div>
+
+                          {%- if allow_collapse_description -%}
+                            <button class="expandable-content__toggle">
+                              <span class="expandable-content__toggle-icon"></span>
+                              <span class="expandable-content__toggle-text" data-view-more="{{ 'collection.general.view_more' | t | escape }}" data-view-less="{{ 'collection.general.view_less' | t | escape }}">{{- 'collection.general.view_more' | t -}}</span>
+                            </button>
+                          {%- endif -%}
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                </header>
+{% schema %}
+{
+  "name": "Collection page",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "label": "Show collection image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "collapse_collection_description",
+      "label": "Collapse long description",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "collection_image_size",
+      "label": "Collection image size",
+      "options": [
+        {
+          "value": "preserve_ratio",
+          "label": "Original image ratio"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "small"
+    },
+    {
+      "type": "select",
+      "id": "products_per_row",
+      "label": "Products per row (desktop)",
+      "options": [
+        {
+          "value": "3",
+          "label": "3"
+        },
+        {
+          "value": "4",
+          "label": "4"
+        }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "range",
+      "id": "default_products_per_page",
+      "label": "Default products per page",
+      "min": 24,
+      "max": 48,
+      "step": 12,
+      "default": 36
+    },
+    {
+      "type": "select",
+      "id": "default_view_layout",
+      "label": "Default view layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "list",
+          "label": "List"
+        }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "select",
+      "id": "show_quick_buy",
+      "label": "Show quick buy on...",
+      "options": [
+        {
+          "value": "list",
+          "label": "List view"
+        },
+        {
+          "value": "list_grid",
+          "label": "List and grid views"
+        }
+      ],
+      "default": "list"
+    },
+    {
+      "type": "select",
+      "id": "show_quick_view",
+      "label": "Show quick view on...",
+      "options": [
+        {
+          "value": "list",
+          "label": "List view"
+        },
+        {
+          "value": "list_grid",
+          "label": "List and grid views"
+        }
+      ],
+      "default": "list"
+    },
+    {
+      "type": "header",
+      "content": "Sidebar"
+    },
+    {
+      "type": "link_list",
+      "id": "quick_links",
+      "label": "Quick links",
+      "info": "This menu has limited support for dropdown items."
+    },
+    {
+      "type": "checkbox",
+      "id": "quick_links_show_products_count",
+      "label": "Show products count",
+      "info": "Only for collection links",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Filtering"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filters",
+      "label": "Show filters",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filter_color_swatch",
+      "label": "Show filter color swatch",
+      "info": "Requires filter type \"By group\" to be selected.",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "filter_type",
+      "label": "Filter type",
+      "info": "Filters by group requires specific tag formatting. [Learn more](https://help.shopify.com/manual/using-themes/themes-by-shopify/supply#product-tips-tips-specific)",
+      "options": [
+        {
+          "value": "tag",
+          "label": "By tag"
+        },
+        {
+          "value": "group",
+          "label": "By group"
+        }
+      ],
+      "default": "tag"
+    },
+    {
+      "type": "select",
+      "id": "open_group_filters_mode",
+      "label": "Filter opening mode (desktop)",
+      "options": [
+        {
+          "value": "all_closed",
+          "label": "All closed"
+        },
+        {
+          "value": "all_open",
+          "label": "All open"
+        },
+        {
+          "value": "first_open",
+          "label": "First open"
+        }
+      ],
+      "default": "all_closed"
+    },
+    {
+      "type": "text",
+      "id": "filter_group_order",
+      "label": "Group order",
+      "info": "List items must be identical to the group name. If left empty, all groups will be displayed in alphabetical order. Example: Color, Brand, Size."
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,326 @@
+{%- assign collection = collections[section.settings.collection] -%}
+{%- assign collection_featured_image = collection.metafields.my_fields.imagen_destacada | file_url -%}
+<section class="section fc_by_cl_top" data-section-id="{{ section.id }}" data-section-type="image-with-text" >
+  <div class="container stk_container">
+    {%- capture image -%}
+      <div class="image-with-text__image-container stk_img_container" style="width: {{ section.settings.image_width }}%;">
+        {%- if section.settings.image -%}
+          <div class="aspect-ratio" style="padding-bottom: {{ 100.0 | divided_by: section.settings.image.aspect_ratio }}%">
+            {%- capture supported_sizes -%}{%- render 'image-size', sizes: '300,400,500,600,700,800,900,1000,1100,1200', image: section.settings.image -%}{%- endcapture -%}
+            {%- assign image_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <img loading="lazy" width="auto" height="100%" class="stk_img lazyload image--fade-in" data-src="{{ image_url }}" data-widths="[{{ supported_sizes }}]" data-sizes="auto" alt="{{ section.settings.image.alt | escape }}">
+
+            <noscript>
+              <img loading="lazy" width="auto" height="100%" src="{{ section.settings.image | img_url: '800x' }}" alt="{{ section.settings.image.alt | escape }}">
+            </noscript>
+          </div>
+        {%- else -%}
+        <img loading="lazy" width="auto" height="100%" class="stk_img lazyload image--fade-in" data-src="{{ collection.image | image_url }}" data-widths="[{{ supported_sizes }}]" data-sizes="auto" alt="{{ section.settings.image.alt | escape }}">
+
+
+        {%- endif -%}
+      </div>
+    {%- endcapture -%}
+
+    {%- capture text -%}
+      <div class="image-with-text__text-container">
+        <div class="image-with-text__text-aligner">
+          {%- if collection.empty? -%}
+            <h2 class="heading h3">{{ section.settings.title | escape }}</h2>
+          {%- else -%}
+            <h2 class="heading h3">{{ collection.title | escape }}</h2>
+          {%- endif -%}
+
+          <div class="rte">
+          {%- if collection.empty? -%}
+             {{ section.settings.content }}
+            
+          {%- else -%}
+            {{ collection.description  }}
+          {%- endif -%}
+            
+			
+            {%- if collection.empty? -%}
+             	{%- if section.settings.button_link != blank and section.settings.button_text != blank -%}
+              		<a href="{{ section.settings.button_link }}" class="button button--primary stk_btn">{{ section.settings.button_text | escape }}</a>
+            	{%- endif -%}
+             {%- else -%}
+				<a href="collections/{{ collection.handle }}" class="button button--primary stk_btn">{{ section.settings.button_text | escape }}</a>
+
+            
+            {%- endif -%}
+            
+
+          </div>
+        </div>
+      </div>
+    {%- endcapture -%}
+
+    <div class="image-with-text stk_bg">
+      {%- if section.settings.image_position == 'left' -%}
+        {{ image }}
+        {{ text }}
+      {%- else -%}
+        {{ text }}
+        {{ image }}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+<style>
+  .image-with-text__image-container{padding:20px !important;}
+  .image-with-text__text-container{padding:20px !important;}
+  
+  
+  .stk_btn{display:block; max-width:300px !important;margin-top:20px !important; margin-bottom:10px !important;}
+  .stk_img{padding:0px !important;}
+  .stk_bg{background:#ffffff !important; padding:0px !important;}
+  .stk_container{background:#fff !important;}
+  .stk_img_container{margin-bottom:0px !important;padding-bottom:0px !important; padding:20px 0px !important;}
+  .stk_bg .image-with-text__text-container{ padding:0px 0px 10px !important;}
+  
+  @media only screen and (min-width: 768px) {
+   /* .stk_img{padding:20px !important;}*/
+    .stk_bg{background:#ffffff !important; padding:20px !important;}
+    .stk_container{background:#f3f5f6 !important;}
+    .stk_img_container{margin-bottom:0px !important; padding:20px !important;}
+    .stk_bg .image-with-text__text-container{ padding:20px !important;}
+    
+  } 
+  
+  
+  .fc_by_cl_top{margin-bottom:0px !important;}
+  .fc_by_cl_bottom{margin-top:0px !important;}
+</style>
+{% include 'settings_theme_instance' %}
+
+{%- capture section_settings -%}
+{
+  "stackable": {% if section.settings.layout == 'vertical' and section.settings.stack_products == false %}false{% else %}true{% endif %},
+  "layout": {{ section.settings.layout | json }}
+}
+{%- endcapture -%}
+
+<section class="section fc_by_cl_bottom" data-section-id="{{ section.id }}" data-section-type="featured-collection" data-section-settings='{{ section_settings }}'>
+  
+
+
+  <div class="container stk_container {% if section.settings.layout != 'vertical' or section.settings.stack_products %}container--flush{% endif %}">
+    {%- capture product_list -%}
+      <div class="product-list product-list--{{ section.settings.layout }} {% if section.settings.stack_products %}product-list--stackable{% elsif section.settings.layout == 'vertical' %}product-list--scrollable{% endif %}">
+        {%- assign use_placeholder = true -%}
+
+        {%- if collection.empty? -%}
+          {%- assign products = (1..section.settings.products_count) -%}
+        {%- else -%}
+          {% if collection.handle == "anime" %}
+          	{%- assign products = collection.products | sort: 'published_at' -%}
+        
+        	{%- else -%}
+        		{%- assign products = collection.products  -%}
+       		{%- endif -%}
+
+          {%- assign use_placeholder = false -%}
+        {%- endif -%}
+
+        {%- for product in products limit: section.settings.products_count -%}
+          {%- if section.settings.layout == 'vertical' -%}
+            {%- assign products_per_row = section.settings.products_count | at_most: 6 -%}
+
+            {%- if section.settings.stack_products -%}
+              {%- capture grid_classes -%}1/2 1/4--lap 1/{{ products_per_row | minus: 1 }}--desk 1/{{ products_per_row }}--wide{%- endcapture -%}
+            {%- else -%}
+              {%- capture grid_classes -%}1/4--lap 1/{{ products_per_row | minus: 1 }}--desk 1/{{ products_per_row }}--wide{%- endcapture -%}
+            {%- endif -%}
+
+            {%- if use_placeholder -%}
+              {%- render 'product-item-placeholder', product: product, grid_classes: grid_classes, show_add_to_cart: section.settings.show_quick_buy -%}
+            {%- else -%}
+              {%- render 'product-item', product: product, grid_classes: grid_classes, show_add_to_cart: section.settings.show_quick_buy, prom_v1: prom_v1, pbhd_v1: pbhd_v1, pbhm_v1: pbhm_v1, pbcd_v1: pbcd_v1, pbcm_v1: pbcm_v1, dacbs_v1: dacbs_v1, dact1_v1: dact1_v1, dact2_v1: dact2_v1, dact3_v1: dact3_v1, dact4_v1: dact4_v1, dact5_v1: dact5_v1, dact6_v1: dact6_v1, dalbs_v1: dalbs_v1, dcabs_v1: dcabs_v1, dpibs_v1: dpibs_v1, dpobs_v1: dpobs_v1, dcs2s_v1: dcs2s_v1, includedTagsString: includedTagsString, ditbs_v1: ditbs_v1 -%}
+            {%- endif -%}
+          {%- elsif section.settings.layout == 'horizontal' -%}
+            {%- if use_placeholder -%}
+              {%- render 'product-item-placeholder', product: product, horizontal: true, grid_classes: '1/2--tablet 1/3--lap-and-up', show_add_to_cart: false -%}
+            {%- else -%}
+              {%- render 'product-item', product: product, horizontal: true, grid_classes: '1/2--tablet 1/3--lap-and-up', show_add_to_cart: false, prom_v1: prom_v1, pbhd_v1: pbhd_v1, pbhm_v1: pbhm_v1, pbcd_v1: pbcd_v1, pbcm_v1: pbcm_v1, dacbs_v1: dacbs_v1, dact1_v1: dact1_v1, dact2_v1: dact2_v1, dact3_v1: dact3_v1, dact4_v1: dact4_v1, dact5_v1: dact5_v1, dact6_v1: dact6_v1, dalbs_v1: dalbs_v1, dcabs_v1: dcabs_v1, dpibs_v1: dpibs_v1, dpobs_v1: dpobs_v1, dcs2s_v1: dcs2s_v1, includedTagsString: includedTagsString, ditbs_v1: ditbs_v1 -%}
+            {%- endif -%}
+          {%- else -%}
+            {%- assign mod = forloop.index0 | modulo: 3 -%}
+
+            {%- if mod == 0 -%}
+              <div class="product-list__column product-list__column--highlight">
+            {%- elsif mod == 1 -%}
+              <div class="product-list__column {% if forloop.last %}product-list__column--shrink{% endif %}">
+            {%- endif -%}
+
+            {%- if mod == 0 -%}
+              {%- if use_placeholder -%}
+                {%- render 'product-item-placeholder', product: product, show_add_to_cart: false -%}
+              {%- else -%}
+                {%- render 'product-item', product: product, show_add_to_cart: false, prom_v1: prom_v1, pbhd_v1: pbhd_v1, pbhm_v1: pbhm_v1, pbcd_v1: pbcd_v1, pbcm_v1: pbcm_v1, dacbs_v1: dacbs_v1, dact1_v1: dact1_v1, dact2_v1: dact2_v1, dact3_v1: dact3_v1, dact4_v1: dact4_v1, dact5_v1: dact5_v1, dact6_v1: dact6_v1, dalbs_v1: dalbs_v1, dcabs_v1: dcabs_v1, dpibs_v1: dpibs_v1, dpobs_v1: dpobs_v1, dcs2s_v1: dcs2s_v1, includedTagsString: includedTagsString, ditbs_v1: ditbs_v1 -%}
+              {%- endif -%}
+            {%- else -%}
+              {%- if use_placeholder -%}
+                {%- render 'product-item-placeholder', product: product, horizontal: true, show_add_to_cart: false -%}
+              {%- else -%}
+                {%- render 'product-item', product: product, horizontal: true, show_add_to_cart: false, prom_v1: prom_v1, pbhd_v1: pbhd_v1, pbhm_v1: pbhm_v1, pbcd_v1: pbcd_v1, pbcm_v1: pbcm_v1, dacbs_v1: dacbs_v1, dact1_v1: dact1_v1, dact2_v1: dact2_v1, dact3_v1: dact3_v1, dact4_v1: dact4_v1, dact5_v1: dact5_v1, dact6_v1: dact6_v1, dalbs_v1: dalbs_v1, dcabs_v1: dcabs_v1, dpibs_v1: dpibs_v1, dpobs_v1: dpobs_v1, dcs2s_v1: dcs2s_v1, includedTagsString: includedTagsString, ditbs_v1: ditbs_v1 -%}
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- if mod == 0 or mod == 2 or forloop.last -%}
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endcapture -%}
+
+    {%- if section.settings.layout == 'vertical' and section.settings.stack_products == false -%}
+      <div class="scroller">
+        <div class="scroller__inner">
+          {{ product_list }}
+        </div>
+      </div>
+    {%- else -%}
+      {{ product_list }}
+    {%- endif -%}
+  </div>
+
+  {%- comment -%}
+  --------------------------------------------------------------------------------------
+  QUICK VIEW CONTAINER
+  --------------------------------------------------------------------------------------
+  {%- endcomment -%}
+
+  <div id="modal-quick-view-{{ section.id }}" class="modal" aria-hidden="true">
+    <div class="modal__dialog modal__dialog--stretch" role="dialog">
+      <button class="modal__close link" data-action="close-modal">{%- render 'icon', icon: 'close' -%}</button>
+
+      <div class="modal__loader">
+        {%- render 'icon', icon: 'search-loader' -%}
+      </div>
+
+      <div class="modal__inner"></div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Featured by Canvas Lab",
+  "settings": [
+  	{
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "1200 x 800px .jpg recommended"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 20,
+      "max": 70,
+      "step": 5,
+      "unit": "%",
+      "label": "Image width",
+      "default": 50
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Text",
+  	  "default": "<p>Use this text to share information about your brand with your customers.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Ver colección"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Colección destacada"
+    },
+    {
+      "type": "range",
+      "id": "products_count",
+      "label": "Products to show",
+      "min": 4,
+      "max": 50,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "vertical",
+          "label": "Vertical"
+        },
+        {
+          "value": "horizontal",
+          "label": "Horizontal"
+        },
+        {
+          "value": "collage",
+          "label": "Collage"
+        }
+      ],
+      "default": "vertical"
+    },
+    {
+      "type": "checkbox",
+      "id": "stack_products",
+      "label": "Stack products",
+      "info": "Only applicable if layout is set to vertical",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_buy",
+      "label": "Show quick buy",
+      "default": false,
+      "info": "Only shows if layout is set to vertical"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Image",
+      "name": "Featured by Canvas Lab",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

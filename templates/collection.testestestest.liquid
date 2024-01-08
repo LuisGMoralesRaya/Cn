@@ -1,0 +1,25 @@
+   	{% assign num = 0 %}
+    {% assign temp = 0 %}
+    
+    {% paginate collections["todos"].products by 1000 %}
+
+    {% for product in collections["todos"].products %}
+
+    {% for variant in product.variants %}
+       {% if variant.available %}       
+          {% capture temp %}{{ num | plus: 1 }}{% endcapture %} 
+       {% endif %}
+    {% assign num = temp %}
+    {% endfor %}  
+
+    {% endfor %}
+
+    {% endpaginate %}
+    
+
+    
+     Variaciones disponibles en promedio: {{ num  }}
+{% section 'static-promotion-list' %}
+{%- comment -%}
+{% section 'static-recently-viewed-products' %}
+{%- endcomment -%}

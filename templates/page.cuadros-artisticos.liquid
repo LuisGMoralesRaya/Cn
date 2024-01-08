@@ -1,0 +1,50 @@
+{% section 'css_gateways' %}
+<style>
+  .slideshow.slideshow--preserve-ratio.slideshow--edge2edge {
+    background-image: url(https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Header_-_arte_clasico.jpg?v=1631134269) !important;
+  }
+  @media screen and (max-width:640px){
+    #shopify-section-fc_gca_00 {
+      transform: translateY(20px);
+    }
+    #shopify-section-collection-list {
+      transform: translateY(20px);
+    }
+    #shopify-section-ch_gd_03 {
+      transform: translateY(0px) !important;
+    }
+    #shopify-section-fc_novedades {
+      transform: translateY(-20px);
+    }
+    #shopify-section-ch_gc_02 {
+      transform: translateY(-20px);
+      padding-bottom: 20px;
+      margin-bottom: -40px;
+    }
+    #shopify-section-it_gd_02 > section {
+      margin-bottom: 0 !important;
+    }
+  }
+</style>
+{% section 'slideshow-gca' %}
+{% section 'ch_gd_01' %}
+{% section 'highlights' %}
+{% section 'fc_gca_00' %}
+{% section 'collection-list' %}
+{% section 'fc_gca_01' %}
+{% section 'fc_gca_02' %}
+{% section 'fc_gca_03' %}
+{% section 'it_gd_01' %}
+{% section 'ch_gd_03' %}
+{% section 'fc_novedades' %}
+{% section 'ch_gc_02' %}
+{% section 'it_gd_02' %}
+{% section 'js_gateways' %}
+
+<script>
+  $(window).load(function(){
+    $('#block-2d97138e-da5c-4326-9c02-08625d0f9629 > div > div.slideshow__content-wrapper > div > a').before('<a style="margin-right:20px;" href="https://canvaslab.com/collections" class="slideshow__button button">Ver Colecciones</a>');
+  	$('#shopify-section-collection-list > section > div > header > h2').html('También puedes elegir de nuestras colecciones');
+  });
+
+</script>

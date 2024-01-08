@@ -1,0 +1,136 @@
+{% comment %}
+++++++++++++++++++++++++++++++++++++
+	   DELIVERY NOTICE WARNING
+++++++++++++++++++++++++++++++++++++
+{% endcomment %}
+
+{% assign today = 'now' | date: '%s' %}
+
+{% assign date0 = '2023-04-23' | date: '%s' %}
+
+{% assign date1 = '2023-04-24' | date: '%s' %}
+{% assign date2 = '2023-04-30' | date: '%s' %}
+
+{% assign date3 = '2023-05-01' | date: '%s' %}
+{% assign date4 = '2023-05-01' | date: '%s' %}
+
+{% assign date5 = '2023-05-02' | date: '%s' %}
+{% assign date6 = '2023-05-06' | date: '%s' %}
+
+{% assign date7 = '2023-05-07' | date: '%s' %}
+{% assign date8 = '2023-05-07' | date: '%s' %}
+
+{% assign date9 = '2023-05-07' | date: '%s' %}
+
+{% assign output_dnw_ac = 0 %}  {% comment %} acrilico {% endcomment %}
+{% assign output_dnw_al = 0 %}  {% comment %} aluminio {% endcomment %}
+{% assign output_dnw_ca = 0 %}  {% comment %} canvas {% endcomment %}
+{% assign output_dnw_fr = 0 %}  {% comment %} enmarcado {% endcomment %}
+{% assign output_dnw_pi = 0 %}  {% comment %} pixest {% endcomment %}
+{% assign output_dnw_po = 0 %}  {% comment %} poster {% endcomment %}
+{% assign output_dnw_all = 0 %} {% comment %} todos {% endcomment %}
+
+{% assign output_dnw_d = 01 %}
+{% assign output_dnw_h = 00 %}
+{% assign output_dnw_m = 00 %}
+{% assign output_dnw_s = 00 %}
+
+{% if today > date0 and today < date3 %}
+{% elsif today > date2 and today < date5 %}
+    {% assign output_dnw_ca_1 = '<div><b>Último día</b> para pedir tus <b>canvas</b> con entrega garantizada el Día de la Madre con <b>envío Gratis</b>.</div>' %}
+    {% assign output_dnw_fr_1 = '<div><b>Último día</b> para pedir tus <b>enmarcados</b> con entrega garantizada el Día de la Madre con <b>envío Gratis</b>.</div>' %}
+    {% assign output_dnw_po_1 = '<div><b>Último día</b> para pedir tus <b>pósters</b> con entrega garantizada el Día de la Madre con <b>envío Gratis</b>.</div>' %}
+{% elsif today > date4 and today < date7 %}
+    {% assign output_dnw_ca_1 = '<div>La entrega está garantizada para el Día de la Madre sólo con <b>envío Express</b>.</div>' %}
+    {% assign output_dnw_fr_1 = '<div>La entrega está garantizada para el Día de la Madre sólo con <b>envío Express</b>.</div>' %}
+    {% assign output_dnw_po_1 = '<div>La entrega está garantizada para el Día de la Madre sólo con <b>envío Express</b>.</div>' %}
+{% elsif today > date6 and today < date9 %}
+    {% assign output_dnw_ca_1 = '<div><b>Último día</b> para pedir tus <b>canvas</b> con entrega garantizada el Día de la Madre con <b>envío Express</b>.</div>' %}
+    {% assign output_dnw_fr_1 = '<div><b>Último día</b> para pedir tus <b>enmarcados</b> con entrega garantizada el Día de la Madre con <b>envío Express</b>.</div>' %}
+    {% assign output_dnw_po_1 = '<div><b>Último día</b> para pedir tus <b>pósters</b> con entrega garantizada el Día de la Madre con <b>envío Express</b>.</div>' %}   
+{% endif %}
+
+
+{% comment %}
+{% assign date8 = '2023-02-10' | date: '%s' %}
+
+{% assign date9 = '2023-05-00' | date: '%s' %}
+{% assign date10 = '2023-05-00' | date: '%s' %}
+
+{% assign date11 = '2023-05-00' | date: '%s' %}
+{% assign date12 = '2023-05-00' | date: '%s' %}
+
+{% assign date13 = '2023-05-00' | date: '%s' %}
+{% assign date14 = '2023-05-00' | date: '%s' %}
+
+{% assign date15 = '2023-05-00' | date: '%s' %}
+{% assign date16 = '2023-05-00' | date: '%s' %}
+
+{% assign date17 = '2023-05-00' | date: '%s' %}
+{% assign date18 = '2023-05-00' | date: '%s' %}
+
+{% assign date19 = '2023-05-00' | date: '%s' %}
+{% assign date20 = '2023-05-00' | date: '%s' %}
+
+{% assign date21 = '2023-05-00' | date: '%s' %}
+{% assign date22 = '2023-05-00' | date: '%s' %}
+
+{% assign date23 = '2023-05-00' | date: '%s' %}
+{% endcomment %}
+
+{% comment %}
+    {% assign output_dnw_ac_1 = '<div>Únicamente los <b>acrílicos</b> ordenados con <b>Envío Express</b> tienen entrega garantizada antes del <b>24 de Diciembre</b>.</div>' %}
+    {% assign output_dnw_al_1 = '<div>Únicamente los <b>aluminios</b> ordenados con <b>Envío Express</b> tienen entrega garantizada antes del <b>24 de Diciembre</b>.</div>' %}
+    {% assign output_dnw_pi_1 = '<div><b>Últimos días</b> para pedir tus <b>pixsets</b> con entrega garantizada antes del 24 de Diciembre con <b>envío gratis</b>.</div>' %}
+{% elsif today > date6 and today < date9 %}
+    {% assign output_dnw_ac_1 = '<div>Los acrílicos no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_al_1 = '<div>Los aluminios no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_pi_1 = '<div><b>Últimos días</b> para pedir tus <b>pixsets</b> con entrega garantizada antes del 24 de Diciembre con <b>envío gratis</b>.</div>' %}
+{% elsif today > date8 and today < date11 %} 
+    {% assign output_dnw_ac_1 = '<div>Los acrílicos no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_al_1 = '<div>Los aluminios no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_pi_1 = '<div><b>Último día</b> para pedir tus <b>pixsets</b> con entrega garantizada antes del 24 de Diciembre con <b>envío gratis</b>.</div>' %}
+{% elsif today > date10 and today < date13 %}
+    {% assign output_dnw_ac_1 = '<div>Los acrílicos no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_al_1 = '<div>Los aluminios no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_ca_1 = '<div><b>Últimos días</b> para pedir tu <b>canvas</b> con entrega garantizada antes del 24 de Diciembre con <b>envío gratis</b>.</div>' %}
+    {% assign output_dnw_fr_1 = '<div><b>Últimos días</b> para pedir tu <b>enmarcado</b> con entrega garantizada antes del 24 de Diciembre con <b>envío gratis</b>.</div>' %}
+    {% assign output_dnw_po_1 = '<div><b>Últimos días</b> para pedir tu <b>poster</b> con entrega garantizada antes del 24 de Diciembre con <b>envío gratis</b>.</div>' %}
+    {% assign output_dnw_pi_1 = '<div>Únicamente los <b>pixsets</b> ordenados con <b>Envío Express</b> tienen entrega garantizada antes del <b>24 de Diciembre</b>.</div>' %}
+{% elsif today > date12 and today < date15 %}
+    {% assign output_dnw_ac_1 = '<div>Los acrílicos no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_al_1 = '<div>Los aluminios no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_ca_1 = '<div><b>Últimos días</b> para pedir tu <b>canvas</b> con entrega garantizada antes del 24 de Diciembre con <b>envío gratis</b>.</div>' %}
+    {% assign output_dnw_fr_1 = '<div><b>Últimos días</b> para pedir tu <b>enmarcado</b> con entrega garantizada antes del 24 de Diciembre con <b>envío gratis</b>.</div>' %}
+    {% assign output_dnw_po_1 = '<div><b>Últimos días</b> para pedir tu <b>poster</b> con entrega garantizada antes del 24 de Diciembre con <b>envío gratis</b>.</div>' %}
+    {% assign output_dnw_pi_1 = '<div>Únicamente los <b>pixsets</b> ordenados con <b>Envío Express</b> tienen entrega garantizada antes del <b>24 de Diciembre</b>.</div>' %}
+{% elsif today > date14 and today < date17 %}
+    {% assign output_dnw_ac_1 = '<div>Los acrílicos no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_al_1 = '<div>Los aluminios no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_ca_1 = '<div><b>Último día</b> para pedir tu <b>canvas</b> con entrega garantizada antes del 24 de Diciembre con <b>envío gratis</b>.</div>' %}
+    {% assign output_dnw_fr_1 = '<div><b>Último día</b> para pedir tu <b>enmarcado</b> con entrega garantizada antes del 24 de Diciembre con <b>envío gratis</b>.</div>' %}
+    {% assign output_dnw_po_1 = '<div><b>Último día</b> para pedir tu <b>poster</b> con entrega garantizada antes del 24 de Diciembre con <b>envío gratis</b>.</div>' %}
+    {% assign output_dnw_pi_1 = '<div>Únicamente los <b>pixsets</b> ordenados con <b>Envío Express</b> tienen entrega garantizada antes del <b>24 de Diciembre</b>.</div>' %}
+{% elsif today > date16 and today < date19 %}
+    {% assign output_dnw_ac_1 = '<div>Los acrílicos no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_al_1 = '<div>Los aluminios no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_ca_1 = '<div>Únicamente los <b>canvas</b> ordenados con <b>Envío Express</b> tienen entrega garantizada antes del <b>24 de Diciembre</b>.</div>' %}
+    {% assign output_dnw_fr_1 = '<div>Únicamente los <b>enmarcados</b> ordenados con <b>Envío Express</b> tienen entrega garantizada antes del <b>24 de Diciembre</b>.</div>' %}
+    {% assign output_dnw_po_1 = '<div>Únicamente los <b>posters</b> ordenados con <b>Envío Express</b> tienen entrega garantizada antes del <b>24 de Diciembre</b>.</div>' %}
+    {% assign output_dnw_pi_1 = '<div>Únicamente los <b>pixsets</b> ordenados con <b>Envío Express</b> tienen entrega garantizada antes del <b>24 de Diciembre</b>.</div>' %}
+{% elsif today > date18 and today < date21 %}
+    {% assign output_dnw_ac_1 = '<div>Los acrílicos no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_al_1 = '<div>Los aluminios no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_ca_1 = '<div>Únicamente los <b>canvas</b> ordenados con <b>Envío Express</b> tienen entrega garantizada antes del <b>24 de Diciembre</b>.</div>' %}
+    {% assign output_dnw_fr_1 = '<div>Únicamente los <b>enmarcados</b> ordenados con <b>Envío Express</b> tienen entrega garantizada antes del <b>24 de Diciembre</b>.</div>' %}
+    {% assign output_dnw_po_1 = '<div>Únicamente los <b>posters</b> ordenados con <b>Envío Express</b> tienen entrega garantizada antes del <b>24 de Diciembre</b>.</div>' %}
+    {% assign output_dnw_pi_1 = '<div>Los pixsets no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+{% elsif today > date20 and today < date23 %}
+    {% assign output_dnw_ac_1 = '<div>Los acrílicos no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_al_1 = '<div>Los aluminios no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_ca_1 = '<div>Los canvas no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_fr_1 = '<div>Los enmarcados no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_po_1 = '<div>Los posters no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+    {% assign output_dnw_pi_1 = '<div>Los pixsets no tienen entrega garantizada antes del 24 de Diciembre.</div>' %}
+{% else %}
+{% endcomment %}

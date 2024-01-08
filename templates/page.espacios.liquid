@@ -1,0 +1,108 @@
+<div class="container container--medium">
+  <header class="page__header ">
+    <h1 class="page__title heading h1">{{ page.title }}</h1>
+  </header>
+
+  <div class="page__content rte">
+   {% comment %}{{ page.content }}{% endcomment %}
+<!-- Mansory-->
+<div class="row"> 
+  
+  <div class="column">
+    <a href="https://canvaslab.com/pages/inspiracion">
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/dormitorio.png?v=1628547247" style="width:100%">
+    </a>
+    
+    <a href="https://canvaslab.com/pages/inspiracion">
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Sala.png?v=1628548992" style="width:100%">
+    </a>
+    
+  </div>
+  
+  
+  <div class="column">
+    <a href="https://canvaslab.com/pages/inspiracion">
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Cuarto_Gamer.png?v=1628547523" style="width:100%">
+    </a>
+    
+    <a href="https://canvaslab.com/pages/inspiracion">
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Oficina.png?v=1628549535" style="width:100%">
+    </a>
+  </div> 
+  
+  
+  <div class="column">
+    <a href="https://canvaslab.com/pages/inspiracion">
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Cuarto_de_juegos.png?v=1628548552" style="width:100%">
+    </a>
+  </div>
+  
+  
+  
+  
+</div>
+
+    
+  </div>
+</div>
+<style>
+  #main{margin:40px 20px;}
+  .page__header--centered{text-align:left !important;}
+  #main .container {background:#fff !important; border-radius:3px; border:1px solid #f3f3f3; margin-top:20px; margin-bottom:20px; padding:40px;}
+  
+  
+  * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+/*.header {
+  text-align: center;
+  padding: 32px;
+}*/
+
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap; 
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+
+.column {
+  -ms-flex: calc(100% / 3);
+  flex: calc(100% / 3);
+  max-width: calc(100% / 3);
+  padding: 0 4px;
+}
+
+.column > a > img {
+  margin-top: .5rem !important;
+  margin: .5rem 0 !important;
+  vertical-align: middle;
+  width: 100%;
+}
+
+
+@media screen and (max-width: 800px) {
+  .column {
+    -ms-flex: calc(100% / 2);
+    flex: calc(100% / 2);
+    max-width: calc(100% / 2);
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .column {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+</style>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
+    <meta name="referrer" content="origin">
+
+    <title>{{ page_title }}</title>
+
+    {{ content_for_header }}
+
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+    <style>
+      img[alt="Mercado Pago"] {
+        display: none !important;
+      }
+      img[alt="Mercado Pago"]+.visually-hidden {
+        display: contents !important;
+        width: 200px !important;
+        height: 20px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        color:rgba(0,0,0,0) !important;
+      }
+      img[alt="Mercado Pago"]+.visually-hidden::after {
+        display: block !important;
+        content: 'Pago con tarjeta de Crédito, Débito, SPEI o Efectivo' !important;
+        width: 100% !important;
+        height: 100% !important;
+        position: absolute !important;
+        top: 15px !important;
+        color: #333 !important;
+      }
+      li.payment-icon-list__more {
+        display: none !important;
+      }
+      .order-summary__sections{height:100% !important;}
+      
+        @media only screen and (max-width: 768px) {
+          #garantias{margin:0px auto !important;}
+    
+    .anyflexbox .content .wrap{
+        -webkit-box-orient: vertical;
+    -webkit-box-direction: normal !important;
+    -webkit-flex-direction: column-reverse;
+    -ms-flex-direction: unset;
+    flex-direction: column;
+    
+    }
+}
+    </style>
+  
+  {% render 'shogun-head' %}
+</head>
+  <body>
+    {{ skip_to_content_link }}
+
+    <header class="banner" data-header role="banner">
+      <div class="wrap">
+        {{ content_for_logo }}
+      </div>
+    </header>
+
+    {{ order_summary_toggle }}
+    <div class="content" data-content>
+      <div class="wrap">
+        <div class="main">
+          <header class="main__header" role="banner">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+            {{ alternative_payment_methods }}
+          </header>
+          <main class="main__content" role="main">
+            {{ content_for_layout }}
+          </main>
+          <footer class="main__footer" role="contentinfo">
+            {{ content_for_footer }}
+          </footer>
+        </div>
+        <aside class="sidebar" role="complementary">
+          <div class="sidebar__header">
+            {{ content_for_logo }}
+          </div>
+          <div class="sidebar__content">
+            {{ content_for_order_summary }}
+            <p style="font-weight:bold; display: block !important;line-height: 1.2em;margin-top: 1.5em !important;color: #16093f ;font-size: 15px !important;margin-bottom: 1.5em !important;" id="garantias"><svg xmlns="http://www.w3.org/2000/svg" width="370.29" height="335.04" viewBox="0 0 370.29 335.04" style="height: 24px !important;width: 24px !important;margin: -4px 10px 0 0 !important;float: left !important;"> <g id="Layer_14" data-name="Layer 14" transform="translate(-1 -3.951)"> <path id="Path_325" data-name="Path 325" d="M73.377,58.994l-8.421,8.421L44.59,47.049H61.432Z" transform="translate(216.747 214.301)" fill="#011c75"></path> <path id="Path_326" data-name="Path 326" d="M114.669,58.994A35.834,35.834,0,0,1,78.834,94.828H43V82.883H78.834A23.854,23.854,0,0,0,99.5,47.049h13.08a34.641,34.641,0,0,1,2.09,11.945Z" transform="translate(208.841 214.301)" fill="#011c75"></path> <path id="Path_327" data-name="Path 327" d="M79.893,114.249,41.586,75.942,79.893,37.635l8.445,8.445L58.476,75.942,88.338,105.8Z" transform="translate(201.81 167.491)" fill="#00adef"></path> <path id="Path_328" data-name="Path 328" d="M33.862,52.194v10.75L4,51V40.249Z" transform="translate(14.917 180.489)" fill="#00adef"></path> <path id="Path_329" data-name="Path 329" d="M33.862,49.094v10.75L4,47.9V37.149Z" transform="translate(14.917 165.074)" fill="#f0297c"></path> <path id="Path_330" data-name="Path 330" d="M186.67,327.811,1,247.357V108.45L197.719,3.951,371.29,72.138V210.889l-31.236,19.769-6.39-10.1,25.681-16.245V80.278L198.466,17.072,12.945,115.635v123.88l172.674,74.822,37.017-23.418,6.39,10.093Z" transform="translate(0)" fill="#011c75"></path> <path id="Path_331" data-name="Path 331" d="M186.145,242.032a6.021,6.021,0,0,1-2.389-.49L4.583,163.9A5.972,5.972,0,0,1,1,158.418V27.025a5.972,5.972,0,0,1,8.194-5.548L188.366,93.146a5.972,5.972,0,0,1,3.751,5.548V236.06A5.972,5.972,0,0,1,186.145,242.032ZM12.945,154.5l167.228,72.463V102.738L12.945,35.846Z" transform="translate(0 85.014)" fill="#011c75"></path> <path id="Path_332" data-name="Path 332" d="M36.972,271.862A5.972,5.972,0,0,1,31,265.889V128.524a5.972,5.972,0,0,1,2.9-5.118L213.069,15.9a5.972,5.972,0,0,1,9.048,5.118V152.414a5.973,5.973,0,0,1-2.778,5.047l-28.458,18.012-6.39-10.1,25.681-16.239V31.574L42.945,131.91V255.043l30.519-19.309,6.385,10.093L40.162,270.912a5.972,5.972,0,0,1-3.189.95Z" transform="translate(149.172 55.185)" fill="#011c75"></path> <path id="Path_333" data-name="Path 333" d="M49.834,90.755a5.972,5.972,0,0,1-2.222-.424L17.751,78.386A5.972,5.972,0,0,1,14,72.838V32.225a5.972,5.972,0,0,1,8.194-5.548L52.056,38.622a5.972,5.972,0,0,1,3.751,5.554V84.788a5.972,5.972,0,0,1-5.972,5.972ZM25.945,68.794l17.917,7.167V48.213L25.945,41.047Z" transform="translate(64.641 110.871)" fill="#011c75"></path> <path id="Path_334" data-name="Path 334" d="M49.839,140.388a5.972,5.972,0,0,1-2.222-.424L17.755,128.019a5.972,5.972,0,0,1-.926-10.625L191.881,8.995a5.972,5.972,0,0,1,5.321-.484l30.149,11.873a5.972,5.972,0,0,1,.86,10.6L52.98,139.492a5.972,5.972,0,0,1-3.141.9ZM33.176,121.324l16.066,6.42L211.835,27.067l-16.2-6.349Z" transform="translate(64.637 20.631)" fill="#011c75"></path> <path id="Path_335" data-name="Path 335" d="M112.641,189.332a77.641,77.641,0,1,1,77.641-77.641A77.641,77.641,0,0,1,112.641,189.332Zm0-143.338a65.7,65.7,0,1,0,65.7,65.7A65.7,65.7,0,0,0,112.641,45.994Z" transform="translate(169.062 149.66)" fill="#011c75"></path> <path id="Path_336" data-name="Path 336" d="M78.834,114.718H43V102.773H78.834a23.89,23.89,0,0,0,0-47.779H43V43.049H78.834a35.834,35.834,0,0,1,0,71.669Z" transform="translate(208.841 194.411)" fill="#00adef"></path> </g> </svg> Cambios y devoluciones gratis</p>
+          </div>
+          <div class="sidebar__content" style="line-height:1.5em;text-align:justify;padding-bottom:20px!important;">
+          <br><br><br>
+            Recuerda que el límite de pago en <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Oxxo_Logo.svg?v=1616603757" height="25" style="margin-bottom: -6px;"> es de $10,000 MXN, toma en cuenta que si el monto total más la comisión supera esa cantidad no podrás realizar el pago correspondiente.
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    {{ tracking_code }}
+  </body>
+</html>

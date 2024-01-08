@@ -1,0 +1,1172 @@
+<style>
+  /*#main{margin:40px 20px;}
+  .page__header--centered{text-align:left !important;}
+  #main .container {background:#fff !important; border-radius:3px; border:1px solid #f3f3f3; margin-top:20px; margin-bottom:20px; padding:40px;}*/
+
+/*INICIO DE CSS GATEWAYS*/
+.html.rte > .container.container--flush {
+    padding: 0 !important;
+  }
+  .slideshow.slideshow--preserve-ratio.slideshow--edge2edge {
+    background-position: center 36% !important;
+    background-size: cover !important;
+  }
+  .slideshow__slide .slideshow__slide-inner {
+      height: 430px !important;
+  }
+  .slideshow__slide-inner .aspect-ratio img.slideshow__image {
+      display: none !important;
+  }
+  @media screen and (min-width: 429px){
+    img#chbp,img#chbp_1 {
+      display: block !important;
+    }
+    img#chbpm,img#chbpm_1 {
+      display: none !important;
+    }
+  }
+  @media screen and (max-width: 428px){
+    img#chbp,img#chbp_1 {
+      display: none !important;
+    }
+    img#chbpm,img#chbpm_1 {
+      display: block !important;
+    }
+  }
+  section.section[data-section-type="image-with-text"] {
+    background: #1f0d59 !important;
+    padding: 70px 0 !important;
+  }
+  section.section[data-section-type="image-with-text"] .image-with-text__text-aligner {
+    text-align: center !important;
+  }
+  section.section[data-section-type="image-with-text"] h2 {
+    font-size: 44px;
+    color: #fff;
+  }
+  section.section[data-section-type="image-with-text"] div.rte > p {
+    font-size: 24px;
+    color: #fff;
+  }
+  html body section.section[data-section-id="it_gd_02"] {
+    background: #00ADEF !important;
+    padding: 70px 0 !important;
+  }
+
+/*FIN DE CSS GATEWAYS*/
+
+
+
+
+
+
+/*INICIO DE ARTISTAS ASOCIADOS*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+  .slideshow.slideshow--preserve-ratio.slideshow--edge2edge {
+    background-image: url('https://www.w3schools.com/howto/photographer.jpg') !important;
+  }
+  
+html {
+height: 100%;
+}
+
+body{
+min-height: 100%;
+}
+
+.grid-container-body > * {
+  /*box-shadow: -1px 1px 7px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 4px;*/
+  padding: 2rem 2rem 2rem 2rem;
+  max-width: 1400px;
+}
+
+.grid-container-body {
+  display: grid;
+  /*margin: 0rem 2rem 2rem 2rem;*/
+  background: #ffffff;
+  justify-content: center;
+  gap: 10px;
+  grid-template-areas:
+	/*"header"*/
+    /*"navbar navbar"*/
+    "selling-points"
+    "main-1"
+    "main-2"
+    "main-4"
+    "main-3"
+    /*"footer"*/;
+}
+
+
+/*.hero {
+  box-sizing: border-box;
+  grid-area: header;
+  min-height: 65vh;
+  border: 0px transparent;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.5)), url('https://www.w3schools.com/howto/photographer.jpg');
+
+  /* Position and center the image to scale nicely on all screens
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}*/
+  
+  html body .hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0)), url(//cdn.shopify.com/s/files/1/0258/6276/6677/files/Galeria-Artistas-Asociados_-_editada_5760x.jpg?v=1627583997) !important;
+  }
+  
+  .hero__container{
+  	max-width: 1400px !important;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-self: center;
+  }
+  
+
+.hero__title > h1 {
+	font-weight: 800;
+  	/*color: #1E2D7D;*/
+  	color: #ffff;
+  	line-height: 1.2em;
+}
+
+.hero__title--left {
+  text-align: center;
+  /*text-align: left;*/
+  display: flex;
+    justify-content: center;
+    align-items: center;
+  	align-self: center;
+	position: relative !important;
+  padding: 2rem 0 .8rem 0;
+}
+
+.hero__button > a > button {
+	font-weight: 800;
+    display: inline-block;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: #ef297c;
+  min-width: 100%;
+  width: 100%;
+  padding: 0.55rem 1.5rem 0.65rem;
+  color: #fff;
+  border: 0;
+  /*border-radius: 5px;*/
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+
+.hero__button--left {
+	font-weight: 800;
+    /*float: left;*/
+ 	position: relative;
+  	text-align: center;
+  	top: 0%;
+  	vertical-align: middle;
+  	/*left: 50%;*/
+  	padding: .8rem 2rem 2rem 4rem;
+}
+
+.hero__button > a > button:hover {
+    background: rgba(239, 41, 124, 0.8);
+}
+
+
+.article__button > a > button {
+	font-weight: 800;
+    display: inline-block;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: #ef297c;
+  min-width: 100%;
+  width: 100%;
+  padding: 0.55rem 1.5rem 0.65rem;
+  color: #fff;
+  border: 0;
+  /*border-radius: 5px;*/
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+.article__button--left > a > button {
+	width: 50%;
+    max-width: 100%;
+	font-weight: 800;
+	position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.article__button > a > button:hover {
+    background: rgba(239, 41, 124, 0.8);
+}
+
+.navbar {
+  grid-area: navbar;
+  border: 1px solid red;
+}
+
+.full-width__selling-points {
+  width: 100%;
+  min-width: 100vw;
+}
+
+
+.grid-container-selling-points > * {
+  /*box-shadow: -1px 1px 7px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 4px;*/
+  padding: 0 2rem 0 2rem;
+}
+
+.grid-container-selling-points {
+  grid-area: selling-points;
+  display: grid;
+  justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 1rem;
+  grid-auto-rows: auto;
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+}
+
+.sellpoint > svg {
+  /*border: 1px solid #ddd;
+  border-radius: 4px;*/
+  padding: 1rem;
+  max-width: auto;
+  max-height: 100%;
+}
+
+.sellpoint > span {
+  font-weight: 500;
+}
+
+.sellpoint--left {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.sellpoint--left > svg {
+  max-width: calc(100% / 2);
+  float: left;
+}
+
+.sellpoint--left > span {
+  float: right;
+  text-align: left;
+  padding-left: 5px;
+  /*max-width: calc(100% / 2);*/
+}
+
+.full-width__main-1 {
+  width: 100%;
+  min-width: 100vw;
+  background: #edf0f9;
+}
+
+
+.grid-container-main-1 > * {
+  /*box-shadow: -1px 1px 7px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 4px;*/
+  padding: 2rem;
+  /*background: #edf0f9;*/
+}
+
+.grid-container-main-1 {
+  grid-area: main-1;
+  display: grid;
+  justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  /*gap: 10px;*/
+  grid-template-areas:
+  	"bloque-imagen-1"
+    "bloque-texto-1";
+}
+
+
+
+.full-width__main-2 {
+  width: 100%;
+  min-width: 100vw;
+}
+
+
+.grid-container-main-2 > * {
+  /*box-shadow: -1px 1px 7px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 4px;*/
+  padding: 2rem;  
+}
+
+.grid-container-main-2 {
+  grid-area: main-2;
+  display: grid;
+  justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  /*gap: 10px;*/
+  grid-template-areas:
+    "bloque-imagen-2"
+    "bloque-texto-2";
+}
+
+
+.full-width__main-3 {
+  width: 100%;
+  min-width: 100vw;
+  padding-bottom: 2rem !important;
+}
+
+
+.grid-container-main-3 > * {
+  /*box-shadow: -1px 1px 7px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 4px;*/
+  padding: 2rem;
+ /*margin: 0 auto;*/
+}
+
+.grid-container-main-3 {
+  grid-area: main-3;
+  display: grid;
+  justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  /*gap: 10px;*/
+  grid-template-areas:
+    "bloque-texto-3"
+    "bloque-imagen-3";
+}
+
+
+.full-width__main-4 {
+  width: 100%;
+  min-width: 100vw;
+  background: #1f0d59;
+}
+
+
+.grid-container-main-4 > * {
+  /*box-shadow: -1px 1px 7px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 4px;*/
+  padding: 2rem;
+  color: #ffffff;
+}
+
+.grid-container-main-4 {
+  grid-area: main-4;
+  display: grid;
+  justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 10px;
+  grid-template-areas:
+    "bloque-texto-4";
+}
+
+.bloque-texto-1 {
+  grid-area: bloque-texto-1;
+  /*border: 1px solid red;*/
+}
+
+.bloque-imagen-1 {
+  grid-area: bloque-imagen-1;
+}
+.bloque-imagen-1 > img {
+  /*border: 1px solid #ddd;
+  border-radius: 4px;*/
+  padding: 5px;
+  max-height: auto;
+  width: 100%;
+}
+
+
+.bloque-texto-2 {
+  grid-area: bloque-texto-2;
+  /*border: 1px solid red;*/
+}
+
+.bloque-imagen-2 {
+  grid-area: bloque-imagen-2;
+}
+
+.bloque-imagen-2 > img {
+  /*border: 1px solid #ddd;
+  border-radius: 4px;*/
+  padding: 5px;
+  max-height: auto;
+  width: 100%;
+
+}
+
+
+/*.bloque-texto-3 {
+  grid-area: bloque-texto-3;
+  text-align: center;
+  padding: 0 0 .8rem 0;
+}
+
+.bloque-form-1 {
+  grid-area: bloque-form-1;
+  padding: 0 0 .8rem 0;
+}*/
+  
+
+.bloque-texto-3 {
+  grid-area: bloque-texto-3;
+  color: #ffffff;
+  font-weight: bold;
+  vertical-align: middle;
+  display: flex;
+  flex-direction: column;  
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.bloque-imagen-3 {
+  grid-area: bloque-imagen-3;
+}
+
+.bloque-imagen-3 > img {
+  padding: 5px;
+  max-height: auto;
+  width: 100%;
+}
+
+
+
+/*.zoho-form-button {
+  margin-top: 1rem;
+  display: inline-block;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: #f0297c;
+  min-width: fit-content;
+  width: 30%;
+  padding: 0.55rem 1.5rem 0.65rem;
+  color: #fff;
+  border: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+  text-align: center;
+  grid-area: col-2;
+  justify-self: start;
+  cursor: pointer;
+}
+
+button.zoho-form-button:hover{
+  
+  background: rgba(239, 41, 124, 0.8);
+  
+}*/
+
+
+
+  
+  iframe#form-zoho {
+    min-width:100vw;
+    /*height: 360vh !important;*/
+	height: 100% !important;
+    width: 100vw !important;
+    /*width: calc(100vw / 2.5);*/
+    border:none !important;
+    background-color: transparent !important;
+    overflow-y: scroll !important; /* Habilidad de scroll */
+    background-color: #fff !important;
+  }    
+    
+/* Esconder scrollbar en Chorme */
+iframe#form-zoho::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* Esconder scrollbar en IE, Edge y Firefox */
+iframe#form-zoho {
+  -ms-overflow-style: none !important;  /* IE y Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+  
+  /* Esconder scrollbar en Chorme */
+iframe#form-zoho::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* Esconder scrollbar en IE, Edge y Firefox */
+iframe#form-zoho {
+  -ms-overflow-style: none !important;  /* IE y Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+
+
+
+  
+
+.input-group {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: "col-1 col-1" "col-2 col-2";
+  margin-bottom: 1rem;
+}
+
+
+label {
+  grid-area: col-1;
+}
+
+input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 1px solid #ccc;
+  color: black !important;
+  font-size: 16px;
+  padding: 0.5rem;
+  border-radius: 5px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.05);
+  grid-area: col-2;
+}
+
+.c-button {
+  display: inline-block;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: #f0297c;
+  min-width: 100%;
+  padding: 0.55rem 1.5rem 0.65rem;
+  color: #fff;
+  border: 0;
+  border-radius: 0px;
+  font-size: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+  text-align: center;
+  grid-area: col-2;
+  justify-self: start;
+  cursor: pointer;
+}
+  
+  .c-button > a > button:hover {
+    background: rgba(239, 41, 124, 0.8);
+}
+
+
+.bloque-texto-4 {
+  grid-area: bloque-texto-4;
+  /*border: 1px solid red;*/
+}
+
+.footer {
+  grid-area: footer;
+  
+}
+
+/*@media (min-width: 1300px) {
+  
+    .bloque-texto-3 {
+  margin-left: -35rem;
+}
+  
+}
+
+
+@media (max-width: 1300px) {
+  
+.bloque-texto-3 {
+  margin-left: -18rem !important;
+}
+  
+}*/
+
+  button{transition: all 0.3s !important;}
+  button:hover{ background: rgba(239, 41, 124, 0.8);}
+
+
+@media (min-width: 1020px) {
+
+  .hero__button.hero__button--left > a > button.boton-registro {
+    width: 16% !important;
+  	min-width: fit-content; 
+}
+  
+.article__button--left > a > button {
+	width: 24%;
+  	min-width: fit-content; 
+}
+  
+  #form-zoho {
+	max-width: 70vw !important;
+  }
+  
+  /*.grid-container-main-3 {
+
+  transform: translate(-4%, 0%);
+
+}*/
+  
+}
+
+
+
+@media (min-width: 920px) {
+
+
+/*.grid-container-body {
+  display: grid;
+  gap: 10px;
+  grid-auto-flow: dense;    
+    grid-template:
+    "header header" 25vh*/
+    /*"navbar navbar" auto*/
+	/*"selling-points" auto
+    "sidebar main" auto
+    "footer footer" auto /
+	20rem   auto;
+    
+}*/
+  
+
+.grid-container-main-1 {
+  grid-area: main-1;
+  display: grid;
+  /*gap: 10px;*/
+  grid-template-columns: auto 35rem;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "bloque-texto-1 bloque-imagen-1";
+}
+
+.grid-container-main-2 {
+  grid-area: main-2;
+  display: grid;
+  /*gap: 10px;*/
+  grid-template-columns: 35rem auto;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "bloque-imagen-2 bloque-texto-2";
+}
+
+.grid-container-main-3 {
+  grid-area: main-3;
+  display: grid;
+  justify-content: center;
+  transform: translate(2%, 0%);
+  /*gap: 30px;*/
+  /*grid-auto-columns: repeat(auto, minmax(min(100%, 100%), 1fr));*/
+  grid-template-columns: auto 20rem;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "bloque-texto-3 bloque-imagen-3";
+}
+
+.grid-container-main-4 {
+  grid-area: main-4;
+  display: grid;
+  /*gap: 10px;*/
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "bloque-texto-4";
+}
+
+.hero__title > h1 {
+    font-size: 3.5vw;
+  	max-width: 70%;
+}
+
+.hero__button > a > button {
+    font-size: 1vw;
+}
+  
+  .hero__button.hero__button--left > a > button.boton-registro {
+	width: 16%;
+    min-width: fit-content; 
+  }
+  
+
+.input-group {
+    grid-template-areas: "col-1 col-2";
+
+}
+}
+
+@media (max-width: 920px){
+  
+  .grid-container-body > * {
+    padding: 1rem 0 1rem 0;
+}
+  
+.grid-container-selling-points {
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 100%), 1fr));
+}
+
+.hero {
+    min-height: 40vh;
+    position: relative;
+}
+
+.hero__title > h1 {
+    font-size: 150%;
+}
+
+.grid-container-selling-points {
+  grid-auto-rows:100px;
+}
+
+.sellpoint--left > svg {
+  max-width: calc(100% / 2);
+}
+
+.grid-container-selling-points > * {
+  padding: .5rem;
+}
+
+.hero__button.hero__button--left > a > button.boton-registro {
+    display: block;
+  	width: 30%;
+  	min-width: fit-content;
+}
+
+.article__button > a > button {
+    display: block;
+  	width: 100%;
+}
+
+  .hero__button--left {
+  	padding: 1rem 1rem 2rem 1rem;
+    text-align: center;
+    display: flex;
+    align-self: center;
+}
+  
+.hero__title--left {
+    max-width: 100%;
+    padding: 6rem 1rem 1rem 1rem;
+	text-align: center;
+	/*text-align: left;*/
+	/*display: flex-box;
+    justify-content: center;
+    align-items: center;*/
+}
+  
+
+/*.hero__button--left {
+	position: absolute;
+	position: sticky;
+	max-width: 100%;
+    width: 100%;
+    transform: translate(0%, 0%);
+    display: flex-box;
+    justify-content: center;
+    align-items: center;
+    
+}*/
+
+.article__button--left > a > button {
+	position: relative;
+	max-width: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+  
+  
+  
+    /*.bloque-texto-3 {
+  margin-left: 0 !important;
+}*/
+  
+  
+  .grid-container-main-1 > * {
+  padding: 1rem 2rem 1rem 2rem;
+}
+  
+  .grid-container-main-2 > * {
+  padding: 1rem 2rem 1rem 2rem;
+}
+  
+  /*.grid-container-main-3	 > * {
+  padding: 1rem 2rem 1rem 2rem;
+}*/
+  
+  .grid-container-body>* {
+    padding: 1rem 0 2rem 0;
+}
+
+}
+
+
+/* FIN DE ARTISTAS ASOCIADOS */
+
+
+
+
+
+/* INICIO DE DEVOLUCIONES */
+
+svg#devoluciones_icon--m {
+
+  enable-background:new 0 0 511 511; 
+  max-width: 30px;
+  display: inline-block;
+  margin: 10px 5px 0 0;
+	
+}
+
+/* FIN DE ICONO DEVOLUCIONES */
+</style>
+
+<!--<header class="hero">
+  <div class="hero__container">
+<div class="hero__title hero__title--left">
+  <h1>Vende reproducciones</h1>
+  <h1>de <b>tu arte</b> en Canvas Lab</h1>
+  <div class="hero__button hero__button--left">
+  <button class="boton-registro">Reg&iacute;strate</button>
+  </div>
+  </div>
+    </div>
+</header>-->
+{% section 'hero_landing_v2' %}
+
+{% comment %} {% section 'slideshow-gas' %} {% endcomment %}
+
+<div class="grid-container-body">
+
+
+
+
+<!--<nav class="navbar">
+  <ul>
+    <li>The Flight</li>
+    <li>The City</li>
+    <li>The Island</li>
+    <li>The Food</li>
+  </ul>
+</nav>-->
+<div class="full-width__selling-points">
+  
+<div class="grid-container-selling-points">
+  <div class="sellpoint sellpoint--left"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 511 512" style="enable-background:new 0 0 511 512;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#011C75;}
+</style>
+<g>
+	<path class="st0" d="M235.8,347.3c3.9-3.9,3.9-10.2,0-14.1c-3.9-3.9-10.2-3.9-14.1,0c-3.9,3.9-3.9,10.2,0,14.1   C225.6,351.2,231.9,351.2,235.8,347.3z"/>
+	<path class="st0" d="M188.4,110c0,60.6,49.3,110,110,110s110-49.3,110-110S359.1,0,298.4,0S188.4,49.3,188.4,110z M388.4,110   c0,49.6-40.4,90-90,90s-90-40.4-90-90c0-49.6,40.4-90,90-90S388.4,60.4,388.4,110z"/>
+	<path class="st0" d="M115.7,509c3.9,3.9,10.2,3.9,14.1,0.1l48.5-47.8c8.2-8.2,10.7-20.4,7.1-31l10.4-10.1c5.6-5.4,13-8.4,20.8-8.4   h132.9c23.6,0,45.9-9.1,62.8-25.5c0.7-0.7-5.3,6.4,90.7-108.3c14.2-16.8,12.1-42.1-4.8-56.4c-16.7-14.1-41.8-12.1-56.1,4.5   l-59,60.6c-7.4-9.2-18.8-14.9-31.1-14.9H240.5c-15.9-6.6-32.7-10-50.1-10c-48.1,0-90.2,22.2-112.7,63.9c-9.5-1.8-19.5,1.1-26.7,8.3   L3.4,381.8c-3.9,3.9-3.9,10.2,0,14.1L115.7,509z M190.4,281.9c15.3,0,30.1,3.1,44,9.2c1.3,0.6,2.6,0.8,4,0.8H352   c10.8,0,20,8.8,20,20c0,11-9,20-20,20h-81.6c-5.5,0-10,4.5-10,10c0,5.5,4.5,10,10,10H352c22.1,0,40-17.9,40-40   c0-1.8-0.1-3.5-0.4-5.2c57.1-58.7,65.1-66.9,65.5-67.3c7.1-8.4,19.8-9.5,28.2-2.4c8.4,7.1,9.5,19.8,2.3,28.2l-89.7,107.2   c-13.1,12.6-30.3,19.5-48.5,19.5H216.6c-13,0-25.4,5-34.7,14l-8.5,8.2l-78.3-78.3C113.4,301.5,147.7,281.9,190.4,281.9z    M65.1,348.3c3.3-3.3,8.4-3.9,12.4-1.4c1.7,1.1-3.2-3.5,86.6,86.2c4,4,3.8,10.4,0.1,14.1l-41.3,40.7l-98.2-99L65.1,348.3z"/>
+	<path class="st0" d="M286.4,50v11.7c-11.6,4.1-20,15.2-20,28.3c0,16.5,13.5,30,30,30c5.5,0,10,4.5,10,10s-4.5,10-10,10   c-4.3,0-8.9-2.7-13-7.6c-3.6-4.2-9.9-4.8-14.1-1.2c-4.2,3.6-4.8,9.9-1.2,14.1c5.3,6.4,11.6,10.8,18.3,13V170c0,5.5,4.5,10,10,10   s10-4.5,10-10v-11.7c11.6-4.1,20-15.2,20-28.3c0-16.5-13.5-30-30-30c-5.5,0-10-4.5-10-10s4.5-10,10-10c3.5,0,7.3,1.8,10.8,5.2   c4,3.8,10.3,3.7,14.1-0.2c3.8-4,3.7-10.3-0.2-14.1c-5.1-4.9-10.2-7.7-14.7-9.2V50c0-5.5-4.5-10-10-10S286.4,44.5,286.4,50z"/>
+</g>
+</svg><span class="text--strong"><b>Hemos generado m&aacute;s de 1,000,000 de ingresos a nuestros artistas asociados</b></span></div>
+  <div class="sellpoint sellpoint--left"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 325 325" style="enable-background:new 0 0 325 325;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#011C75;}
+</style>
+<g>
+	<path class="st0" d="M84.8,210.9c-4.6-3.7-10.5-5.7-16.4-5.7c-8.1,0-15.6,3.6-20.6,9.8c-4.4,5.5-6.4,12.3-5.6,19.2   c0.8,7,4.3,13.2,9.8,17.6c4.6,3.7,10.5,5.7,16.4,5.7c8.1,0,15.6-3.6,20.6-9.8c4.4-5.5,6.4-12.3,5.6-19.2   C93.8,221.5,90.3,215.3,84.8,210.9z M79.6,240.2c-2.7,3.4-6.8,5.4-11.2,5.4c-3.3,0-6.4-1.1-9-3.1c-3-2.4-4.9-5.7-5.3-9.5   c-0.4-3.7,0.7-7.4,3-10.4c2.7-3.4,6.8-5.3,11.2-5.3c3.3,0,6.4,1.1,9,3.1c3,2.4,4.9,5.7,5.3,9.5C83.1,233.6,82,237.3,79.6,240.2z"/>
+	<path class="st0" d="M190.3,149.5c4,0,7.8-0.9,11.4-2.6c6.4-3,11.1-8.4,13.5-15c2.3-6.6,1.9-13.7-1.2-19.9   c-4.4-9-13.7-14.8-23.7-14.8c-4,0-7.8,0.9-11.4,2.6c-6.4,3-11.1,8.4-13.5,15c-2.3,6.6-1.9,13.7,1.2,20   C170.9,143.7,180.3,149.5,190.3,149.5z M176.7,118.7c1.3-3.6,3.8-6.5,7.3-8.1c2-0.9,4.1-1.4,6.2-1.4c5.5,0,10.6,3.2,12.9,8   c1.6,3.4,1.9,7.2,0.6,10.7c-1.3,3.6-3.8,6.5-7.3,8.1c-2,0.9-4.1,1.4-6.2,1.4c-5.5,0-10.6-3.2-13-8.1   C175.7,126.1,175.5,122.2,176.7,118.7z"/>
+	<path class="st0" d="M125,107.1c1.9,0.4,3.9,0.7,5.9,0.7c12.4,0,22.9-8.4,25.7-20.3c1.6-6.8,0.4-13.8-3.4-19.7   c-3.7-6-9.6-10.1-16.5-11.6c-1.9-0.4-3.9-0.7-5.9-0.7c-12.3,0-22.9,8.4-25.6,20.3c-1.6,6.8-0.4,13.8,3.3,19.7   C112.3,101.4,118.1,105.5,125,107.1z M116.9,78.4c1.5-6.5,7.2-11,13.9-11c1.1,0,2.2,0.1,3.2,0.4c3.8,0.8,6.9,3.1,9,6.3   c2,3.2,2.6,7,1.8,10.6c-1.5,6.4-7.3,11-14,11c-1.1,0-2.2-0.1-3.2-0.4c-3.8-0.8-6.9-3.1-9-6.3C116.7,85.9,116.1,82.1,116.9,78.4z"/>
+	<path class="st0" d="M77.4,122.1c5.5-4.4,9-10.6,9.8-17.6c0.8-6.9-1.2-13.8-5.6-19.2c-5-6.2-12.5-9.8-20.6-9.8   c-5.9,0-11.7,2-16.4,5.7c-5.5,4.4-9,10.6-9.8,17.5c-0.8,7,1.2,13.8,5.6,19.3c5,6.2,12.5,9.8,20.6,9.8   C66.9,127.7,72.7,125.7,77.4,122.1z M49.7,110.4c-2.4-3-3.5-6.6-3-10.4c0.4-3.8,2.3-7.1,5.3-9.5c2.6-2,5.7-3.1,8.9-3.1   c4.4,0,8.5,1.9,11.2,5.3c2.4,2.9,3.4,6.6,3,10.4c-0.4,3.8-2.3,7.1-5.3,9.5c-2.6,2-5.6,3.1-8.9,3.1   C56.6,115.7,52.5,113.8,49.7,110.4z"/>
+	<path class="st0" d="M322.7,63.3c-1-1-2.9-2.3-5.8-2.3c-3.4,0-12.5,0-67.7,47c-1.1,0.9-2.2,1.9-3.4,2.9   c-9.9-25.7-27.2-48.7-49.5-65.3c-25.6-19-56.1-29.1-88.2-29.1c0,0,0,0,0,0c-21.7,0-48,7.6-68.7,19.7C14,51.2,0,71.2,0,92.5   c0,25.7,14.5,36.5,26.2,45.2c9.5,7.1,17,12.6,17,24.8c0,12.2-7.5,17.8-17,24.8C14.6,196,0,206.7,0,232.5c0,21.3,14,41.3,39.4,56.2   c20.7,12.2,47.1,19.8,68.7,19.8c0,0,0,0,0,0c39.3,0,76.3-15.2,104-42.7c27.4-27.2,42.7-63.2,43.1-101.7   c9.3-10.6,18.3-21.1,26.6-31.1c14.1-17,24.9-31,32.2-41.7C323.8,77.3,328,68.7,322.7,63.3z M203.8,257.3   c-25.5,25.3-59.5,39.2-95.6,39.2c0,0,0,0,0,0c-38.7,0-96.1-26.9-96.1-64c0-19.7,10.4-27.4,21.3-35.5c10.3-7.6,21.9-16.2,21.9-34.5   c0-18.3-11.6-26.9-21.9-34.5c-11-8.1-21.3-15.8-21.3-35.5C12,69.7,33,54,45.5,46.6c18.7-11,43.3-18.1,62.6-18.1c0,0,0,0,0,0   c29.5,0,57.5,9.3,81,26.7c21.7,16.1,38.3,38.8,47,64c-26,22.7-54.2,48.9-75.2,70c-34.9,4.5-39.6,27.7-43.1,44.8   c-3,14.5-4.9,21.6-16.1,22.5c-2.8,0.2-5,2.3-5.4,5c-0.4,2.7,1.1,5.4,3.6,6.5c0.7,0.3,17.9,7.3,37.9,7.3c0,0,0,0,0,0   c14,0,25.9-3.4,35.6-10.1c11.9-8.2,20-21.3,24-38.8c13.7-13.9,29.4-30.6,44.9-47.8C238.8,208.4,225.5,235.8,203.8,257.3z    M185.5,225.4c-6.4,25.2-22.4,38-47.6,38c0,0,0,0,0,0c-6.7,0-13-0.9-18.4-2c6.4-6.5,8.4-16.3,10.1-24.9   c3.3-16.2,6.4-31.5,31.9-35.2L185.5,225.4z M268.3,130.7c-23.8,28.3-52.6,60.2-76.3,84.4l-3.7-3.7L172.2,195   c21.5-21.4,49.1-46.9,74.8-69.2l0,0c3-2.6,6-5.2,8.9-7.7c29.8-25.5,45.5-36.5,53.5-41.4C304.6,84.8,293.6,100.5,268.3,130.7z"/>
+</g>
+</svg><span class="text--strong"><b>Conc&eacute;ntrate en hacer tu arte, nosotros hacemos todo lo dem&aacute;s</b></span></div>
+  <div class="sellpoint sellpoint--left"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#011C75;}
+</style>
+<g>
+	<g>
+		<path class="st0" d="M256,0C156.7,0,76,80.7,76,180c0,33.5,9.3,66.3,26.9,94.7l142.9,230.3c2.7,4.4,7.6,7.1,12.7,7.1    c0,0,0.1,0,0.1,0c5.2,0,10.1-2.8,12.8-7.3l139.2-232.5c16.6-27.8,25.4-59.7,25.4-92.2C436,80.7,355.3,0,256,0z M384.9,256.8    L258.3,468.2L128.4,258.8c-14.6-23.6-22.6-50.9-22.6-78.8c0-82.7,67.5-150.2,150.2-150.2S406.1,97.3,406.1,180    C406.1,207.1,398.7,233.7,384.9,256.8z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<path class="st0" d="M256,90c-49.6,0-90,40.4-90,90c0,49.3,39.7,90,90,90c50.9,0,90-41.2,90-90C346,130.4,305.6,90,256,90z     M256,240.2c-33.3,0-60.2-27-60.2-60.2c0-33.1,27.1-60.2,60.2-60.2s60.1,27.1,60.1,60.2C316.1,212.7,289.8,240.2,256,240.2z"/>
+	</g>
+</g>
+</svg><span class="text--strong"><b>Vende reproducciones de tu trabajo en M&eacute;xico y Estados Unidos</b></span></div>
+</div>
+  
+</div>
+  
+  
+  
+  
+  
+  
+<div class="full-width__main-1">
+  
+<div class="grid-container-main-1">
+<article class="bloque-texto-1">
+  <h1 class="heading h3">&iquest;C&oacute;mo funciona?</h1>
+  
+  <ul style="list-style-type: square; color: #f65e91; margin-left: 1rem; line-height: 1.25em; list-style-position: outside !important;">
+<li style="margin: 15px 0;"><span style="color: #000050 !important;">Tus obras siempre ser&aacute;n tuyas. En ning&uacute;n momento est&aacute;s cediendo propiedad a Canvas Lab.</span></li>
+<li style="margin: 15px 0;"><span style="color: #000050 !important;">Nos compartes tus obras para publicarlas como productos: Nos das una licencia no-exclusiva para comercializar cuadros impresos con tus obras.</span></li>
+<li style="margin: 15px 0;"><span style="color: #000050 !important;">Puedes retirar tus obras de nuestro cat&aacute;logo cuando tu quieras.</span></li>
+<li style="margin: 15px 0;"><span style="color: #000050 !important;">Ganas una comisi&oacute;n del 10% de todas las ventas generadas de productos con tus obras.</span></li>
+<li style="margin: 15px 0;"><span style="color: #000050 !important;">Te pagamos mensualmente las comisiones que hayas ganado.</span></li>
+<li style="margin: 15px 0;"><span style="color: #000050 !important;">Tu propiedad intelectual est&aacute; legalmente protegida. Firmar&aacute;s un contrato protegido por las leyes de Estados Unidos y California.</span></li>
+<li style="margin: 15px 0;"><span style="color: #000050 !important;">Conoce todos los detalles y documentaci&oacute;n legal al registrarte.</span></li>
+  </ul>
+  
+  <div class="article__button article__button--left">
+    <a href="https://forms.zohopublic.com/canvaslab/form/Registrodeartistaasociado/formperma/33LOTrmS7STh4ruZQHbFZonwek0rHmph_hvLbUuwYMI" target="_blank"><button class="boton-registro">Registrarme</button></a>
+  </div>
+</article>
+
+<aside class="bloque-imagen-1"><img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Group_466.png?v=1628099975" alt="Paris"></aside>
+</div>
+  
+</div>
+  
+  
+  
+  
+<div class="full-width__main-2">
+  
+<div class="grid-container-main-2">
+<aside class="bloque-imagen-2"><img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0443/9359/5031/files/Rolando_Artista_Asociado_-_editada.jpg?v=1626889506" alt="Paris"></aside>
+
+<article class="bloque-texto-2">
+  <h1 class="heading h3">&iquest;Por qu&eacute; asociarte con Canvas Lab?</h1>
+  <p>Porque los buenos artistas no se asocian a cualquier cosa. Se asocian &uacute;nicamente con marcas que vendan calidad.</p>
+  <ul style="list-style-type: square; color: #f65e91; margin-left: 1rem; line-height: 1.25em; list-style-position: outside !important;">
+    <li style="margin: 15px 0;"><span style="color: #000050 !important;"><b>Calidad</b>: Todos nuestros productos est&aacute;n hechos con materiales y tecnolog&iacute;as de impresi&oacute;n premium. Nuestros cuadros siempre son de la m&aacute;s alta calidad.</span></li>
+    <li style="margin: 15px 0;"><span style="color: #000050 !important;"><b>Confianza</b>: Todos nuestros clientes tienen cambios y devoluciones gratis en sus pedidos. Y tenemos esta garant&iacute;a porque sabemos que tenemos el mejor producto.</span></li>
+    <li style="margin: 15px 0;"><span style="color: #000050 !important;"><b>Variedad</b>: Los clientes de Canvas Lab pueden pedir reproducciones de tu trabajo en 5 materiales diferentes y tama&ntilde;os desde 20 x 20 cm hasta 360 x 120 cm.</span></li>
+    <li style="margin: 15px 0;"><span style="color: #000050 !important;"><b>Control</b>: T&uacute; siempre eres due&ntilde;o de tus obras y puedes retirar nuestro derecho de reproducci&oacute;n cuando tu quieras.</span></li>
+    <li style="margin: 15px 0;"><span style="color: #000050 !important;"><b>Alcance</b>: Somos la tienda de cuadros con m&aacute;s alcance de todo M&eacute;xico. Con nosotros tus obras pueden llegar a cualquier parte de M&eacute;xico y Estados Unidos.</span></li>
+  </ul>
+<div class="article__button article__button--left">
+  <a href="https://forms.zohopublic.com/canvaslab/form/Registrodeartistaasociado/formperma/33LOTrmS7STh4ruZQHbFZonwek0rHmph_hvLbUuwYMI" target="_blank"><button class="boton-registro">Registrarme</button></a>
+  </div>
+</article>
+</div>
+
+</div>
+  
+  
+  
+  <div class="full-width__main-4">
+  
+<div class="grid-container-main-4">
+<article class="bloque-texto-4">
+  <h1 class="heading h3" style="color: #ffffff !important;">Preguntas Frecuentes</h1>
+  <p><strong>&iquest;Qu&eacute; derechos estoy dando a Canvas Lab para mis obras?</strong></p>
+<p>Solamente nos est&aacute;s dando licencia de comercializar nuestros productos con tus obras. Tu mantienes la propiedad sobre las obras, y tienes el poder de en cualquier momento eliminarlas de nuestro cat&aacute;logo. Conoce todos los detalles al registrarte.</p><br>
+
+<p><strong>&iquest;Canvas Lab se convierte en due&ntilde;o de mis obras?</strong></p>
+<p>No. T&uacute; mantienes la propiedad de tus obras. Conoce todos los detalles al registrarte.</p>
+<p><br /><strong>&iquest;Puedo retirar obras m&iacute;as que ya fueron publicadas?</strong><br />S&iacute;. Siempre puedes solicitarnos eliminar tus obras de nuestro cat&aacute;logo, y lo haremos con la m&aacute;s prontitud posible. Conoce todos los detalles al registrarte.</p>
+<p><br /><strong>&iquest;Canvas Lab comparte mis obras con terceros?</strong></p>
+<p>No. Los archivos originales de tus obras son cuidadosamente almacenados para que nadie pueda hacer mal uso de ellos.</p>
+<p><br /><strong>&iquest;C&oacute;mo recibir&eacute; mi dinero?</strong></p>
+<p>Cada mes se har&aacute; un pago con el balance que tengas disponible por todas las comisiones generadas, pendientes de pago. Para que una comisi&oacute;n se sume a tu balance disponible, esta tendr&aacute; que corresponder a un pedido que tenga al menos 30 d&iacute;as de haberse colocado. Esto es as&iacute; para poder asegurarnos de que el cliente recibi&oacute; su pedido y qued&oacute; satisfecho. Conoce nuestra pol&iacute;tica de garant&iacute;a <a target="_blank" style="font-weight:600!important;text-decoration:underline;" href="/pages/garantia">aqu&iacute;</a>.</p>
+<p id="registro"><br /><strong>&iquest;Como puedo ver las ventas de mis reproducciones?</strong><br />Te daremos acceso a un dashboard en donde podr&aacute;s ver el detalle de todas las compras que se hacen de tus obras y las comisiones que estas te generan.</p>
+  <p><br><strong>¿Tienes más preguntas?</strong></p>
+  <p>Escríbenos a <a target="_blank" style="font-weight:600!important;text-decoration:underline;" href="mailto:asociados@canvaslab.com">asociados@canvaslab.com</a>.</p>
+</article>
+
+</div>
+
+</div>
+  
+  
+  
+
+
+<div class="full-width__main-3">
+
+  
+  <article class="bloque-texto-3">
+  	<h1 class="heading h3">Registr&aacute;te</h1>
+  	<h2 style="color: #1f0d59 !important;">es muy f&aacute;cil.</h2>
+    <a style="margin: 18px auto !important;" href="https://forms.zohopublic.com/canvaslab/form/Registrodeartistaasociado/formperma/33LOTrmS7STh4ruZQHbFZonwek0rHmph_hvLbUuwYMI" target="_blank"><button class="c-button">Registrarme</button></a>
+  </article>
+
+  
+  <!--<aside class="bloque-form-1">
+  <!--<form>
+    <p class="input-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" placeholder="Escribe tu nombre" name="" id="">
+    </p>
+    <p class="input-group">
+      <label for="email">Correo electr&oacute;nico:</label>
+      <input type="email" placeholder="tu-email@ejemplo.com" name="" id="">
+    </p>
+    <p class="input-group">
+      <label for="password">Contrase&ntilde;a:</label>
+      <input type="password" placeholder="Escribe tu contrase&ntilde;a" name="" id="">
+    </p>
+    <p class="input-group">
+      <button class="c-button">Registrarme</button>
+    </p>
+  </form>-->
+  
+  <!--<iframe frameborder="0" id="form-zoho" src="https://forms.zohopublic.com/canvaslab/form/Registrodeartistaasociado/formperma/33LOTrmS7STh4ruZQHbFZonwek0rHmph_hvLbUuwYMI" height="100%"></iframe>-->
+<!--<iframe id="form-zoho" height='500px' width='100%' frameborder='0' allowTransparency='true' scrolling='auto' src='https://forms.zohopublic.com/canvaslab/form/Registrodeartistaasociado/formperma/33LOTrmS7STh4ruZQHbFZonwek0rHmph_hvLbUuwYMI'></iframe>
+    <a href="https://forms.zohopublic.com/canvaslab/form/Registrodeartistaasociado/formperma/33LOTrmS7STh4ruZQHbFZonwek0rHmph_hvLbUuwYMI" target="_blank"><button class="c-button">Registrarme</button></a>
+
+  
+  </aside>-->
+  
+
+</div>  
+  
+  
+  
+  
+  
+
+
+
+
+<!--<footer class="footer"></footer>-->
+
+</div>
+
+
+<script>
+  /*$(".boton-registro").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#registro").offset().top
+    }, 2000);
+});*/
+  
+  
+  
+/*$('#form-zoho').contents().find('body').css({"min-height": "100", "overflow" : "hidden"});
+//setInterval( "$('#form-zoho').height($('#form-zoho').contents().find('body').height() + 20)", 3000 );
+  var test = $('#form-zoho').height($('#form-zoho').contents().find('body').offset().top;
+  alert(test);*/
+  
+  
+  
+  
+  
+  
+  
+  /*var FrameManager = {
+
+    currentFrameId : '',
+    currentFrameHeight : 0,
+    lastFrameId : '',
+    lastFrameHeight : 0,
+    resizeTimerId : null,
+
+    init: function() {
+    
+        if (FrameManager.resizeTimerId == null) {
+        
+            FrameManager.resizeTimerId = window.setInterval(FrameManager.resizeFrames, 500);
+            
+        }
+        
+    },
+
+    resizeFrames: function() {
+    
+        FrameManager.retrieveFrameIdAndHeight();
+
+        if ((FrameManager.currentFrameId != FrameManager.lastFrameId) || (FrameManager.currentFrameHeight != FrameManager.lastFrameHeight)) {
+            
+            var iframe = document.getElementById(FrameManager.currentFrameId.toString());
+
+            if (iframe == null) return;
+
+            iframe.style.height = FrameManager.currentFrameHeight.toString() + "px";
+
+            FrameManager.lastFrameId = FrameManager.currentFrameId;
+            FrameManager.lastFrameHeight = FrameManager.currentFrameHeight;
+            window.location.hash = '';
+            
+        }
+        
+    },
+
+    retrieveFrameIdAndHeight: function() {
+    
+        if (window.location.hash.length == 0) return;
+
+        var hashValue = window.location.hash.substring(1);
+
+        if ((hashValue == null) || (hashValue.length == 0)) return;
+
+        var pairs = hashValue.split('&');
+
+        if ((pairs != null) && (pairs.length > 0)) {
+        
+            for(var i = 0; i < pairs.length; i++) {
+            
+                var pair = pairs[i].split('=');
+
+                if ((pair != null) && (pair.length > 0)) {
+                
+                    if (pair[0] == 'frameId') {
+                    
+                        if ((pair[1] != null) && (pair[1].length > 0)) {
+                        
+                            FrameManager.currentFrameId = pair[1];
+                        }
+                    } else if (pair[0] == 'height') {
+                    
+                        var height = parseInt(pair[1]);
+
+                        if (!isNaN(height)) {
+                        
+                            FrameManager.currentFrameHeight = height;
+                            FrameManager.currentFrameHeight += 15;
+                            
+                        }
+                    }
+                }
+            }
+        }
+        
+    },
+
+    registerFrame: function(frame) {
+    
+        var currentLocation = location.href;
+        var hashIndex = currentLocation.indexOf('#');
+
+        if (hashIndex > -1) {
+        
+            currentLocation = currentLocation.substring(0, hashIndex);
+        }
+
+        frame.contentWindow.location = frame.src + '?frameId=' + frame.id + '#' + currentLocation;
+        
+    }
+};
+
+window.setTimeout(FrameManager.init, 300);/*
+  
+</script>

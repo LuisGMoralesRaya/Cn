@@ -1,0 +1,424 @@
+.nav-bar .mega-menu {
+    background: transparent !important;
+  	max-width: 100% !important;
+}
+.nav-bar .mega-menu .container {
+    max-width: 1480px !important;
+    width: 100% !important;
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+}
+.nav-bar .mega-menu .container .mega-menu__inner {
+    background: #1f0d59 !important;
+    max-width: 1480px!important;
+    padding-left: 40px !important;
+    padding-right: 30px !important;
+}
+.nav-bar .mega-menu a {
+	color: #fff !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 1em !important;
+  	transition: all 0.3s !important;
+}
+html body .nav-bar .mega-menu a:hover {
+	color: #00adef !important;
+}
+html body #desktop-menu-0-3 div.container > div {
+    position: relative !important;
+}
+html body #desktop-menu-0-3 div.container > div > div {
+  	margin: 0 !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1),
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2),
+html body #desktop-menu-0-3 div.container > div > div:nth-child(3) {
+    display: inline-block!important;
+  	float: left !important;
+  	padding: 0 20px 0 0 !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1){
+	min-width: 15% !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2){
+	min-width: 22% !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(3){
+	min-width: 29% !important;
+}
+html body #desktop-menu-0-3 div.container>div>div:nth-child(4) {
+    min-width: 66%!important;
+    position: absolute;
+    bottom: 0 !important;
+    text-align: center;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5){
+	min-width: 34% !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(3) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > a{
+    visibility: 0 !important;
+  	opacity:0 !important;
+  	pointer-events: none !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(4) > a {
+    background: #f0297c !important;
+    color: #ffffff !important;
+    padding: 2px 20px;
+    display: block !important;
+    width: calc(100% - 60px) !important;
+  	font-weight: 600 !important;
+    font-size: 17px !important;
+  	line-height: 1.5em !important;
+  	transition: all 0.3s !important;
+  	transform: translateY(1px);
+  	margin-bottom: 30px !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(4) > a:hover {
+    background:#00adef !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > a+ul,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > a+ul,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(3) > a+ul{
+    transform: translateY(-40px) !important;
+  	margin-bottom: 20px !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(1) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(5) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(9) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(1) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(4) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(8) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(3) > ul > li > a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(2) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(6) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(10) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(13) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(16) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(19) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(24) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(25) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(26) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(27) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(28) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(29) a{
+    font-weight: 600 !important;
+    font-size: 17px !important;
+  	line-height: 1.5em !important;
+  	transition: all 0.3s !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(1) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(5) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(9) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(1) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(4) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(8) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(3) > ul > li > a{
+    color: #f65e91 !important;
+    text-transform: uppercase !important;
+    line-height: 1.5em !important;
+    font-weight: 800 !important;
+}
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(2) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(6) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(10) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(13) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(16) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(19) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(24) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(25) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(26) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(27) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(28) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(29) a{
+    color: #f0297c !important
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(1) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(5) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(9) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(1) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(4) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(8) > a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(2) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(6) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(10) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(13) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(16) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(19) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(24) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(25) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(26) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(27) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(28) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(29) a{
+    margin-bottom: -5px !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(5) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(9) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(4) > a,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(8) > a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(2) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(6) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(10) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(13) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(16) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(19) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(24) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(25) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(26) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(27) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(28) a,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(29) a{
+	margin-top: 15px !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(1) > a::after,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(5) > a::after,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(9) > a::after,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(1) > a::after,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(4) > a::after,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(8) > a::after,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(2) a::after,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(6) a::after,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(10) a::after,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(13) a::after,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(16) a::after,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(19) a::after{
+    content: "Todos"!important;
+    display: inline-block !important;
+    right: 0!important;
+    transform: translateY(-2px)!important;
+    width: 52px!important;
+    height: 23px !important;
+    font-size: 12px;
+    text-align: center;
+    transition: all .3s!important;
+    margin-left: 8px;
+    line-height: 23px;
+    margin-top: 8px;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(1) > a::after,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(5) > a::after,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(9) > a::after,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(1) > a::after,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(4) > a::after,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(8) > a::after{
+    background: #f65e91 !important;
+    color: #fff !important;
+}
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(2) a::after,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(6) a::after,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(10) a::after,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(13) a::after,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(16) a::after,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(19) a::after{
+    background: #1F0D59 !important;
+    color: #fff !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(1) > a:hover,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(5) > a:hover,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(9) > a:hover,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(1) > a:hover,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(4) > a:hover,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(8) > a:hover,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(3) > ul > li > a:hover,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(2) a:hover,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(6) a:hover,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(10) a:hover,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(13) a:hover,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(16) a:hover,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(19) a:hover,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(24) a:hover,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(25) a:hover,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(26) a:hover,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(27) a:hover,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(28) a:hover,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(29) a:hover{
+	color: #00adef !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(1) > a:hover::after,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(5) > a:hover::after,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(1) > ul:nth-child(2) > li:nth-child(9) > a:hover::after,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(1) > a:hover::after,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(4) > a:hover::after,
+html body #desktop-menu-0-3 div.container > div > div:nth-child(2) > ul:nth-child(2) > li:nth-child(8) > a:hover::after,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(2) a:hover::after,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(6) a:hover::after,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(10) a:hover::after,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(13) a:hover::after,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(16) a:hover::after,
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(19) a:hover::after{
+    background: #f0297c!important;
+  	color: #fff !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul {
+    margin-top: -51px !important;
+	margin-bottom: 0px !important;
+  	padding: 0 10px 20px 10px!important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul > li{
+    position: relative !important;
+    width: calc((100% - 20px) / 3) !important;
+    display: inline-block !important;
+  	padding-bottom: calc((100% - 20px) / 3) !important;
+  	background-size: cover !important;
+  	background-repeat: no-repeat !important;
+  	text-align: center !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul > li:not(:nth-child(3n)) {
+    margin-right: 10px !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul > li:nth-last-child(1):not(:nth-child(3n)),
+#mobile-panel-4 ul.mobile-menu__nav li:nth-last-child(1):not(:nth-child(2n)){
+    margin-left: auto!important;
+    margin-right: auto!important;
+    float: unset !important;
+    display: flex !important;
+}
+#mobile-panel-4 ul.mobile-menu__nav li:nth-child(2){
+	margin-bottom: 10px !important;
+}
+#mobile-panel-4 ul.mobile-menu__nav li:not(:nth-child(1)):not(:nth-child(2)) {
+    position: relative !important;
+    width: calc((100% - 10px) / 2) !important;
+    display: inline-block;
+  	padding-bottom: calc((100% + 140.5px) / 3) !important;
+  	background-size: cover !important;
+  	background-repeat: no-repeat !important;
+  	text-align: center !important;
+}
+#mobile-panel-4 ul.mobile-menu__nav li:not(:nth-child(1)):not(:nth-child(2)):not(:nth-child(2n)) {
+    margin-right: 10px;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul > li > a,
+#mobile-panel-4 ul.mobile-menu__nav li:not(:nth-child(1)):not(:nth-child(2)) > a{
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    left: 0 !important;
+    top: 0 !important;
+    padding: 0 !important;
+    justify-content: center;
+    align-items: center;
+    color: #fff !important;
+    font-weight: 600 !important;
+  	font-size: 18px !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul > li:not(:nth-child(8)):not(:nth-child(9)) > a,
+#mobile-panel-4 ul.mobile-menu__nav li:not(:nth-child(1)):not(:nth-child(2)) > a{
+  	background: rgba(0,0,0,0.24) !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul > li:not(:nth-child(8)):not(:nth-child(9)) > a:hover,
+#mobile-panel-4 ul.mobile-menu__nav li:not(:nth-child(1)):not(:nth-child(2)) > a:hover{
+  	background: rgba(0,0,0,0.37) !important;
+}
+
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul > li:nth-child(1),
+#mobile-panel-4 ul.mobile-menu__nav li:nth-child(3){
+	background:url(https://cdn.shopify.com/s/files/1/0258/6276/6677/files/04_Menu-cuartos_Sala.jpg?v=1668032142);
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul > li:nth-child(2),
+#mobile-panel-4 ul.mobile-menu__nav li:nth-child(4){
+	background:url(https://cdn.shopify.com/s/files/1/0258/6276/6677/files/05_Menu-cuartos_Comedor.jpg?v=1668032142);
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul > li:nth-child(3),
+#mobile-panel-4 ul.mobile-menu__nav li:nth-child(5){
+	background:url(https://cdn.shopify.com/s/files/1/0258/6276/6677/files/06_Menu-cuartos_Cocina.jpg?v=1668032142);
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul > li:nth-child(4),
+#mobile-panel-4 ul.mobile-menu__nav li:nth-child(6){
+	background:url(https://cdn.shopify.com/s/files/1/0258/6276/6677/files/07_Menu-cuartos_Escaleras.jpg?v=1668032142);
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul > li:nth-child(5),
+#mobile-panel-4 ul.mobile-menu__nav li:nth-child(7){
+	background:url(https://cdn.shopify.com/s/files/1/0258/6276/6677/files/08_Menu-cuartos_Recamaras.jpg?v=1668032142);
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul > li:nth-child(6),
+#mobile-panel-4 ul.mobile-menu__nav li:nth-child(8){
+	background:url(https://cdn.shopify.com/s/files/1/0258/6276/6677/files/09_Menu-cuartos_Bano.jpg?v=1668032142);
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul > li:nth-child(7),
+#mobile-panel-4 ul.mobile-menu__nav li:nth-child(9){
+	background:url(https://cdn.shopify.com/s/files/1/0258/6276/6677/files/10_Menu-cuartos_Oficina.png?v=1668032143);
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul > li:nth-child(8) > a{
+	background:#00adef !important;
+	transition: all 0.3s !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul > li:nth-child(9) > a{
+	background:#f0297c !important;
+	transition: all 0.3s !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul > li:nth-child(8) > a:hover{
+	background:#f0297c !important;
+}
+html body #desktop-menu-0-3 div.container > div > div:nth-child(5) > ul > li:nth-child(9) > a:hover{
+	background:#00adef !important;
+}
+html body #desktop-menu-0-6 div.container > div > div:nth-child(2) > a:nth-child(1),
+html body #desktop-menu-0-6 div.container > div > div:nth-child(4) > a:nth-child(1) {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+html body #desktop-menu-0-6 div.container>div > div:nth-child(3) > ul:nth-child(2) > li:nth-last-child(1) > a {
+    color: #f0297c !important;
+}
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item a,
+#mobile-panel-6 .mobile-menu__nav li.mobile-menu__nav-item a,
+#mobile-panel-7 .mobile-menu__nav li.mobile-menu__nav-item a{
+    font-weight: 400 !important;
+    line-height: 1em !important;
+}
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item,
+#mobile-panel-6 .mobile-menu__nav li.mobile-menu__nav-item{
+    margin: 10px 0 0 0;
+}
+#mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(1) a,
+#mobile-panel-6 .mobile-menu__nav li.mobile-menu__nav-item:nth-child(2) a,
+html body #mobile-panel-6 > .mobile-menu__section > .mobile-menu__nav > li.mobile-menu__nav-item:nth-child(2) a,
+html body #mobile-panel-7 > .mobile-menu__section > .mobile-menu__nav > li.mobile-menu__nav-item:nth-child(2) a,
+html body #mobile-panel-7 > .mobile-menu__section > .mobile-menu__nav > li.mobile-menu__nav-item:nth-last-child(1) a{
+    font-weight: 600 !important;
+}
+html body #mobile-panel-6 > .mobile-menu__section > .mobile-menu__nav > li.mobile-menu__nav-item:nth-child(2n),
+html body #mobile-panel-6 > .mobile-menu__section > .mobile-menu__nav > li.mobile-menu__nav-item:nth-child(2n-1),
+html body #mobile-panel-6 > .mobile-menu__section > .mobile-menu__nav > li.mobile-menu__nav-item:nth-child(2n):not(:nth-child(2)) > a,
+html body #mobile-panel-6 > .mobile-menu__section > .mobile-menu__nav > li.mobile-menu__nav-item:nth-child(2n-1) > a,
+html body #mobile-panel-7 > .mobile-menu__section > .mobile-menu__nav > li.mobile-menu__nav-item:nth-child(2n),
+html body #mobile-panel-7 > .mobile-menu__section > .mobile-menu__nav > li.mobile-menu__nav-item:nth-child(2n-1),
+html body #mobile-panel-7 > .mobile-menu__section > .mobile-menu__nav > li.mobile-menu__nav-item:nth-child(2n):not(:nth-child(2)):not(:nth-last-child(1)):not(:nth-last-child(2)) > a,
+html body #mobile-panel-7 > .mobile-menu__section > .mobile-menu__nav > li.mobile-menu__nav-item:nth-child(2n-1):not(:nth-last-child(1)) > a{
+	margin-top: unset !important;
+  	margin-right: unset !important;
+  	margin-bottom: unset !important;
+  	margin-left: unset !important;
+   	padding-top: unset !important;
+  	padding-right: unset !important;
+  	padding-bottom: unset !important;
+  	padding-left: unset !important;
+  	margin: 10px 0px 0px 0px !important;
+    padding: 2px 0px 0px 0px !important;
+}
+html body #mobile-panel-3 .mobile-menu__nav-list div.mobile-menu__nav-list-item:nth-child(1),
+html body #mobile-panel-6 > .mobile-menu__section > .mobile-menu__nav > li.mobile-menu__nav-item:nth-child(2),
+html body #mobile-panel-7 > .mobile-menu__section > .mobile-menu__nav > li.mobile-menu__nav-item:nth-child(2){
+	margin-top: 0 !important;
+  	margin-bottom: 10px !important;
+}
+html body #mobile-panel-6 > .mobile-menu__section > .mobile-menu__nav > li.mobile-menu__nav-item:nth-child(1),
+html body #mobile-panel-7 > .mobile-menu__section > .mobile-menu__nav > li.mobile-menu__nav-item:nth-child(1){
+	display: none !important;
+}
+html body #desktop-menu-0-3 div.container>div>div:nth-child(1)>ul:nth-child(2)>li:nth-child(1)>a,
+html body #desktop-menu-0-3 div.container>div>div:nth-child(1)>ul:nth-child(2)>li:nth-child(5)>a,
+html body #desktop-menu-0-3 div.container>div>div:nth-child(1)>ul:nth-child(2)>li:nth-child(9)>a,
+html body #desktop-menu-0-3 div.container>div>div:nth-child(2)>ul:nth-child(2)>li:nth-child(1)>a,
+html body #desktop-menu-0-3 div.container>div>div:nth-child(2)>ul:nth-child(2)>li:nth-child(4)>a,
+html body #desktop-menu-0-3 div.container>div>div:nth-child(2)>ul:nth-child(2)>li:nth-child(8)>a{
+  line-height:1em !important;
+  padding: 0 0 5px 0 !important;
+}

@@ -1,0 +1,12 @@
+descuentos:
+  password: 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
+  theme_id: "134287950013"
+  store: canvaslab.myshopify.com
+development:
+  password: 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
+  theme_id: "133295702205"
+  store: canvaslab.myshopify.com
+live:
+  password: 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
+  theme_id: "132966088893"
+  store: canvaslab.myshopify.com

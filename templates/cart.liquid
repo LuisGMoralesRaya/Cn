@@ -1,0 +1,14 @@
+{% include 'settings_theme_instance' %}
+{% render 'banner_cart_fall22' %}
+
+{% section 'cart-template' %}
+
+{%- if cart.item_count > 0 -%}
+  {% section 'static-recently-viewed-products' %}
+{%- endif -%}
+
+<script>
+  document.querySelector('button.cart-recap__checkout.button').addEventListener('click', function(){
+    ttq.instance('CG527S3C77UCPVD6B2P0').track('InitiateCheckout')
+  })
+</script>

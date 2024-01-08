@@ -1,0 +1,54 @@
+.ssw-faveiticon {
+  top: 0;
+  left: 5px;
+}
+
+#widget-fave-html {
+  width: 100%;
+  margin: 9px;
+}
+
+#widget-fave-html .ssw-fave-btn {
+  width: 100%;
+  line-height: 46px;
+  font-family: inherit;
+  font-size: var(--base-text-font-size);
+  font-weight: var(--text-font-bolder-weight);
+}
+
+.ssw-modal .ssw-fave-btn {
+  width: auto !important;
+  line-height: 40px !important;
+}
+
+#widget-fave-html .ssw-fave-btn-content {
+  width: 100%;
+}
+
+.ssw-fave-btn .ssw-fave-btn-content,
+.ssw-fave-btn .ssw-fave-btn-counter,
+.ssw-fave-btn .ssw-fave-btn-counter:before {
+  border-color: var(--primary-button-background);
+  border-radius: 2px;
+  border-width: 1px;
+  background-color: #fff;
+  color: var(--primary-button-background);
+}
+
+.ssw-fave-btn-default .ssw-fave-btn-content.ssw-active:hover, .ssw-fave-btn-default .ssw-fave-btn-content:hover {
+  border-color: var(--primary-button-background);
+}
+
+@media all and (max-width: 640px) {
+  #widget-fave-html {
+    margin: 10px 0 0 0;
+  }
+}
+
+#ssw-fave-page-side-bar a.ssw-fave-product-avatar.ssw-product-link {
+  pointer-events: unset !important;
+}
+
+#main #widget-fave-html {
+  display: block!important;
+}

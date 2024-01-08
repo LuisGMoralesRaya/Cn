@@ -1,0 +1,18 @@
+{% include 'settings_theme_instance' %}
+<script>
+  {% if pbhd_v1 != null %}
+  ;(function($) {
+    $(document).ready(function() {
+      setTimeout(function() {
+        {%- if prom_v1 contains 'FS' -%}
+        	$('#shopify-section-collection-list').before('<div class="container container--flush"><a href="{{ purl_v1 }}"><img loading="lazy" width="auto" height="100%" id="chbp" src="{{ pbhd_v1 }}" alt="{{ prom_v1 }}" style="margin-top: 50px !important; max-width: 100% !important; width: 100% !important; margin-bottom: -19px !important;"></a></div>');
+        {%- else -%}
+        	$('#shopify-section-collection-list').before('<div class="container container--flush"><img loading="lazy" width="auto" height="100%" id="chbp" src="{{ pbhd_v1 }}" alt="{{ prom_v1 }}" style="margin-top: 50px !important; max-width: 100% !important; width: 100% !important; margin-bottom: -19px !important;"></div>');
+        {%- endif -%}
+        $('#chbp').after('<img loading="lazy" width="auto" height="100%" id="chbpm" class="hide" src="{{ pbhm_v1 }}" alt="{{ prom_v1 }}" style="margin-top: 40px !important; max-width: 100% !important; width: 100% !important; margin-bottom: -19px !important;">');
+        $('#chbpm').after('<div id="pxu_cst" style="display: block !important; margin: 19px aut	o 0px auto !important;"></div>');                  
+      }, 120);
+    });
+  })(jQuery);
+  {% endif %}
+</script>

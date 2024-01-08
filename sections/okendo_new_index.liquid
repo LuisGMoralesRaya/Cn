@@ -1,0 +1,31 @@
+<style>
+.okeReviews-reviewsCarousel-slider {
+    max-width: 1480px !important;
+    margin: 0 auto !important;
+}
+</style>
+<div data-oke-reviews-carousel data-oke-reviews-carousel-link="{{ section.settings.link }}" data-oke-reviews-carousel-heading="{{ section.settings.heading }}"></div>
+
+{% schema %}
+{
+    "name": "Okendo New Index",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+        },
+        {
+            "type": "text",
+            "id": "link",
+            "label": "Link"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Okendo Reviews Carousel",
+            "category": "Product"
+        }
+    ]
+}
+{% endschema %}

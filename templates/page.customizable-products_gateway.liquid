@@ -1,0 +1,54 @@
+<div class="container container--medium">
+  <header class="page__header ">
+    <h1 class="page__title heading h1">{{ page.title }}</h1>
+  </header>
+
+  <div class="page__content rte">
+    	
+      <script src="{{ 'jquery-3-6-0.min.js' | asset_url }}"></script>
+      <script src="{{ 'list.min.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'personalizer.js' | asset_url }}" defer="defer"></script>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="{{ 'personalizer.css' | asset_url }}" >
+    
+      <div class="stk_table">
+        <div class="stk_row">
+          <div class="stk_cell stk_left">
+            <center><img loading="lazy" width="auto" height="100%" src="https://storage.googleapis.com/sube_tu_foto/placeholders/canvas.png" id="placeholder"></center>
+          </div>
+          <div class="stk_cell stk_right">
+            <ul class="material swatch">
+              <li id="canvas">Canvas</li>
+              <li id="acrilico">Acrílico</li>
+              <li id="aluminio">Aluminio</li>
+              <li id="pixset">Pixset</li>
+              <li id="poster">Poster</li>
+              <li id="enmarcado">Enmarcado</li>
+            </ul>
+            <div id="temp_size">
+              <div id="size_list_header">
+                <div class="size_proportion_header"></div>
+                <div class="size_name_header">Tamaño</div>
+                <div class="size_price_header">Precio</div>
+                <div class="size_material_header">Chico</div>
+              </div>
+              <ul class="size_list list" id="product_list">
+
+
+              </ul>
+            </div>
+
+            <div class="btndiv"><a target="_blank" class="stk_btn" href="#">PERSONALIZAR</a></div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+<style>
+  #main{margin:40px 20px;}
+  .page__header--centered{text-align:left !important;}
+  #main .container {background:#fff !important; border-radius:3px; border:1px solid #f3f3f3; margin-top:20px; margin-bottom:20px; padding:40px;}
+</style>

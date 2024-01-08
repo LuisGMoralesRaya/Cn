@@ -1,0 +1,31 @@
+<div id="nope" style="position: absolute !important; z-index:999999 !important; width: 100vw !important; height:100vh !important; top: 0 !important; left: 0 !important; background: #000 !important; display: flex !important;  pointer-events: none !important; align-items: center !important; justify-content: center !important;">
+  <img loading="lazy" width="auto" height="100%" style="width: 480px !important; height: 215px !important; pointer-events: none !important;" src="https://cdn.shopify.com/s/files/1/0598/0818/6521/files/nope.gif?v=1663698669"/>
+</div>
+<script>
+  $(document).ready(function(){
+    $('body').remove();
+    $('head').after('<body><div id="nope" style="position: absolute !important; z-index:999999 !important; width: 100vw !important; height:100vh !important; top: 0 !important; left: 0 !important; background: #000 !important; display: flex !important;  pointer-events: none !important; align-items: center !important; justify-content: center !important;"><img loading="lazy" width="auto" height="100%" style="width: 480px !important; height: 215px !important; pointer-events: none !important;" src="https://cdn.shopify.com/s/files/1/0598/0818/6521/files/nope.gif?v=1663698669"/></div></body>'); 
+  });
+  $(document).on({
+    "contextmenu": function (e) {
+        console.log("ctx menu button:", e.which);
+        e.preventDefault();
+    },
+    "mousedown": function(e) { 
+        console.log("normal mouse down:", e.which); 
+    },
+    "mouseup": function(e) { 
+        console.log("normal mouse up:", e.which); 
+    }
+  });
+  $(document).keydown(function (event) {
+    if (event.keyCode == 123) {
+        return false;
+    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {     
+        return false;
+    }
+  });
+  $.getJSON('https://api.ipify.org?format=jsonp&callback=?', function(data) {
+    console.log('Offender – '+JSON.stringify(data, null, 2));
+  });
+</script>

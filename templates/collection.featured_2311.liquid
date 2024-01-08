@@ -1,0 +1,78 @@
+<style>
+.coleccion_destacada{
+	width:100%;
+    height:400px;
+   
+	background:url('{{ collection.metafields.my_fields.imagen_destacada | file_url }}') center center;
+    background-size:cover;
+}
+.coleccion_header{
+  	width:100%;
+    height:400px;
+  background-size:cover;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75));
+}
+.detalle_coleccion{
+  background:#fff !important;
+  padding:40px 20px !important;
+  width:100%; 
+  
+  text-align;center;
+}
+.descripcion_coleccion{
+  text-align:center;
+}
+.detalle_coleccion h1{
+  color:#1e2d7d;
+  font-size:30px;
+  font-weight:bold;
+  text-align:center;}
+header.card__header{display:none !important;}
+  .collection__toolbar--bordered{margin-top:0px !important;}
+  .coleccion_header h1{color:#ffffff;text-align:center;vertical-align:middle;padding-top:80px;
+
+}
+
+  .stk_table{width:100%; margin-bottom:50px; }
+  .stk_cell{ text-align:left;vertical-align:middle;}
+  
+  .stk_cell img{width:100%; text-align:center; }
+  .stk_cell h1{color:#1e2d7d; font-size:32px;font-weight:bold; line-height:36px !important; padding-top:10px !important;}
+  .stk_button{max-width:300px !important;}  
+  
+  
+@media only screen and (min-width: 769px) {
+  .stk_header_bg{background:#ffffff !important;}
+  .stk_table{display:table; width:100%; padding:20px 0px !important; }
+  .stk_row{display:table-row;}
+  .stk_cell{display:table-cell;  text-align:left;vertical-align:middle;}
+  .stk_cell_left{width:50%;}
+  .stk_cell_right{width:50%}
+  .stk_cell img{width:100%; text-align:center; max-width:700px;margin:0px auto; }
+  .stk_cell h1{color:#1e2d7d; font-size:36px;font-weight:bold; line-height:44px !important;}
+  .stk_button{max-width:300px !important;}
+}
+
+
+
+</style>
+<div class="container container--flush">
+<div class="stk_table">
+  <div class="stk_row">
+    
+
+    <div class="stk_cell stk_cell_left"><img loading="lazy" width="auto" height="100%" src="{{ collection.image | image_url }}" /></div>
+    <div class="stk_cell stk_cell_right" style="padding:10px 20px !important;">
+    	<h1>{{ collection.title }}</h1>
+  		<div class="stk_description">{{ collection.description }}</div><br>
+      	<!--<button onclick="location.href='{{ collection.metafields.my_fields.collection_link | url }}'" type="button" class="product-form__add-button button button--primary stk_button">Link</button>-->
+    </div>
+  </div>
+</div>
+</div>
+
+{% section 'collection_template_2311' %}
+{% section 'static-promotion-list' %}
+{%- comment -%}
+{% section 'static-recently-viewed-products' %}
+{%- endcomment -%}

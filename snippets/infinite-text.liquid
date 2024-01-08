@@ -1,0 +1,54 @@
+{%- assign looptext  = "" -%}
+{%- assign text_color = "#1e2d7d " -%}
+{%- assign bg_color = "#f6f3ff " -%}
+{%- assign infinite_text = "<img loading="lazy" width="auto" height="100%" src='https://cdn.shopify.com/s/files/1/0258/6276/6677/files/mx.svg?v=1650573966' style='height:15px !important;width:auto!important; display:inline-block !important;margin:3px 1px 0 10px !important;'/> Envíos GRATIS a todo México &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📦 Cambios y devoluciones GRATIS   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;💳 Pago seguro con tarjetas   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⭐️ Miles de reseñas con 5 estrellas   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🖼 Más de 250mil cuadros vendidos &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🏙 Más de 60mil obras" -%}
+
+
+{% for i in (1..50) %}
+  {% if i == 49 %}
+    {% break %}
+  {% else %}
+    {%- assign looptext  = looptext | append: '&nbsp;&nbsp;&nbsp;' | append: infinite_text -%}
+  {% endif %}
+{% endfor %}
+
+
+
+
+
+<section class="section stk_infinite_text_section" >
+  <div class="container">
+    <div class="stk_infinite_title">
+    <div class="track">
+      <div class="content">{{looptext}} .</div>
+    </div>
+  </div>
+  </div>
+</section>
+<style>
+  .stk_infinite_text_section{margin:0px !important; padding:0px !important;}
+  .stk_infinite_text_section .container{max-width:100% !important;padding:0px !important;}
+  .stk_infinite_title {
+    background:{{bg_color}};
+    color:{{text_color}};
+    position: relative;
+    width: 100vw;
+    max-width: 100%;
+    height:32px;
+    overflow-x: hidden;
+    font-size:12px;
+    padding-top:4px;
+    
+  }
+  .track {
+    position: absolute;
+    white-space: nowrap;
+    will-change: transform;
+    animation: stk_infinite_title 900s linear infinite;
+  }
+  @keyframes stk_infinite_title {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+</style>
+

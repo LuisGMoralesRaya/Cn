@@ -1,0 +1,218 @@
+<style>
+  #main .container {
+    padding: 60px 60px 0 60px !important;
+  }
+  h1.page__title.heading.h1{
+    height: 0 !important;
+    width: 0 !important;
+    opacity: 0 !important;
+  }
+  .beau_hero{
+    width: calc(100% + 120px) !important;
+    max-width: calc(100% + 120px) !important;
+    margin-left: -60px !important;
+    margin-top: -60px !important;
+  }
+  div.heading{
+    text-align: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.2em !important;
+  }
+  div.heading.h1 {
+    font-size: 54px !important;
+  }
+  div.heading.h2 {
+    font-size: 34px !important;
+  }
+  div.heading.h1.up,
+  div.heading.h2.up{
+    text-transform: uppercase;
+  }
+  img.img_content {
+    max-width: 80% !important;
+    margin: 0 auto !important;
+  }
+  .page__content.rte {
+    color: var(--heading-color) !important;
+    font-size: 24px;
+    line-height: 1.5;
+  }
+  .heading.dis {
+    font-size: 30px;
+    height: 40px !important;
+    line-height: 40px !important;
+    display: block !important;
+    color: #ff0000 !important;
+    letter-spacing: 6px;
+    margin: 16px auto !important;
+  }
+  .heading.h2.plus {
+    font-size: 48px !important;
+    color: #00adef;
+    margin-top: 20px !important;
+  }
+  .bold{
+    font-weight: 600 !important;
+  }
+  #terms{
+    font-size: 14px !important;
+    line-height: 1.4em !important;
+    text-align: justify !important;
+    color: #000 !important;
+    font-weight: 300 !important;
+  }
+  #terms .title {
+    font-size: 16px !important;
+    display: block !important;
+    margin-bottom: -10px !important;
+  }
+  @media screen and (max-width:1239px){
+    #main {
+      margin: 20px !important;
+    }
+  }
+  @media screen and (max-width:800px){
+    img.img_content {
+      max-width: 100% !important;
+    }
+    div.heading.h1 {
+      font-size: 40px !important;
+    }
+    div.heading.h2 {
+      font-size: 20px !important;
+    }
+    .page__content.rte {
+      font-size: 16px;
+    }
+    .heading.dis {
+      font-size: 16px;
+      height: 30px !important;
+      line-height: 30px !important;
+      letter-spacing: 4px;
+    }
+    .heading.h2.plus {
+      font-size: 34px !important;
+    }
+    #terms{
+      font-size: 10px !important;
+    }
+    #terms .title {
+      font-size: 12px !important;
+    } 
+  }
+  @media screen and (max-width:520px){
+    #main .container {
+      padding: 20px 20px 0 20px !important;
+    }
+    .beau_hero{
+      width: calc(100% + 40px) !important;
+      max-width: calc(100% + 40px) !important;
+      margin-left: -20px !important;
+      margin-top: -20px !important;
+    }
+    header.page__header {
+      margin: 15px !important;
+    }
+    .heading.dis {
+      font-size: 16px;
+      height: auto !important;
+      line-height: 30px !important;
+      letter-spacing: 3px;
+    }
+  }
+  @media screen and (max-width:400px){
+    html body main#main {
+      margin: 0 !important;
+    }
+    html body #main .container.container--medium {
+      margin-top: 0 !important;
+    }
+    header.page__header {
+      margin: 10px !important;
+    }
+    #main .container {
+      padding: 10px 10px 0 10px !important;
+    }
+    .beau_hero{
+      width: calc(100% + 20px) !important;
+      max-width: calc(100% + 20px) !important;
+      margin-left: -10px !important;
+      margin-top: -10px !important;
+    }
+  }
+  input#coupon{
+      display: block !important;
+      margin: 10px auto !important;
+      text-align: center !important;
+      padding: 24px 0px;
+      font-size: 34px;
+      font-weight: 600;
+      color: red;
+      border: 2px solid red;
+      max-width: 80% !important;
+  }
+</style>
+<div class="container container--medium">
+  <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/1067Banner_Landing_page.png?v=1670007615" class="beau_hero">
+  <header class="page__header ">
+    <h1 class="page__title heading h1">{{ page.title }}</h1>
+  </header>
+
+  <div class="page__content rte">
+    <div class="heading h1 up">50% OFF en 2+ CUADROS</div>
+    <div class="heading h1 up">40% OFF COMPRANDO 1 CUADRO</div>
+    <div class="heading h1 up">+</div>
+    <div class="heading h2 up">PAGA CON TU CUENTA MERCADOPAGO</div>
+    <div class="heading h2">y obtén 10% de descuento ADICIONAL</div>
+    <div class="heading h2">con el siguiente cupón:</div>
+    <br>
+    <input type="text" id="coupon" value="HOLIDAYMP" onclick="copyMe()">
+    <br>
+    <div class="heading h2">ESTE CUPÓN TIENE UN TOPE DE $500 MXN</div>
+    </br>
+    <div class="bold">Pasos para aprovechar el descuento de Mercado Pago</div>
+    <div>1) En nuestro Checkout, elige pago con Mercado Pago.</div>
+    <br>
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Paso_1_551b1e70-fd62-476b-a0ac-45c8325ffe45.png?v=1668475014" class="img_content"/>
+    <br>
+    <div>2) Después, en las opciones de pago elige la opción para pagar con tu cuenta de Mercado Pago.</div>
+    <br>
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Paso_2_193923f5-d2a8-4f71-a679-e5669bd18ebf.png?v=1668475014" alt="" class="img_content"/>
+    <br>
+    <div>3) Inicia sesión con tu cuenta Mercado Pago.</div>
+    <br>
+    <div>*Si no tienes una cuenta de Mercado Pago puedes crear una (El proceso de aprobación puede durar hasta un día).</div>
+    <br>
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Paso_3_68cea68e-a520-4117-926b-0a0a6348bc87.png?v=1668475014" class="img_content"/>
+    <br>
+    <div>4) Por último, elige tu forma de pago con los bancos seleccionados, da click en "Tengo un descuento".</div>
+    <br>
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Paso_4.png?v=1668475014" class="img_content"/>
+    <br>
+    <div>Ingresa el código de descuento correspondiente, da click en el botón de "Aplicar descuento" y termina tu compra.</div>
+    <br>
+    <img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/Paso_5.png?v=1668475014" class="img_content"/>
+    <br>
+    <br/>
+    <div id="terms">
+      <span class="bold title">Términos y Condiciones</span>
+      <br/>
+      <p>CUPÓN HOLIDAYMP: 10% OFF TOPE $500 MXN Mercado Pago otorgará a los usuarios (los “Usuarios”) un cupón de descuento (el “Beneficio”) del 10% (DIEZ por ciento) con un tope de $500.00 M.N. (Quinientos pesos 00/100 Moneda Nacional) insertando el código: HOLIDAYMP. Beneficio válido desde las 00:00 horas (hora del centro de México) del 29 de noviembre de 2022 hasta las 23:59 horas (hora del centro de México) del 20 de diciembre de 2022 o hasta agotar existencias, para compras abonadas por medio de la plataforma de Mercado Pago (www.mercadopago.com.mx) operada por MP Agregador, S. de R.L. de C.V. (“Mercado Pago Standard”). Beneficio válido únicamente ingresando a tu cuenta de Mercado Pago al momento de realizar el pago e ingresando el código HOLIDAYMP en forma previa al pago, con un tope máximo de $500.00 M.N. (Quinientos pesos 00/100 Moneda Nacional). Válido 3 (tres) cupones por Usuario. Mercado Pago no es propietario de los artículos ofrecidos, adquiridos o enajenados por los Usuarios, no tiene posesión de ellos ni los ofrece en venta. Mercado Pago no es responsable por la existencia, calidad, cantidad, estado o integridad de dichos bienes, por la legitimidad de la operación, ni por el efectivo cumplimiento de las obligaciones asumidas por el vendedor o el comprador.</p>
+    </div>
+  </div>
+</div>
+<script defer>
+  function copyMe() {
+    var copyText = document.getElementById("coupon");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+    navigator.clipboard.writeText(copyText.value);
+  }
+</script>
+
+<style>
+  #main{margin:40px 20px;}
+  .page__header--centered{text-align:left !important;}
+  #main .container {background:#fff !important; border-radius:3px; border:1px solid #f3f3f3; margin-top:20px; margin-bottom:20px; padding:40px;}
+</style>

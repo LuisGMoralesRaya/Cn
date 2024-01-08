@@ -1,0 +1,507 @@
+<section>
+    <div class="container">
+        <header class="section__header" style="margin-bottom:15px !important;">
+            <h2 class="section__title heading h3">{{ section.settings.section_title }}</h2>
+        </header>
+    </div>
+    <div id="masonry_gallery" class="{{ section.settings.section_title | handleize }}">
+      {% style %}
+        {% if section.settings.toggle_hover != false %}
+          @media screen and (min-width:769px){
+            html body #masonry_gallery .row,
+            html body #masonry_gallery .row:hover,
+            html body #masonry_gallery .row aside,
+            html body #masonry_gallery .row aside .overlay,
+            html body #masonry_gallery .row:hover aside,
+            html body #masonry_gallery .row:hover aside .overlay{
+              transition: all 0.3s !important;
+            }
+            html body #masonry_gallery .row aside .overlay,
+            html body #masonry_gallery .row section {
+              display: none !important;
+              height: 0 !important;
+              width: 0 !important;
+              visibility: hidden !important;
+            }
+            html body #masonry_gallery .row:hover > aside > .overlay{
+              display: block !important;
+              height: 100% !important;
+              width: 100% !important;
+              visibility: visible !important;
+            }
+            html body #masonry_gallery .row:hover > section {
+              display: flex !important;
+              height: 100% !important;
+              width: 100% !important;
+              visibility: visible !important;
+            }
+          }
+        {% endif %}
+        #masonry_gallery.{{ section.settings.section_title | handleize }} .row section info div.holder a{
+          {% if section.settings.special_feat != false %} text-transform: {{ section.settings.special_feat_val }} !important; {% endif %}
+          font-size: {{ section.settings.button_font_size | append: "px"}} !important;
+          font-weight: {{ section.settings.button_font_weight }} !important;
+        }
+        .{{ section.settings.section_title | handleize }}+#button_holder {
+            margin: 0 !important;
+          	text-align: center !important;
+            display: block !important;
+            width: 100% !important;
+            max-width: 1480px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            padding: 0 var(--desktop-container-gutter);
+            margin-bottom: calc(var(--desktop-container-gutter) + 7px) !important;
+        }
+        .{{ section.settings.section_title | handleize }}+#button_holder #button_masonry_gallery{
+          display: inline-block !important;
+          font-size: {{ section.settings.main_button_font_size }}px !important;
+          padding: 0.5em 1.5em !important;
+          font-weight: {{ section.settings.main_button_font_weight }} !important;
+          color: {{ section.settings.main_button_text_color }} !important;
+          background-color: {{ section.settings.main_button_background_color }} !important;
+          transition: all 0.3s !important;
+          margin: 0 auto !important;
+        }
+        .{{ section.settings.section_title | handleize }}+#button_holder #button_masonry_gallery:hover{
+          color: {{ section.settings.button_text_color }} !important;
+          background-color: {{ section.settings.main_button_background_color_hover }} !important;
+        }
+      {% endstyle %}
+      <div class="fixer">
+        {% assign iteration_number = 0 %}
+        <div class="segment">
+          {% for block in section.blocks %}
+  			{% assign iteration_button_text_color = block.settings.button_text_color %}
+          	{% assign iteration_bck_mobile = block.settings.image_mobile | img_url: 'grande' %}
+          	{% assign bck_op = block.settings.background_opacity | times: 0.01 %}
+          	{% assign txt_sh = 0.20 | minus: bck_op %} 
+              
+                <div class="row {{ ' ' }} {%- if section.blocks.size > 1 -%}two{%- else -%}one{%- endif -%}">
+                    {% style %}
+                      #masonry_gallery .row aside .overlay{
+                        opacity: {{ bck_op }} !important;
+                      }
+                  	  #masonry_gallery .row section info div.holder a:hover{
+                          box-shadow: 0 2px 3px rgba(0,0,0,{{ txt_sh }}) !important;
+                          opacity: .99 !important;
+                      }
+                  	  @media screen and (max-width: 640px){
+                          #masonry_gallery .row aside.it_{{ iteration_number }}{
+                              background-image:url("{{ iteration_bck_mobile }}") !important;
+                          }
+                      }
+                    {% endstyle %}
+                  	<aside class="it_{{ iteration_number }}" style='background-image:url("{{ block.settings.image | img_url: 'grande' }}")'>
+                      <div class="overlay" 
+                           style="background: linear-gradient(to bottom, transparent 23%, {{ block.settings.overlay_color }}) !important;
+                                  width:100% !important;
+                                  height:100% !important;
+                                  position: absolute !important;
+                                  top: 0 !important;
+                                  left: 0 !important;
+                                  mix-blend-mode: {{ block.settings.overlay_type }} !important;">
+                      </div>
+                    </aside>
+                    <section style="text-align:{{ block.settings.h_align }};">
+                      	{% style %}
+                      		#masonry_gallery .row section info div.holder a.it_{{ iteration_number }}{
+                                color: {{ iteration_button_text_color }} !important;
+                            }
+                      	{% endstyle %}
+                        <info>
+                            <div class="holder" style="vertical-align:{{ block.settings.v_align }};">
+                                <a class="it_{{ iteration_number }}" href="{{ block.settings.link }}">{{ block.settings.button_text }}</a>
+                            </div class="holder">
+                        </info>
+                    </section>
+                {% assign checker = iteration_number |  modulo:18 %}
+                </div>
+              {% if checker == 2 %}
+                </div>
+                <div class="segment">
+              {% endif %}
+          	{% assign iteration_number = iteration_number | plus: 1 %}
+          {% endfor %}
+        </div>
+      </div>
+    </diV>
+  {% if section.settings.show_button == true %}
+    <div id="button_holder">
+      <a id="button_masonry_gallery" href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
+    </div>
+  {% endif %}
+</section>
+{% schema %}
+{
+    "name": "Masonry Gallery",
+    "settings": [
+      {
+          "type": "text",
+          "id": "section_title",
+          "label": "Title",
+          "default": "Masonry gallery",
+          "info": "Please change the name of this section, it's imperative in order to isolate the visual properties of the actual section in case there are many instances called at the same time."
+      },
+      {
+          "type": "checkbox",
+          "id": "show_button",
+          "label": "Show Button",
+          "default": true
+      },
+      {
+          "type": "range",
+          "id": "main_button_font_size",
+          "min":  12,
+          "max":  38,
+          "step":  1,
+          "label": "Button's Font Size",
+          "default":  30
+      },
+      {
+          "type": "select",
+          "id": "main_button_font_weight",
+          "default": "300",
+          "label": "Button's font weight",
+          "options": [
+          {
+              "value": "200",
+              "label": "Slim"
+          },
+          {
+              "value": "300",
+              "label": "Normal"
+          },
+          {
+              "value": "600",
+              "label": "Bold"
+          },
+          {
+              "value": "800",
+              "label": "Extra Bold"
+          }]
+      },
+      {
+          "type": "color",
+          "id": "main_button_text_color",
+          "label": "Button's text color",
+          "default": "#ffffff"
+      },
+      {
+          "type": "color",
+          "id": "main_button_background_color",
+          "label": "Button's background color",
+          "default": "#f0297c"
+      },
+      {
+          "type": "color",
+          "id": "main_button_background_color_hover", 
+          "label": "Button's background color on Hover",
+          "default": "#00adef"
+      },
+      {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button's Text",
+          "default": "Click me"
+      },
+      {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button's Link",
+          "default": "/collections"
+      },
+      {
+          "type": "range",
+          "id": "button_font_size",
+          "min":  12,
+          "max":  38,
+          "step":  1,
+          "label": "Links' Font Size",
+          "default":  30
+      },
+      {
+          "type": "select",
+          "id": "button_font_weight",
+          "default": "300",
+          "label": "Links' font weight",
+          "options": [
+          {
+              "value": "200",
+              "label": "Slim"
+          },
+          {
+              "value": "300",
+              "label": "Normal"
+          },
+          {
+              "value": "600",
+              "label": "Bold"
+          },
+          {
+              "value": "800",
+              "label": "Extra Bold"
+          }]
+      },
+      {
+          "type": "checkbox",
+          "id": "special_feat",
+          "label": "Enable text transform for all links' text?",
+          "default": false
+      },
+      {
+          "type": "select",
+          "id": "special_feat_val",
+          "default": "capitalized",
+          "label": "Text Transform",
+          "options": [
+          {
+              "value": "capitalized",
+              "label": "Capitalized"
+          },
+          {
+              "value": "uppercase",
+              "label": "Uppercase"
+          },
+          {
+              "value": "lowercase",
+              "label": "Lowercase"
+          }]
+      },
+      {
+          "type": "checkbox",
+          "id": "toggle_hover",
+          "label": "Toggle the item info to hidden and show it when mouse enters it?",
+          "default": false
+      }
+    ],
+    "class": "spaced-section spaced-section--full-width",
+    "max_blocks": 6,
+    "blocks": [
+    {
+        "type": "item",
+        "name": "Item",
+        "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Item image"
+        },
+		{
+            "type": "image_picker",
+            "id": "image_mobile",
+            "label": "Item image for mobile devices"
+        },
+        {
+            "type": "range",
+            "id": "background_opacity",
+            "min":  0,
+            "max":  100,
+            "step":  1,
+            "label": "Background Opacity",
+            "default":  20
+        },
+        {
+            "type": "color",
+            "id": "overlay_color",
+            "label": "Overlay color",
+            "default": "#000000"
+        },
+        {
+            "type": "select",
+            "id": "overlay_type",
+            "default": "unset",
+            "label": "Overlay Type",
+            "options": [
+            {
+                "value": "hard-light",
+                "label": "Hard Light"
+            },
+            {
+                "value": "unset",
+                "label": "Normal"
+            },
+            {
+                "value": "multiply",
+                "label": "Multiply"
+            }]
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text",
+            "default": "Click me"
+        },
+        {
+            "type": "url",
+            "id": "link",
+            "label": "Link",
+            "default": "/collections"
+        },
+        {
+            "type": "color",
+            "id": "button_text_color",
+            "label": "Button text color",
+            "default": "#FFFFFF"
+        }]
+
+    }],
+    "presets": [
+    {
+        "name": "Masonry Gallery"
+    }]
+}
+{% endschema %}
+
+{% stylesheet %}
+    /* NOTICE Extra css, if you need this section as an isolated element, please avoid including the following */
+      html body #banner_collection > .container > img+p {
+        margin: 0 0 var(--desktop-container-gutter) 0 !important;
+      }
+      div[data-oke-reviews-carousel] {
+        display: contents !important;
+      }
+      html body div.okeReviews-reviewsCarousel-heading {
+        padding-top: unset !important;
+        font-size: calc(var(--base-text-font-size) - (var(--default-text-font-size) - 20px))!important;
+      }
+    /*END NOTICE*/
+    #masonry_gallery {
+      	margin: 0 !important;
+      	display: table !important;
+        width: 100% !important;
+      	max-width: 1480px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding: 0 var(--desktop-container-gutter);
+    }
+    
+    #masonry_gallery .row{
+      width: calc((100% - 40px) / 3) !important;
+      max-width: calc((100% - 40px) / 3) !important;
+      position: relative !important;
+      display: inline-block !important;
+      margin-bottom: 20px !important;
+      vertical-align: top !important;
+      float: left !important;
+    }
+    #masonry_gallery .row:not(:nth-child(3n)){
+      margin-right: 20px !important;
+    }
+
+    #masonry_gallery .segment:nth-child(1) .row:nth-child(1),
+    #masonry_gallery .segment:nth-child(1) .row:nth-child(3),
+    #masonry_gallery .segment:nth-child(2) .row:nth-child(2){
+      padding-bottom: calc(((100% - 40px) / 3) / 2);
+    }
+  
+    #masonry_gallery .segment:nth-child(2) .row:nth-child(1),
+    #masonry_gallery .segment:nth-child(2) .row:nth-child(3){
+      margin-top: calc( -1 * (((100% - 40px) / 3) / 2));
+    }
+    
+    #masonry_gallery .segment:nth-child(1) .row:nth-child(2),
+    #masonry_gallery .segment:nth-child(2) .row:nth-child(1),
+    #masonry_gallery .segment:nth-child(2) .row:nth-child(3){
+      padding-bottom: calc((100% - 40px) / 3);
+    }
+
+    #masonry_gallery .row aside {
+      width: 100% !important;
+      height: 100% !important;
+      position: absolute !important;
+      background-size: cover !important;
+      background-position: 50% !important;
+    }
+  
+    #masonry_gallery .row section {
+      position: absolute !important;
+      left: 0 !important;
+      top: 0 !important;
+      display: flex !important;
+      width: 100% !important;
+      height: 100% !important;
+      align-items: end !important;
+      justify-content: right!important;
+      text-align: right !important;
+      line-height: 1.2em!important;
+      padding: 1rem !important;
+    }
+    #masonry_gallery .row section info div.holder a {
+      position: absolute !important;
+      height: 100% !important;
+      width: 100% !important;
+      top: 0 !important;
+      left: 0 !important;
+      display: flex !important;
+      align-items: end !important;
+      justify-content: right!important;
+      text-align: right !important;
+      line-height: 1.2em!important;
+      padding: 1rem !important;
+    }
+  
+    @media screen and (max-width: 640px){
+      #masonry_gallery {
+        padding: 0 var(--mobile-container-gutter);
+      }
+      #masonry_gallery .row{
+        width: calc((100% - 30px) / 3) !important;
+        max-width: calc((100% - 30px) / 3) !important;
+        position: relative !important;
+        display: inline-block !important;
+        margin-bottom: 15px !important;
+      }
+      #masonry_gallery .row:not(:nth-child(3n)){
+        margin-right: 15px !important;
+      }
+    }
+    @media screen and (max-width: 450px){
+      #masonry_gallery {
+        padding: 0 var(--mobile-container-gutter);
+      }
+      #masonry_gallery .row{
+        width: calc((100% - 15px) / 2) !important;
+        max-width: calc((100% - 15px) / 2) !important;
+        position: relative !important;
+        display: inline-block !important;
+        margin-bottom: 15px !important;
+      }
+      #masonry_gallery .segment:nth-child(2) .row:nth-child(1),
+      #masonry_gallery .segment:nth-child(2) .row:nth-child(3){
+        margin-top: unset !important;
+      }
+      #masonry_gallery .segment{
+        display: inline-block!important;
+        width: calc((100% - 15px)/2)!important;
+        float: left !important;
+      }
+      #masonry_gallery .segment .row {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+      }
+      #masonry_gallery .segment:nth-child(1) {
+        margin-right: 15px;
+      }
+      #masonry_gallery .segment:nth-child(1) .row:nth-child(1),
+      #masonry_gallery .segment:nth-child(1) .row:nth-child(3){
+        padding-bottom: 84% !important;
+      }
+      #masonry_gallery .segment:nth-child(2) .row:nth-child(1),
+      #masonry_gallery .segment:nth-child(1) .row:nth-child(2),
+      #masonry_gallery .segment:nth-child(2) .row:nth-child(3){
+        padding-bottom: 66% !important;
+      }
+      #masonry_gallery .segment:nth-child(2) .row:nth-child(2){
+        padding-bottom: 100% !important;
+        margin-top: 1px !important;
+        margin-bottom: 16px !important;
+      }
+      
+    }
+ 
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %} 

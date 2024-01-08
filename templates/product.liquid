@@ -1,0 +1,74 @@
+{%- comment -%}
+If the product contains the special __gift tag, we prevent it to be completely accessible by redirecting to the home page
+{%- endcomment -%}
+
+  {%- if product.title contains ' - ' -%}
+    <style>
+      .product-meta div[data-oke-reviews-product-listing-rating] {
+        display: inline-block !important;
+        padding: 0 !important;
+      }
+      .product-meta div[data-oke-reviews-product-listing-rating] .js-okeReviews-reviewsSummary .okeReviews-reviewsSummary-ratingCount {
+      	display: none !important;
+      }
+    </style>
+    <script defer="defer">
+      function delay_rev() {
+        var height_header = parseInt($('#shopify-section-header').height())+52;
+        var copy_reviews = $('.product-meta div[data-oke-reviews-product-listing-rating] .okeReviews-reviewsSummary-ratingCount span:nth-child(1)').text();
+        $('.product-meta div[data-oke-reviews-product-listing-rating] .okeReviews .okeReviews-reviewsSummary.is-okeReviews-clickable').attr('style','z-index:0!important;pointer-events:none!important;');
+        $('.product-meta div[data-oke-reviews-product-listing-rating]').after('<a style="display:inline-block!important;transform:translateY(3px)!important;z-index:99999!important;pointer-events:initial!important;" href="#custom_position_reviews_artist">'+copy_reviews+'</a>');
+        $('#custom_position_reviews_artist').attr('style','padding-top:'+height_header+'px!important;margin-top:-'+height_header+'px!important;');
+      }
+      
+      $(window).load(function(){
+        setTimeout(function(){
+            delay_rev();
+        }, 3000);
+      });
+    </script>
+  {%- endif -%}
+
+{%- if product.tags contains '__gift' -%}
+  <script>
+    window.location.href = '/';
+  </script>
+{%- else -%}
+  {% section 'product-template' %}
+  {% section 'product-recommendations' %}
+  {% section 'static-promotion-list' %}
+  {% section 'static-recently-viewed-products' %}
+
+  <script>
+    window.ShopifyXR=window.ShopifyXR||function(){(ShopifyXR.q=ShopifyXR.q||[]).push(arguments)};
+    ShopifyXR('addModels', {{ product.media | where: 'media_type', 'model' | json }});
+  </script>
+
+  <script type="text/javascript">
+    var _learnq = _learnq || [];
+    var item = {
+      Name: {{ product.title|json }},
+      ProductID: {{ product.id|json }},
+      Categories: {{ product.collections|map:'title'|json }},
+      ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+      URL: "{{ shop.secure_url }}{{ product.url }}",
+      Brand: {{ product.vendor|json }},
+      Price: {{ product.price|money|json }},
+      CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+    };
+    _learnq.push(['track', 'Viewed Product', item]);
+    _learnq.push(['trackViewedItem', {
+      Title: item.Name,
+      ItemId: item.ProductID,
+      Categories: item.Categories,
+      ImageUrl: item.ImageURL,
+      Url: item.URL,
+      Metadata: {
+        Brand: item.Brand,
+        Price: item.Price,
+        CompareAtPrice: item.CompareAtPrice
+      }
+    }]);
+  </script>
+  
+{%- endif -%}

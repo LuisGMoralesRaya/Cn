@@ -1,0 +1,114 @@
+<!--<div class="clhelp" style="background:#000; width:100%; height:150px; color:#fff; vertical-align:middle; text-align:center;">
+  <h1>Centro de Ayuda</h1>
+</div>-->
+<div class="container container--medium"  style="background:#fff !important; border-radius:3px; border:1px solid #f3f3f3; margin-top:20px; margin-bottom:20px; padding:40px;">
+
+
+  <div class="page__content rte">
+    {{ page.content }}
+    
+    
+    
+    
+{% if page.id != 73427714237 %}
+<br>
+    
+    {%- form 'contact', class: 'form' -%}
+        {%- if section.settings.show_store_info -%}
+          <div class="form__header">
+            <h2 class="heading h3">{{ section.settings.form_heading | escape }}</h2>
+          </div>
+        {%- endif -%}
+
+        {%- if form.posted_successfully? -%}
+          <p class="alert alert--success">{{ 'contact.form.successfully_sent' | t }}</p>
+        {%- endif -%}
+
+        {%- if form.errors -%}
+          <div class="alert alert--error" id="contact-form-error">
+            <ul class="alert__error-list" role="list">
+              {%- for field in form.errors -%}
+                {%- if field == 'form' -%}
+                  <li class="alert__error-item">{{ form.errors.messages[field] }}</li>
+                {%- else -%}
+                  <li class="alert__error-item">{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+        <div class="form__input-row">
+          <div class="form__input-wrapper form__input-wrapper--labelled">
+            <input id="contact-form-name" type="text" class="form__field form__field--text {% if customer.name != blank %}is-filled{% endif %}" name="contact[name]" aria-label="{{ 'contact.form.name' | t }}" required {% if customer %}value="{{ customer.name }}"{% endif %}>
+            <label for="contact-form-name" class="form__floating-label">{{ 'contact.form.name' | t }}</label>
+          </div>
+
+          <div class="form__input-wrapper form__input-wrapper--labelled">
+            <input id="contact-form-email" type="email" class="form__field form__field--text {% if customer.email != blank %}is-filled{% endif %}" name="contact[email]" aria-label="{{ 'contact.form.email' | t }}" required {% if customer %}value="{{ customer.email }}"{% endif %} {% if form.errors contains 'email' %}aria-invalid="true" aria-describedby="contact-form-error"{% endif %}>
+            <label for="contact-form-email" class="form__floating-label">{{ 'contact.form.email' | t }}</label>
+          </div>
+        </div>
+
+        {%- for block in section.blocks -%}
+          {%- assign field_title = block.settings.title -%}
+
+          {%- if field_title == blank -%}
+            {%- capture field_title -%}Custom field {% increment custom_field %}{%- endcapture -%}
+          {%- endif -%}
+
+          {%- if block.type == 'text' -%}
+            <div class="form__input-wrapper form__input-wrapper--labelled">
+              {%- if block.settings.use_long_text -%}
+                <textarea id="contact-form-{{ field_title | handle }}" name="contact[{{ field_title | escape }}]" rows="7" class="form__field form__field--textarea" aria-label="{{ block.settings.title | escape }}" {% if block.settings.is_required %}required{% endif %}></textarea>
+                <label for="contact-form-{{ field_title | handle }}" class="form__floating-label">{{ block.settings.title | escape }}</label>
+              {%- else -%}
+                <input id="contact-form-{{ field_title | handle }}" type="text" class="form__field form__field--text" name="contact[{{ field_title | escape }}]" aria-label="{{ block.settings.title | escape }}" {% if block.settings.is_required %}required{% endif %}>
+                <label for="contact-form-{{ field_title | handle }}" class="form__floating-label">{{ block.settings.title | escape }}</label>
+              {%- endif -%}
+            </div>
+          {%- elsif block.type == 'dropdown' -%}
+            {%- assign values = block.settings.values | split: ',' -%}
+
+            {%- if values == empty -%}
+              {%- continue -%}
+            {%- endif -%}
+
+            <div class="form__input-wrapper form__input-wrapper--labelled">
+              <div id="contact-form-{{ field_title | handle }}" class="select-wrapper select-wrapper--primary">
+                {%- render 'icon', icon: 'arrow-bottom' -%}
+
+                <select name="contact[{{ field_title | escape }}]" title="{{ block.settings.title | escape }}" required>
+                  <option value="" disabled selected></option>
+
+                  {%- for value in values -%}
+                    {%- assign trim_value = value | strip -%}
+
+                    <option value="{{ trim_value | escape }}">{{ trim_value | escape }}</option>
+                  {%- endfor -%}
+                </select>
+              </div>
+
+              <label for="contact-form-{{ field_title | handle }}" class="form__floating-label">{{ block.settings.title | escape }}</label>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+
+        <div class="form__input-wrapper form__input-wrapper--labelled">
+          <textarea id="contact-form-message" name="contact[body]" rows="8" class="form__field form__field--textarea" aria-label="{{ 'contact.form.message' | t }}" required></textarea>
+          <label for="contact-form-message" class="form__floating-label">{{ 'contact.form.message' | t }}</label>
+        </div>
+
+        <button type="submit" class="form__submit {% unless section.settings.show_store_info %}form__submit--centered{% endunless %} button button--primary button--min-width">{{ 'contact.form.submit' | t }}</button>
+      {%- endform -%}
+    
+    
+{% endif %}
+    
+    
+    
+  </div>
+</div>
+<style>
+  #main{margin:40px 20px;}
+</style>

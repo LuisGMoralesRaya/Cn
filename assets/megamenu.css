@@ -1,0 +1,148 @@
+.nav-bar__item:nth-child(2) .mega-menu__inner > .mega-menu__column:nth-child(4){
+	display: none !important;
+}
+
+.nav-bar li a.mega-menu__link{
+	/*color: #00adef !important;*/
+  	font-weight: 600 !important;
+  	transition: all 0.5s ease !important;
+}
+.nav-bar li a.mega-menu__link > svg {
+    height: 20px !important;
+    width: 20px !important;
+    margin: 0px 2px -4px 0px !important;
+    display: inline-block !important;
+}
+.nav-bar li a.mega-menu__link path {
+    transition: all 0.5s ease !important;
+}
+.nav-bar li a.mega-menu__link ellipse {
+    transition: all 0.5s ease !important;
+}
+.nav-bar li a.mega-menu__link circle {
+    transition: all 0.5s ease !important;
+}
+.nav-bar li a.mega-menu__link polygon {
+    transition: all 0.5s ease !important;
+}
+.nav-bar li a.mega-menu__link:hover path:not(path[fill="none"]) {
+    fill: #fff !important;
+}
+.nav-bar li a.mega-menu__link:hover ellipse:not(ellipse[fill="none"]) {
+    fill: #fff !important;
+}
+.nav-bar li a.mega-menu__link:hover circle:not(circle[fill="none"]) {
+    fill: #fff !important;
+}
+.nav-bar li a.mega-menu__link:hover polygon:not(polygon[fill="none"]) {
+    fill: #fff !important;
+}
+.nav-bar li a.mega-menu__link:hover{
+  	text-shadow: 0px 0px 5px #0bbcffdd !important;
+}
+
+.mobile-menu__nav-list-item svg {
+    height: 20px !important;
+    width: 20px !important;
+    margin: 0 2px -4px 0;
+}
+
+
+
+
+
+
+.nav-bar__item:nth-child(3) .mega-menu__inner > .mega-menu__column:nth-child(4) > .mega-menu__linklist {
+    width: 360px !important;
+    display: inline-block;
+}
+
+.nav-bar__item:nth-child(3) .mega-menu__inner > .mega-menu__column:nth-child(4) > .mega-menu__linklist > .mega-menu__item {
+    width: 120px !important;
+    height: 120px !important;
+    display: inline-block !important;
+    float: left !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative !important; 
+    background-position: center center !important;
+    background-size: cover !important;
+  	background-repeat: no-repeat !important;
+}
+
+html body .nav-bar__item:nth-child(3) .mega-menu__inner > .mega-menu__column:nth-child(4) > .mega-menu__linklist > .mega-menu__item::after {
+	position: absolute !important;
+    content: '' !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(255,255,255,0.6) !important;
+    top: 0 !important;
+    left: 0 !important;
+  	transition: all 0.5s ease !important;
+}
+
+html body .nav-bar__item:nth-child(3) .mega-menu__inner > .mega-menu__column:nth-child(4) > .mega-menu__linklist > .mega-menu__item:hover::after {
+    background: rgba(140,52,0,0.12) !important;
+  	mix-blend-mode: multiply !important;
+}
+
+html body .nav-bar__item:nth-child(3) .mega-menu__inner > .mega-menu__column:nth-child(4) > .mega-menu__linklist > .mega-menu__item > .mega-menu__link {
+    position: absolute!important;
+    left: 0!important;
+    bottom: 0!important;
+    width: 100%!important;
+    height: 100%!important;
+    margin: 0!important;
+    display: table-cell!important;
+    line-height: 2.6em !important;
+    text-align: center!important;
+    padding: 34% 0 0 0 !important;
+    vertical-align: unset!important;
+  	z-index: 1;
+}
+
+html body .nav-bar__item:nth-child(3) .mega-menu__inner > .mega-menu__column:nth-child(4) > .mega-menu__linklist > .mega-menu__item:not(:nth-child(9)) > .mega-menu__link {
+	color: #16093f !important;
+}
+
+html body .nav-bar__item:nth-child(3) .mega-menu__inner > .mega-menu__column:nth-child(4) > .mega-menu__linklist > .mega-menu__item:hover > .mega-menu__link {
+	color: #fff !important;
+}
+
+html body .nav-bar__item:nth-child(3) .mega-menu__inner > .mega-menu__column:nth-child(4) > .mega-menu__linklist > .mega-menu__item:hover > .mega-menu__link {
+	text-shadow: 0 -2px 2px rgba(0,0,0,0.66) !important;
+}
+
+html body .nav-bar__item:nth-child(3) .mega-menu__inner > .mega-menu__column:nth-child(4) > .mega-menu__linklist > .mega-menu__item:nth-child(1){
+	background-image: url(https://cdn.shopify.com/s/files/1/0258/6276/6677/collections/Etnicos.jpg?v=1614708677);
+}
+html body .nav-bar__item:nth-child(3) .mega-menu__inner > .mega-menu__column:nth-child(4) > .mega-menu__linklist > .mega-menu__item:nth-child(2){
+	background-image: url(https://cdn.shopify.com/s/files/1/0258/6276/6677/collections/Industrial.jpg?v=1614708814);
+}
+html body .nav-bar__item:nth-child(3) .mega-menu__inner > .mega-menu__column:nth-child(4) > .mega-menu__linklist > .mega-menu__item:nth-child(3){
+	background-image: url(https://cdn.shopify.com/s/files/1/0258/6276/6677/collections/Japandi.jpg?v=1614708973);
+}
+html body .nav-bar__item:nth-child(3) .mega-menu__inner > .mega-menu__column:nth-child(4) > .mega-menu__linklist > .mega-menu__item:nth-child(4){
+	background-image: url(https://cdn.shopify.com/s/files/1/0258/6276/6677/collections/Mediterraneo.jpg?v=1614709008);
+}
+html body .nav-bar__item:nth-child(3) .mega-menu__inner > .mega-menu__column:nth-child(4) > .mega-menu__linklist > .mega-menu__item:nth-child(5){
+	background-image: url(https://cdn.shopify.com/s/files/1/0258/6276/6677/collections/headers-minimalista.jpg?v=1614713691);
+}
+html body .nav-bar__item:nth-child(3) .mega-menu__inner > .mega-menu__column:nth-child(4) > .mega-menu__linklist > .mega-menu__item:nth-child(6){
+	background-image: url(https://cdn.shopify.com/s/files/1/0258/6276/6677/collections/Nordico.jpg?v=1614709133);
+}
+html body .nav-bar__item:nth-child(3) .mega-menu__inner > .mega-menu__column:nth-child(4) > .mega-menu__linklist > .mega-menu__item:nth-child(7){
+	background-image: url(https://cdn.shopify.com/s/files/1/0258/6276/6677/collections/Victoriano.jpg?v=1614710959);
+}
+html body .nav-bar__item:nth-child(3) .mega-menu__inner > .mega-menu__column:nth-child(4) > .mega-menu__linklist > .mega-menu__item:nth-child(8){
+	background-image: url(https://cdn.shopify.com/s/files/1/0258/6276/6677/collections/Vintage.jpg?v=1614710969);
+}
+html body .nav-bar__item:nth-child(3) .mega-menu__inner > .mega-menu__column:nth-child(4) > .mega-menu__linklist > .mega-menu__item:nth-child(9){
+	background-image: url();
+}
+
+#desktop-menu-0-3 > div > div > div:nth-child(4){
+	display: none !important;
+}
