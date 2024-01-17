@@ -518,7 +518,8 @@
       },
       "popups": {
         "type": "popups",
-        "settings": {}
+        "settings": {
+        }
       },
       "text-with-icons": {
         "type": "text-with-icons",
@@ -3464,11 +3465,13 @@
       },
       "css_gateways": {
         "type": "css_gateways",
-        "settings": {}
+        "settings": {
+        }
       },
       "js_gateways": {
         "type": "js_gateways",
-        "settings": {}
+        "settings": {
+        }
       },
       "fc_gd_00": {
         "type": "fc_gd_00",
@@ -4249,7 +4252,8 @@
       },
       "gift-card-template": {
         "type": "gift-card-template",
-        "settings": {}
+        "settings": {
+        }
       },
       "fd_collection": {
         "type": "fd_collection",
@@ -4988,7 +4992,8 @@
       },
       "Banner_collection_mont": {
         "type": "Banner_collection_mont",
-        "settings": {}
+        "settings": {
+        }
       },
       "Custom_html_mont": {
         "type": "Custom_html_mont",
@@ -5051,7 +5056,8 @@
           "85bf8a79-a258-4e5b-8176-3308b21e1130",
           "e4cd4c4b-3050-40e0-98c6-b3fa59c520c4"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "4_Cards_mont": {
         "type": "4_Cards_mont",
@@ -6575,7 +6581,8 @@
           "21e72bfa-7b6b-4484-8b09-9217d1d8f710",
           "4d270582-1ac7-429c-b841-441fa3355985"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "4_cards_01_new_index": {
         "type": "4_cards_01_new_index",
@@ -7210,11 +7217,13 @@
       },
       "hero_home_new_index": {
         "type": "hero_home_new_index",
-        "settings": {}
+        "settings": {
+        }
       },
       "5330c81b-d7e5-47bf-acee-22acc62c6904": {
         "type": "hero_home_new_index",
-        "settings": {}
+        "settings": {
+        }
       },
       "14074479-ca10-4fb5-bc39-08318cdb856f": {
         "type": "2_cards_new_index",
@@ -7270,7 +7279,8 @@
           "9b2c602c-5205-441f-9094-82327a03b5b5",
           "0c33f705-ffa5-40b2-9a9b-f65a8248be84"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "8e62cfc9-c868-474b-9595-5515127da9db": {
         "type": "hero_banner_new_index",
@@ -7375,7 +7385,8 @@
           "eae0035b-5e30-4b47-9bc2-d1df91bcd0cf",
           "cfd6e7df-81a3-4b77-9c7a-c0794664663c"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "search-template": {
         "type": "search-template",
@@ -7659,12 +7670,14 @@
       "855628211100114053": {
         "type": "shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/klaviyo-onsite-embed\/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
-        "settings": {}
+        "settings": {
+        }
       },
       "319724205969189013": {
         "type": "shopify:\/\/apps\/hulk-form-builder\/blocks\/app-embed\/b6b8dd14-356b-4725-a4ed-77232212b3c3",
         "disabled": false,
-        "settings": {}
+        "settings": {
+        }
       }
     }
   },
@@ -7943,7 +7956,8 @@
         },
         "product-recommendations": {
           "type": "product-recommendations",
-          "settings": {}
+          "settings": {
+          }
         },
         "announcement-bar": {
           "type": "announcement-bar",
@@ -8239,7 +8253,8 @@
         },
         "product-recommendations": {
           "type": "product-recommendations",
-          "settings": {}
+          "settings": {
+          }
         },
         "announcement-bar": {
           "type": "announcement-bar",
@@ -8632,7 +8647,8 @@
         },
         "product-recommendations": {
           "type": "product-recommendations",
-          "settings": {}
+          "settings": {
+          }
         },
         "announcement-bar": {
           "type": "announcement-bar",
