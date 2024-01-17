@@ -333,9 +333,7 @@
           {{- product_labels -}}
         </div>
       {%- endif -%}
-      <div style="display: none;" class="priceNN price">
-        {{- selected_variant.price | money_without_trailing_zeros -}}
-      </div>
+
       <div class="product-form__info-list">
         <div
           class="product-form__info-item"
@@ -352,7 +350,6 @@
                 float: left !important;
               }
             </style>
-            
             <div class="price-list">
               {%- if selected_variant.compare_at_price > selected_variant.price -%}
                 <span class="price price--highlight">

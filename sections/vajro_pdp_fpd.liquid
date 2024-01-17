@@ -80,7 +80,7 @@
   function showAddButton() {
     let handleElemFunction = null;
     handleElemFunction = setInterval(function () {
-      if(document.getElementsByClassName("product-form__add-button")[0] && document.getElementsByClassName("fpd-loader-wrapper")[0].style.display === 'none') {
+      if(document.getElementsByClassName("product-form__add-button")[0] && document.querySelector("#fpd").childElementCount > 0) {
         document.getElementsByClassName("product-form__add-button")[0].style.cssText = "";
         clearInterval(handleElemFunction);
       }
@@ -90,24 +90,17 @@
   
   let replaceElemFunction = null;
    replaceElemFunction = setInterval(function () {
-    var old_element = document.getElementsByClassName('product-form__add-button')[0];
-    var new_element = old_element && old_element.cloneNode(true) || null;
+    var btn_element = document.getElementsByClassName('product-form__add-button')[0];
     let {VajroSDK = null, FPD = null} = window;
-    if(old_element && VajroSDK && isVajroSDKScriptLoaded && FPD && FPD?.productPage?.atcOperator?.atcStrategy) {
+    if(btn_element && VajroSDK && isVajroSDKScriptLoaded && FPD && FPD?.productPage?.atcOperator?.atcStrategy) {
       clearInterval(replaceElemFunction);
       calcPrice();
-      var btnParentElement = document.createElement('div');
-      btnParentElement.setAttribute("id", "vajroAddToCart");
       
-      // old_element.parentNode.replaceChild(btnParentElement, old_element);
-
-      // document.getElementById("vajroAddToCart").appendChild(new_element);
-      // document.getElementById("vajroAddToCart").addEventListener('click', handleAddToCart);
       document.querySelector('a#gara-sp').remove();
       document.querySelector('div#timer_SingleProduct').remove();
 
       FPD.productPage.atcOperator.atcStrategy = function (lineItemCache, shopifyProduct) {
-        console.log({lineItemCache, shopifyProduct})
+        document.getElementsByClassName("product-form__add-button")[0].style.cssText = "pointer-events: none; opacity: 0.4;";
         let { id = null} = shopifyProduct
         let properties = this.buildProperties(lineItemCache, shopifyProduct)
         let variantId = this.getVariantId(lineItemCache)
@@ -135,10 +128,7 @@
                 .exec();
             }, err => {
               alert(JSON.stringify({err}))
-            })
-        
-    
-        console.log({lineItemCache, shopifyProduct}, );
+            })        
       }
     }
   }, 300);
@@ -170,7 +160,7 @@
         const removeTextinPrice  = originalPrice.replace(/[^0-9\.]+/g, "");
         const percentageCal = ((Number(percentageDiscount) / 100) *  Number(removeTextinPrice)).toFixed(2);
         const formatPrice = (Number(removeTextinPrice) - Number(percentageCal)).toFixed(2);
-        console.log({removeTextinPrice, formatPrice, percentageCal});
+
         priceHighlight.innerHTML = `<span class="visually-hidden">Sale Price</span><span style="margin-right:5px">$</span>${ formatNumbertoPrice(formatPrice) }`;
         updatePercentageDiscount.innerHTML = `Ahorras $${ formatNumbertoPrice(percentageCal) } (<span style="line-height: 26px !important;">${ percentageDiscount }%</span>)`;
       }

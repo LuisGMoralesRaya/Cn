@@ -4407,8 +4407,8 @@
       "16439967740be1d94f": {
         "type": "featured_by_canvas_lab",
         "settings": {
-          "collection": "cuadros-para-decoracion-japandi",
-          "image": "shopify:\/\/shop_images\/4-13-Dic---Adelantate-a-la-NavidadJapandi.png",
+          "collection": "infinity-art",
+          "image": "shopify:\/\/shop_images\/Infinity-Art.png",
           "image_position": "left",
           "image_width": 50,
           "content": "<p>Use this text to share information about your brand with your customers.<\/p>",
@@ -7392,6 +7392,7 @@
         "blocks": {
           "fe82bc8f-fed6-4695-af45-d31ad614bcbc-1683662690acbcadd0-1": {
             "type": "image",
+            "disabled": true,
             "settings": {
               "image": "shopify:\/\/shop_images\/banner_home_page_anuncio.png",
               "mobile_image": "shopify:\/\/shop_images\/Banner_Movil_8da2e759-76a8-4c81-a5ea-bd418250765c.png",
@@ -7411,6 +7412,7 @@
         "block_order": [
           "fe82bc8f-fed6-4695-af45-d31ad614bcbc-1683662690acbcadd0-1"
         ],
+        "disabled": true,
         "settings": {
           "edge_to_edge": false,
           "section_size": "preserve_ratio",
@@ -7425,8 +7427,8 @@
           "886be86f-2676-4aee-a33c-0acf5f650a85-1683666437019ecd80-0": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/4-13-Dic---Adelantate-a-la-NavidadAdelantate-a-la-Navidad--Desktop.png",
-              "mobile_image": "shopify:\/\/shop_images\/4-13-Dic---Adelantate-a-la-NavidadAdelantate-a-la-Navidad---Movil.png",
+              "image": "shopify:\/\/shop_images\/15-19_de_enero50_off_-_Desktop.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/15-19_de_enero50_off-_Movil.jpg",
               "show_overlay": false,
               "overlay_opacity": 30,
               "text_color": "#ffffff",
@@ -7454,8 +7456,8 @@
       "1e97f6c4-949d-46f8-b44e-f57c2debddca": {
         "type": "featured_cl_new_index",
         "settings": {
-          "collection": "cuadros-para-recamara-principal",
-          "image": "shopify:\/\/shop_images\/4-13-Dic---Adelantate-a-la-NavidadCuadros-para-recamara-principal.png",
+          "collection": "cuadros-para-nina",
+          "image": "shopify:\/\/shop_images\/Cuadros-para-nina.png",
           "image_position": "left",
           "image_width": 50,
           "content": "",
@@ -7571,6 +7573,59 @@
           "stack_products": false,
           "show_quick_buy": false
         }
+      },
+      "b9d5be2b-951b-4c90-8a03-60cee8192ebc": {
+        "type": "Slideshow_mont",
+        "blocks": {
+          "b9d5be2b-951b-4c90-8a03-60cee8192ebc-image-1": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Banner_Paqueterias_-_Desktop.png",
+              "mobile_image": "shopify:\/\/shop_images\/Banner_Paqueterias_-_Movil.png",
+              "show_overlay": false,
+              "overlay_opacity": 0,
+              "text_color": "#ffffff",
+              "title": "",
+              "content": "",
+              "content_position": "middle_center",
+              "button_background": "#ffffff",
+              "button_text_color": "#000000",
+              "button_text": "",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "b9d5be2b-951b-4c90-8a03-60cee8192ebc-image-1"
+        ],
+        "disabled": true,
+        "settings": {
+          "edge_to_edge": false,
+          "section_size": "preserve_ratio",
+          "carousel_effect": "slide",
+          "autoplay": true,
+          "cycle_speed": 5
+        }
+      },
+      "complex-collection-sq": {
+        "type": "complex-collection-sq",
+        "settings": {
+          "show_collection_image": true,
+          "collapse_collection_description": false,
+          "collection_image_size": "small",
+          "products_per_row": "4",
+          "default_products_per_page": 24,
+          "default_view_layout": "grid",
+          "show_quick_buy": "list",
+          "show_quick_view": "list",
+          "quick_links": "",
+          "quick_links_show_products_count": true,
+          "show_filters": true,
+          "show_filter_color_swatch": true,
+          "filter_type": "tag",
+          "open_group_filters_mode": "all_closed",
+          "filter_group_order": ""
+        }
       }
     },
     "content_for_index": [
@@ -7578,14 +7633,15 @@
       "886be86f-2676-4aee-a33c-0acf5f650a85",
       "16521177468ea37a88",
       "14074479-ca10-4fb5-bc39-08318cdb856f",
-      "fe82bc8f-fed6-4695-af45-d31ad614bcbc",
       "16510963468cf365c9",
       "165117200106168b3b",
+      "b9d5be2b-951b-4c90-8a03-60cee8192ebc",
       "1542984811767",
       "f124a6eb-8c54-4d29-9a96-e95f22dfaa22",
       "1660843226dadae5ea",
       "1e97f6c4-949d-46f8-b44e-f57c2debddca",
       "889836d3-d1f9-44fd-afb4-4da609ab2d54",
+      "fe82bc8f-fed6-4695-af45-d31ad614bcbc",
       "165119114490989b49",
       "25407b9f-134b-445b-849f-f8c5dd796d42",
       "16439967740be1d94f",

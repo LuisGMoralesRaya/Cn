@@ -94,7 +94,7 @@
               Antes se comparaba con la fecha de creación del pedido, ahora se compara con la fecha de creación del fulfillment
               {% if order.created_at < comparison_date %}{% endif %}
             {% endcomment %}
-            {% if fulfillment.created_at < comparison_date %}
+            {% if order.created_at < comparison_date %}
               {% assign return_availability = false %}
             {% else %}
               {% assign return_availability = true %}
@@ -128,7 +128,7 @@
                   top: 0 !important;
                   width: 24px !important;
                   height: 24px !important;
-                  padding: 0 120px 0 0 !important;
+                  padding: 0 240px 0 0 !important;
                   background-image: url(https://cdn.shopify.com/s/files/1/0258/6276/6677/files/entregas.svg?v=1612829268);
                   background-size: contain !important;
                   background-repeat: no-repeat !important;
@@ -151,15 +151,15 @@
                   <form id="button_out" method="post" action="https://app.canvaslab.com/estatus-pedido/" target="_blank">
                     <input type="hidden" name="o" value="{{ order.order_number }}"/>
                     <input type="hidden" name="e" value="{{ order.email }}"/>
-                    <input type="hidden" name="k" value="HwGzlI1HBXM3PeCsVGaMja_4pofndsfjoTrd0twXXBwQsKRDaCRQjs"/>
+                    <input type="hidden" name="k" value="HwGzlI1HBXM3PeCsVGaMja_4poV2fndsfjoTrd0twXXBwQsKRDaCRQjs"/>
                     <input type="image" name="submit" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/entregas.svg?v=1612829268" border="0" alt="Submit" style="width: 24px; height:24px;" />
-                    <p style="color: #00adef; font-weight: 600; padding: 0 0 0 27px;">Ver detalle</p>
+                    <p style="color: #00adef; font-weight: 600; padding: 0 0 0 27px;">Cambios y devoluciones</p>
                     <!--<input type="submit" style="background:none !important; "/>-->
                   </form>
                 {%- endif -%}
               {%- endunless -%}
             {%- endif -%}
-
+            
             <p class="hidden-tablet-and-up">{{ order.created_at | date: format: 'month_day_year_time' }}</p>
 
             {%- if order.cancelled -%}

@@ -388,7 +388,7 @@
       <li id="a11y-new-window-message">{{ 'general.accessibility.new_window' | t }}</li>
     </ul>
     {%- if template contains 'product' -%}
-      {% comment %} {% include 'new-single-product' %} {% endcomment %}
+      {% include 'new-single-product' %}
     {%- endif -%}
 
     {% if template contains 'product' %}{% render 'product-personalizer' %}{% endif -%}
@@ -566,9 +566,4 @@
     {% include 'customUpload' %}
   </body>
   {% include 'special_banks' %}
-  {%- if template contains 'product' -%}
-    {% include 'controlDescuentos' %}
-    {% comment %} {% include 'new-single-product' %} {% endcomment %}
-  {%- endif -%}
-  
 </html>

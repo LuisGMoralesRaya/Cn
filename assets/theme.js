@@ -3124,6 +3124,7 @@
           }
 
           productPrices.innerHTML = '';
+
           if (newVariant['compare_at_price'] > newVariant['price']) {
             productPrices.innerHTML += "<span class=\"price price--highlight\"><span class=\"visually-hidden\">".concat(window.languages.productSalePrice, "</span>").concat(Currency.formatMoney(newVariant['price'], window.theme.moneyFormat), "</span>");
             productPrices.innerHTML += "<span class=\"price price--compare\"><span class=\"visually-hidden\">".concat(window.languages.productRegularPrice, "</span>").concat(Currency.formatMoney(newVariant['compare_at_price'], window.theme.moneyFormat), "</span>");
@@ -3132,9 +3133,6 @@
           }
 
           productPrices.style.display = '';
-          console.log("SSS")
-          /* $(".priceNN").html(newVariant['price'], window.theme.moneyFormat)
-          $(".priceNN").html(Currency.formatMoney(newVariant['price'], window.theme.moneyFormat)) */
         }
       }
       /**

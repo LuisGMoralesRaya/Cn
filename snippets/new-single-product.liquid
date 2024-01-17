@@ -335,7 +335,7 @@
               $(this).remove();
             });
             $('#delivery_notice').addClass('dnwp');
-            $('#delivery_notice #dmsg').html('<div id="delivery_notice_warning" style="height: auto; width 100%; ">'+output_dnw+'</div>');
+            $('#delivery_notice #dmsg').html('<div id="delivery_notice_warning" style="height: auto; width 100%; margin-top: 10px;">'+output_dnw+'</div>');
           }
           
         }, 1000);
@@ -460,8 +460,6 @@
         
         
         
-        var deluxe = true;
-        {% comment %}
         var deluxe = false;
         switch (material) {
           case 'ac':
@@ -472,7 +470,6 @@
             break;
           default:
         }
-        {% endcomment %}
         
         /*START 1 temporary fix*/
         /*if (is_pix === true) {
@@ -481,64 +478,12 @@
         /*END 1 temporary fix*/
          //var copy_delivery_notice = 'Recíbelo del <strong>' + starting_point + ', ' + datstart + ' de ' + modstart + '</strong> al <strong>' + ending_point + ', ' + datend + ' de ' + modend + '</strong> si ordenas ahora con Envío Express.';
         if (deluxe == true){
-          {% comment %}
-		      var copy_delivery_notice = 'Recíbelo el <strong>' + starting_point + ', ' + datstart + ' de ' + modstart + '</strong> con Envío Express.<strong style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;">Los productos de lujo, como este, pueden demorar hasta 5 días más en ser entregados.</strong>';
+		  var copy_delivery_notice = 'Recíbelo el <strong>' + starting_point + ', ' + datstart + ' de ' + modstart + '</strong> con Envío Express.<strong style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;">Los productos de lujo, como este, pueden demorar hasta 5 días más en ser entregados.</strong>';
           $('#delivery_notice').html('<div id="dnotice"><img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/envios.svg?v=1612722564" class="icon_tde" ></div><div id="dmsg" class="dl">' + copy_delivery_notice +'</div>');
-          {% endcomment %}
-          //var copy_delivery_notice = 'Recíbelo el <strong>' + starting_point + ', ' + datstart + ' de ' + modstart + '</strong> con Envío Express.<br><strong style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;">Información Importante para Nuestros Clientes:</strong><span style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;">Queremos asegurarnos de que tu experiencia de compra con nosotros sea siempre positiva. Por eso, te informamos que, debido a la alta demanda en estas fechas decembrinas, las empresas de paquetería a nivel nacional pueden experimentar retrasos que están fuera de nuestro control.</span><span style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;">Tu Pedido Está Asegurado Aunque no podemos garantizar una fecha de entrega exacta en este momento, queremos que sepas que la entrega de tu pedido si está garantizada.</span><span style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;">Nuestro compromiso con tu satisfacción permanece firme. Agradecemos tu comprensión y paciencia en esta temporada alta. ¡Gracias por elegirnos!</span>';
-          /* var copy_delivery_notice = '<strong style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;">Información Importante para Nuestros Clientes:</strong><span style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;">Queremos asegurarnos de que tu experiencia de compra con nosotros sea siempre positiva. Por eso, te informamos que, debido a la alta demanda en estas fechas decembrinas, las empresas de paquetería a nivel nacional pueden experimentar retrasos que están fuera de nuestro control.</span><span style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;">Tu Pedido Está Asegurado Aunque no podemos garantizar una fecha de entrega exacta en este momento, queremos que sepas que la entrega de tu pedido si está garantizada.</span><span style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;">Nuestro compromiso con tu satisfacción permanece firme. Agradecemos tu comprensión y paciencia en esta temporada alta. ¡Gracias por elegirnos!</span>';
-          /* $('#delivery_notice').html('<div id="dmsg" class="dl">' + copy_delivery_notice +'</div>'); */
-          console.log("ESSS e {{ product.variants.first.title }}" )
-          console.log("PPRODUCT e {{ product.title }}" ) 
-          //$('#delivery_notice').html('<div id="dnotice"><img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/envios.svg?v=1612722564" class="icon_tde" ></div><div id="dmsg" class="dl">' + copy_delivery_notice +'</div>');
-          var elTituloProducto = "{{ product.title }}"
-          var elTitulodeVariante = "{{ product.variants.first.title }}"
-          let date = new Date()
-          let day = date.getDate()
-          let month = date.getMonth() + 1
-          let year = date.getFullYear()
-          let validoFecha = "";
-          if(month < 10){
-              validoFecha = day + "-"+ month + "-"+ year
-          }else{
-            validoFecha = day + "-"+ month + "-"+ year
-          }
-          console.log(day)
-          console.log(month)
-          console.log(validoFecha)
-          if(elTituloProducto != "Acrilico" || elTituloProducto != "Aluminio" || elTituloProducto != "PixSet" ){
-            if(month == 12){
-              if(day < 14){
-                // Notice No garantizo - ASAP
-                $('#delivery_notice').html('<div id="dmsg" class="dl"><strong style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;">Debido al tiempo de fabricación y de envío, no podemos garantizar la entrega de este producto antes de Navidad</strong></div>');
-              }else{
-                //Notice no llega - 14 Dic
-                $('#delivery_notice').html('<div id="dmsg" class="dl"><strong style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;">Debido al tiempo de fabricación y de envío, este producto no podría ser entregado antes de Navidad</strong></div>');
-              }
-            }else{
-              $('#delivery_notice').html('<div id="dmsg" class="dl">' + copy_delivery_notice +'</div>');
-            }
-          }else{
-              // Notice no llega - 11 Dic 
-              $('#delivery_notice').html('<div id="dmsg" class="dl"><strong style="display:block;color: #f0297c;line-height: 1.2em;font-size: smaller;">Debido al tiempo de fabricación y de envío, este producto no podría ser entregado antes de Navidad</strong></div>');
-          }
-        }
-       
-        {% comment %}
-        else{
-          console.log("Check If pix ")
-          console.log(is_pix)
-          if (is_pix == true) {
-            var copy_delivery_notice = 'Recíbelo a partir del <strong>Martes, 24 de Octubre</strong> si ordenas ahora con Envío Express.';
+        }else{
+          var copy_delivery_notice = 'Recíbelo el <strong>' + starting_point + ', ' + datstart + ' de ' + modstart + '</strong> con Envío Express.';
           $('#delivery_notice').html('<div id="dnotice"><img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/envios.svg?v=1612722564" class="icon_tde" ></div><div id="dmsg">' + copy_delivery_notice +'</div>');
-            
-          }else{
-            var copy_delivery_notice = 'Recíbelo el <strong>' + starting_point + ', ' + datstart + ' de ' + modstart + '</strong> con Envío Express.';
-          $('#delivery_notice').html('<div id="dnotice"><img loading="lazy" width="auto" height="100%" src="https://cdn.shopify.com/s/files/1/0258/6276/6677/files/envios.svg?v=1612722564" class="icon_tde" ></div><div id="dmsg">' + copy_delivery_notice +'</div>');
-
-          }
         }
-        {% endcomment %}
         
         $('#delivery_notice').addClass('visible_cl');
                
@@ -656,7 +601,6 @@
       var swatch3 = $('.product-form__variants > .product-form__option:nth-child(3) > .product-form__option-name').text().toString();
 
       var v_mb_poster_title = title.indexOf('ster') >= 0;
-      var v_mb_pergamino_title = title.indexOf('gamino') >= 0;
       var v_mb_pixset_title = title.indexOf('ixSet') >= 0;
       var v_mb_canvas_title = title.indexOf('anvas') >= 0;
       var v_mb_acrilico_title = title.indexOf('crílico') >= 0;
@@ -667,7 +611,6 @@
       var v_mb_collage_title = title.indexOf('ollage') >= 0;
 
       var v_mb_poster_s1 = swatch1.indexOf('ster') >= 0;
-      var v_mb_pergamino_s1 = swatch1.indexOf('gamino') >= 0;
       var v_mb_pixset_s1 = swatch1.indexOf('ixSet') >= 0;
       var v_mb_canvas_s1 = swatch1.indexOf('anvas') >= 0;
       var v_mb_acrilico_s1 = swatch1.indexOf('crílico') >= 0;
@@ -676,7 +619,6 @@
       var v_mb_portarretratos_s1 = swatch1.indexOf('ortarretrato') >= 0;
 
       var v_mb_poster_s2 = swatch2.indexOf('ster') >= 0;
-      var v_mb_pergamino_s2 = swatch2.indexOf('gamino') >= 0;
       var v_mb_pixset_s2 = swatch2.indexOf('ixSet') >= 0;
       var v_mb_canvas_s2 = swatch2.indexOf('anvas') >= 0;
       var v_mb_acrilico_s2 = swatch2.indexOf('crílico') >= 0;
@@ -691,7 +633,7 @@
       cant_add_to_cart();
       setTimeout(function() {
         
-        if (v_mb_poster_title == true || v_mb_poster_s1 == true || v_mb_poster_s2 == true || v_mb_pergamino_title == true || v_mb_pergamino_s1 == true || v_mb_pergamino_s2 == true) {
+        if (v_mb_poster_title == true || v_mb_poster_s1 == true || v_mb_poster_s2 == true) {
             $('#ml-no').click();
             $('#swatch_ml').removeAttr('style');
             if (time_h > 8 && time_m > 30 && time_s > 00) {
